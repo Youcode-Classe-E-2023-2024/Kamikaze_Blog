@@ -3,5 +3,5 @@
 
   // Init Core Library
   // $init = new Core;
-  echo "hello world";
+  echo "hello world from ...";
 ?>
