@@ -6,9 +6,7 @@
     }
     
     public function index(){
-      
-     
-    echo 'test';
+      echo "Go to : http://localhost/Kamikaze_Blog/pages/auth";
     }
     public function auth(){
       // die("auth");
