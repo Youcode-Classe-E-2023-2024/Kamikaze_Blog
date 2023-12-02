@@ -1,4 +1,6 @@
 <?php
+ use PHPMailer\PHPMailer\PHPMailer;
+ use PHPMailer\PHPMailer\Exception;
   class Users extends Controller {
     private $userModel;
     public function __construct(){
@@ -72,24 +74,60 @@
           // die('before upld');
           // Hash Password
           $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-          
+          $data['token'] = $this->generateToken();
+
           // Register User
           if($this->userModel->register($data)){
-            // die('inside upld 2');
+            $activationLink = URLROOT . "/pages/activate/" . $data['token'];
+            $to = $data['email'];
+            $subject = "Account activation";
+            $message = "Click the following link to activate your account: $activationLink";
+
+            $mail = new PHPMailer(true);
+
+              try {
+                  $mail->isSMTP();
+                  $mail->Host = 'smtp.gmail.com';
+                  $mail->Port = 587;
+                  $mail->SMTPSecure = 'tls';
+                  $mail->SMTPAuth = true;
+                  $mail->Username = 'alahcen2000@gmail.com';
+                  $mail->Password = 'uyll kafu cmzt omyl'; 
+
+                  $mail->setFrom('alahcen2000@gmail.com', 'Zakariae Ait Lahcen');
+                  $mail->addAddress($to);
+
+                  $mail->isHTML(true);
+                  $mail->Subject = $subject;
+                  $mail->Body = $message;
+
+                  $mail->send();
+                  
+              } catch (Exception $e) {
+                  echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                  $data['error1'] = $mail->ErrorInfo;
+                  // die($mail->ErrorInfo);
+              }
+         
             $this->view('pages/auth', $data);
           } else {
             // die('Something went wrong');
             echo "err" . $data['error'];
-            // die('inside upld 3');
+            die('inside upld 3');
           }
         }
     
       }
       
-      $this->view('pages/auth', $data);
+        $this->view('pages/auth', $data);
         
       }
     
+
+      function generateToken($length = 32)
+      {
+          return bin2hex(random_bytes($length));
+      }
   }
 
     
