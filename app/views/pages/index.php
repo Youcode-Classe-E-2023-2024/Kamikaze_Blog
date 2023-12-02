@@ -19,7 +19,7 @@
   
   
 
-<div  class="bg-white">
+<div x-data="{ isOpen: false }" class="bg-white">
     <header>
         <div class=" container mx-auto px-6 py-3">
             <div class="flex items-center justify-between">
@@ -61,7 +61,7 @@
             </div>
         </div>
     </header>
-   
+
     <main class="my-8">
         <div class="container mx-auto px-6">
             <div class="h-64 rounded-md overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144')">
