@@ -1,7 +1,7 @@
 create DATABASE kamikaze_avito_db;
 
 CREATE TABLE permissions (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL
 );
 
@@ -9,7 +9,7 @@ CREATE TABLE permissions (
 
 
 CREATE TABLE role (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL
     
 );
@@ -23,7 +23,7 @@ CREATE TABLE permissions_role ( role_id INT,
 
 
 CREATE TABLE users (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     fullName VARCHAR(255) NOT NULL,
     city VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -35,12 +35,12 @@ CREATE TABLE users (
 
 
 CREATE TABLE category (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE publication (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     description TEXT,
     imgUrl VARCHAR(255),
@@ -54,7 +54,7 @@ CREATE TABLE publication (
 );
 
 CREATE TABLE likes (
-    idPublication INT,
+    idPublication INT ,
     idUser INT,
     PRIMARY KEY (idPublication, idUser),
     FOREIGN KEY (idPublication) REFERENCES publication(id),
@@ -75,4 +75,3 @@ INSERT INTO `permissions_role` (`role_id`, `permission_id`)
  VALUES ('2', '1'),-- user canRead
  ('2', '2');-- user canCreate
 
- 
