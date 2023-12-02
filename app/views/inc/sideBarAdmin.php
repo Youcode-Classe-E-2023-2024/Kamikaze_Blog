@@ -81,7 +81,7 @@
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
                   >
-                    Default
+                    Publications
                   </a>
                   <a
                     href="#"
@@ -202,7 +202,7 @@
                       />
                     </svg>
                   </span>
-                  <span class="ml-2 text-sm"> Authentication </span>
+                  <span class="ml-2 text-sm"> Manage User </span>
                   <span aria-hidden="true" class="ml-auto">
                     <!-- active class 'rotate-180' -->
                     <svg
@@ -225,29 +225,23 @@
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                   >
-                    Register
+                    Users
                   </a>
                   <a
                     href="../auth/login.html"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                   >
-                    Login
+                    Ajouter Sous Admin
                   </a>
                   <a
                     href="../auth/forgot-password.html"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                   >
-                    Forgot Password
+                    Manage Permissions
                   </a>
-                  <a
-                    href="../auth/reset-password.html"
-                    role="menuitem"
-                    class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                  >
-                    Reset Password
-                  </a>
+                  
                 </div>
               </div>
 

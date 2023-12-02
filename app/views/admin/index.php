@@ -1,460 +1,192 @@
 <?php require APPROOT . '/views/inc/sideBarAdmin.php'; ?>
 
-        <div class="flex flex-col flex-1 min-h-screen overflow-x-hidden overflow-y-auto">
+  <div class="flex flex-col flex-1 min-h-screen overflow-x-hidden overflow-y-auto">
+    
+  <?php require APPROOT . '/views/inc/adminNavBar.php'; ?>
+    <!-- Main content -->
+    <div class="flex-1 items-center justify-center flex-1 h-full p-4">
+       <!-- Main content -->
+      <main>
+        <!-- Content header -->
+        <div class="flex items-center justify-between px-4 py-4 border-b lg:py-6 dark:border-primary-darker">
+          <h1 class="text-2xl font-semibold">Dashboard</h1>
           
-        <?php require APPROOT . '/views/inc/adminNavBar.php'; ?>
-          <!-- Main content -->
-          <div class="flex items-center justify-center flex-1 h-full p-4">
-            <main>
-              <h1 class="text-3xl font-semibold">Page content</h1>
-            </main>
+        </div>
+        <!-- End Content header -->
+
+        <!-- Content -->
+        <div class="mt-2">
+          <!-- State cards -->
+          <div class="grid grid-cols-1 gap-8 p-4 lg:grid-cols-2 xl:grid-cols-4">
+            <!-- Value card -->
+            <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
+              <div>
+                <h6
+                  class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light"
+                >
+                  Publications
+                </h6>
+                <span class="text-xl font-semibold">12000</span>
+                
+              </div>
+              <div>
+                <span>
+                  <svg
+                    class="w-12 h-12 text-gray-300 dark:text-primary-dark"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <!--End  Value card -->
+
+            <!-- Users card -->
+            <div class="flex items-center justify-between p-4 bg-white rounded-md dark:bg-darker">
+              <div>
+                <h6
+                  class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light"
+                >
+                  Users
+                </h6>
+                <span class="text-xl font-semibold">50,021</span>
+                
+              </div>
+              <div>
+                <span>
+                  <svg
+                    class="w-12 h-12 text-gray-300 dark:text-primary-dark"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <!--End  Users card -->
+          <!--End  State cards -->
+          </div>
+          
+        </div>
+        <!--End  Content -->
+        <div class="w-full my-12 ">
+                <p class="text-xl pb-3 flex items-center">
+                    <i class="fas fa-list mr-3"></i> Managers
+                </p>
+                <div class="overflow-auto bg-white rounded-md dark:bg-darker">
+                    <table class="min-w-full leading-normal m-b-8">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                                    User
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                                    Rol
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                                    Created at
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 w-10 h-10">
+                                            <img class="w-full h-full rounded-full"
+                                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
+                                                alt="" />
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class=" whitespace-no-wrap">
+                                                Vera Carpenter
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                    <p class=" whitespace-no-wrap">Admin</p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                    <p class=" whitespace-no-wrap">
+                                        Jan 21, 2020
+                                    </p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Activo</span>
+                                    </span>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td class="px-5 py-5  text-sm">
+                                    <div class="flex items-center">
+                                        <div class="flex-shrink-0 w-10 h-10">
+                                            <img class="w-full h-full rounded-full"
+                                                src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
+                                                alt="" />
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="whitespace-no-wrap">
+                                                Alonzo Cox
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-5  text-sm">
+                                    <p class="whitespace-no-wrap">Admin</p>
+                                </td>
+                                <td class="px-5 py-5  text-sm">
+                                    <p class="whitespace-no-wrap">Jan 18, 2020</p>
+                                </td>
+                                <td class="px-5 py-5  text-sm">
+                                    <span
+                                        class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                        <span class="relative">Inactive</span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+        </div>
+      </main>
+          
           </div>
         </div>
-
-        <!-- Panels -->
-
-        <!-- Settings Panel -->
-        <!-- Backdrop -->
-        <div
-          x-transition:enter="transition duration-300 ease-in-out"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100"
-          x-transition:leave="transition duration-300 ease-in-out"
-          x-transition:leave-start="opacity-100"
-          x-transition:leave-end="opacity-0"
-          x-show="isSettingsPanelOpen"
-          @click="isSettingsPanelOpen = false"
-          class="fixed inset-0 z-10 bg-primary-darker"
-          style="opacity: 0.5"
-          aria-hidden="true"
-        ></div>
-        <!-- Panel -->
-        <section
-          x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
-          x-transition:enter-start="translate-x-full"
-          x-transition:enter-end="translate-x-0"
-          x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
-          x-transition:leave-start="translate-x-0"
-          x-transition:leave-end="translate-x-full"
-          x-ref="settingsPanel"
-          tabindex="-1"
-          x-show="isSettingsPanelOpen"
-          @keydown.escape="isSettingsPanelOpen = false"
-          class="fixed inset-y-0 right-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
-          aria-labelledby="settinsPanelLabel"
-        >
-          <div class="absolute left-0 p-2 transform -translate-x-full">
-            <!-- Close button -->
-            <button
-              @click="isSettingsPanelOpen = false"
-              class="p-2 text-white rounded-md focus:outline-none focus:ring"
-            >
-              <svg
-                class="w-5 h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <!-- Panel content -->
-          <div class="flex flex-col h-screen">
-            <!-- Panel header -->
-            <div
-              class="flex flex-col items-center justify-center flex-shrink-0 px-4 py-8 space-y-4 border-b dark:border-primary-dark"
-            >
-              <span aria-hidden="true" class="text-gray-500 dark:text-primary">
-                <svg
-                  class="w-8 h-8"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                  />
-                </svg>
-              </span>
-              <h2 id="settinsPanelLabel" class="text-xl font-medium text-gray-500 dark:text-light">Settings</h2>
-            </div>
-            <!-- Content -->
-            <div class="flex-1 overflow-hidden hover:overflow-y-auto">
-              <!-- Theme -->
-              <div class="p-4 space-y-4 md:p-8">
-                <h6 class="text-lg font-medium text-gray-400 dark:text-light">Mode</h6>
-                <div class="flex items-center space-x-8">
-                  <!-- Light button -->
-                  <button
-                    @click="setLightTheme"
-                    class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-primary-lighter focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-primary-dark"
-                    :class="{ 'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': !isDark, 'text-gray-500 dark:text-primary-light': isDark }"
-                  >
-                    <span>
-                      <svg
-                        class="w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                        />
-                      </svg>
-                    </span>
-                    <span>Light</span>
-                  </button>
-
-                  <!-- Dark button -->
-                  <button
-                    @click="setDarkTheme"
-                    class="flex items-center justify-center px-4 py-2 space-x-4 transition-colors border rounded-md hover:text-gray-900 hover:border-gray-900 dark:border-primary dark:hover:text-primary-100 dark:hover:border-primary-light focus:outline-none focus:ring focus:ring-primary-lighter focus:ring-offset-2 dark:focus:ring-offset-dark dark:focus:ring-primary-dark"
-                    :class="{ 'border-gray-900 text-gray-900 dark:border-primary-light dark:text-primary-100': isDark, 'text-gray-500 dark:text-primary-light': !isDark }"
-                  >
-                    <span>
-                      <svg
-                        class="w-6 h-6"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                        />
-                      </svg>
-                    </span>
-                    <span>Dark</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Colors -->
-              <div class="p-4 space-y-4 md:p-8">
-                <h6 class="text-lg font-medium text-gray-400 dark:text-light">Colors</h6>
-                <div>
-                  <button
-                    @click="setColors('cyan')"
-                    class="w-10 h-10 rounded-full"
-                    style="background-color: var(--color-cyan)"
-                  ></button>
-                  <button
-                    @click="setColors('teal')"
-                    class="w-10 h-10 rounded-full"
-                    style="background-color: var(--color-teal)"
-                  ></button>
-                  <button
-                    @click="setColors('green')"
-                    class="w-10 h-10 rounded-full"
-                    style="background-color: var(--color-green)"
-                  ></button>
-                  <button
-                    @click="setColors('fuchsia')"
-                    class="w-10 h-10 rounded-full"
-                    style="background-color: var(--color-fuchsia)"
-                  ></button>
-                  <button
-                    @click="setColors('blue')"
-                    class="w-10 h-10 rounded-full"
-                    style="background-color: var(--color-blue)"
-                  ></button>
-                  <button
-                    @click="setColors('violet')"
-                    class="w-10 h-10 rounded-full"
-                    style="background-color: var(--color-violet)"
-                  ></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Notification panel -->
-        <!-- Backdrop -->
-        <div
-          x-transition:enter="transition duration-300 ease-in-out"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100"
-          x-transition:leave="transition duration-300 ease-in-out"
-          x-transition:leave-start="opacity-100"
-          x-transition:leave-end="opacity-0"
-          x-show="isNotificationsPanelOpen"
-          @click="isNotificationsPanelOpen = false"
-          class="fixed inset-0 z-10 bg-primary-darker"
-          style="opacity: 0.5"
-          aria-hidden="true"
-        ></div>
-        <!-- Panel -->
-        <section
-          x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
-          x-transition:enter-start="-translate-x-full"
-          x-transition:enter-end="translate-x-0"
-          x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
-          x-transition:leave-start="translate-x-0"
-          x-transition:leave-end="-translate-x-full"
-          x-ref="notificationsPanel"
-          x-show="isNotificationsPanelOpen"
-          @keydown.escape="isNotificationsPanelOpen = false"
-          tabindex="-1"
-          aria-labelledby="notificationPanelLabel"
-          class="fixed inset-y-0 z-20 w-full max-w-xs bg-white dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
-        >
-          <div class="absolute right-0 p-2 transform translate-x-full">
-            <!-- Close button -->
-            <button
-              @click="isNotificationsPanelOpen = false"
-              class="p-2 text-white rounded-md focus:outline-none focus:ring"
-            >
-              <svg
-                class="w-5 h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <div class="flex flex-col h-screen" x-data="{ activeTabe: 'action' }">
-            <!-- Panel header -->
-            <div class="flex-shrink-0">
-              <div class="flex items-center justify-between px-4 pt-4 border-b dark:border-primary-darker">
-                <h2 id="notificationPanelLabel" class="pb-4 font-semibold">Notifications</h2>
-                <div class="space-x-2">
-                  <button
-                    @click.prevent="activeTabe = 'action'"
-                    class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
-                    :class="{'border-primary-dark dark:border-primary': activeTabe == 'action', 'border-transparent': activeTabe != 'action'}"
-                  >
-                    Action
-                  </button>
-                  <button
-                    @click.prevent="activeTabe = 'user'"
-                    class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
-                    :class="{'border-primary-dark dark:border-primary': activeTabe == 'user', 'border-transparent': activeTabe != 'user'}"
-                  >
-                    User
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Panel content (tabs) -->
-            <div class="flex-1 pt-4 overflow-y-hidden hover:overflow-y-auto">
-              <!-- Action tab -->
-              <div class="space-y-4" x-show.transition.in="activeTabe == 'action'">
-                <p class="px-4">Action tab content</p>
-                <!--  -->
-                <!-- Action tab content -->
-                <!--  -->
-              </div>
-
-              <!-- User tab -->
-              <div class="space-y-4" x-show.transition.in="activeTabe == 'user'">
-                <p class="px-4">User tab content</p>
-                <!--  -->
-                <!-- User tab content -->
-                <!--  -->
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Search panel -->
-        <!-- Backdrop -->
-        <div
-          x-transition:enter="transition duration-300 ease-in-out"
-          x-transition:enter-start="opacity-0"
-          x-transition:enter-end="opacity-100"
-          x-transition:leave="transition duration-300 ease-in-out"
-          x-transition:leave-start="opacity-100"
-          x-transition:leave-end="opacity-0"
-          x-show="isSearchPanelOpen"
-          @click="isSearchPanelOpen = false"
-          class="fixed inset-0 z-10 bg-primary-darker"
-          style="opacity: 0.5"
-          aria-hidden="ture"
-        ></div>
-        <!-- Panel -->
-        <section
-          x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
-          x-transition:enter-start="-translate-x-full"
-          x-transition:enter-end="translate-x-0"
-          x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
-          x-transition:leave-start="translate-x-0"
-          x-transition:leave-end="-translate-x-full"
-          x-show="isSearchPanelOpen"
-          @keydown.escape="isSearchPanelOpen = false"
-          class="fixed inset-y-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
-        >
-          <div class="absolute right-0 p-2 transform translate-x-full">
-            <!-- Close button -->
-            <button @click="isSearchPanelOpen = false" class="p-2 text-white rounded-md focus:outline-none focus:ring">
-              <svg
-                class="w-5 h-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          <h2 class="sr-only">Search panel</h2>
-          <!-- Panel content -->
-          <div class="flex flex-col h-screen">
-            <!-- Panel header (Search input) -->
-            <div
-              class="relative flex-shrink-0 px-4 py-8 text-gray-400 border-b dark:border-primary-darker dark:focus-within:text-light focus-within:text-gray-700"
-            >
-              <span class="absolute inset-y-0 inline-flex items-center px-4">
-                <svg
-                  class="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </span>
-              <input
-                x-ref="searchInput"
-                type="text"
-                class="w-full py-2 pl-10 pr-4 border rounded-full dark:bg-dark dark:border-transparent dark:text-light focus:outline-none focus:ring"
-                placeholder="Search..."
-              />
-            </div>
-
-            <!-- Panel content (Search result) -->
-            <div class="flex-1 px-4 pb-4 space-y-4 overflow-y-hidden h hover:overflow-y-auto">
-              <h3 class="py-2 text-sm font-semibold text-gray-600 dark:text-light">History</h3>
-              <p class="px=4">Search resault</p>
-              <!--  -->
-              <!-- Search content -->
-              <!--  -->
-            </div>
-          </div>
-        </section>
       </div>
     </div>
     <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
-    <script src="<?php echo URLROOT . "js/script.js" ?>"></script>
-    <script>
-        
-      const setup = () => {
-        const getTheme = () => {
-          if (window.localStorage.getItem('dark')) {
-            return JSON.parse(window.localStorage.getItem('dark'))
-          }
-          return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-        }
-
-        const setTheme = (value) => {
-          window.localStorage.setItem('dark', value)
-        }
-
-        const getColor = () => {
-          if (window.localStorage.getItem('color')) {
-            return window.localStorage.getItem('color')
-          }
-          return 'cyan'
-        }
-
-        const setColors = (color) => {
-          const root = document.documentElement
-          root.style.setProperty('--color-primary', `var(--color-${color})`)
-          root.style.setProperty('--color-primary-50', `var(--color-${color}-50)`)
-          root.style.setProperty('--color-primary-100', `var(--color-${color}-100)`)
-          root.style.setProperty('--color-primary-light', `var(--color-${color}-light)`)
-          root.style.setProperty('--color-primary-lighter', `var(--color-${color}-lighter)`)
-          root.style.setProperty('--color-primary-dark', `var(--color-${color}-dark)`)
-          root.style.setProperty('--color-primary-darker', `var(--color-${color}-darker)`)
-          this.selectedColor = color
-          window.localStorage.setItem('color', color)
-        }
-
-        return {
-          loading: true,
-          isDark: getTheme(),
-          color: getColor(),
-          selectedColor: 'cyan',
-          toggleTheme() {
-            this.isDark = !this.isDark
-            setTheme(this.isDark)
-          },
-          setLightTheme() {
-            this.isDark = false
-            setTheme(this.isDark)
-          },
-          setDarkTheme() {
-            this.isDark = true
-            setTheme(this.isDark)
-          },
-          setColors,
-          toggleSidbarMenu() {
-            this.isSidebarOpen = !this.isSidebarOpen
-          },
-          isSettingsPanelOpen: false,
-          openSettingsPanel() {
-            this.isSettingsPanelOpen = true
-            this.$nextTick(() => {
-              this.$refs.settingsPanel.focus()
-            })
-          },
-          isNotificationsPanelOpen: false,
-          openNotificationsPanel() {
-            this.isNotificationsPanelOpen = true
-            this.$nextTick(() => {
-              this.$refs.notificationsPanel.focus()
-            })
-          },
-          isSearchPanelOpen: false,
-          openSearchPanel() {
-            this.isSearchPanelOpen = true
-            this.$nextTick(() => {
-              this.$refs.searchInput.focus()
-            })
-          },
-          isMobileSubMenuOpen: false,
-          openMobileSubMenu() {
-            this.isMobileSubMenuOpen = true
-            this.$nextTick(() => {
-              this.$refs.mobileSubMenu.focus()
-            })
-          },
-          isMobileMainMenuOpen: false,
-          openMobileMainMenu() {
-            this.isMobileMainMenuOpen = true
-            this.$nextTick(() => {
-              this.$refs.mobileMainMenu.focus()
-            })
-          },
-        }
-      }
-
-      
-    </script>
-  </body>
-</html>
+<?php require APPROOT . '/views/inc/footerAdmin.php'; ?>
