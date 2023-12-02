@@ -120,38 +120,88 @@
             </div>
           </div>
         </main>
-        <main id="reg" class="hidden ">
+        
+        <main id="reg" class=" ">
           <div class="w-full max-w-sm px-4 py-6 space-y-6 bg-white rounded-md dark:bg-darker">
+          <?php
+// var_dump($data);
+  
+        ?>
             <h1 class="text-xl font-semibold text-center">Register</h1>
-            <form action="#" class="space-y-6">
+            <form action="<?php echo URLROOT; ?>/users/register" method="post" class="space-y-6">
               <input
                 class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
                 type="text"
-                name="username"
+                name="fullname"
                 placeholder="Username"
                 required
               />
-              <input
+              <?php if(!empty($data['fullname_err']))echo '*'.$data['fullname_err']; ?>
+              <?php
+              if(!empty($data['email_err'])){?>
+                <input
+                class="w-full border-red-500 px-4 py-2 border rounded-md dark:bg-darker  focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
+                type="email"
+                name="email"
+                placeholder="Email address"
+                required
+              />  
+                <?php } else{ ?>
+                <input
                 class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
                 type="email"
                 name="email"
                 placeholder="Email address"
                 required
-              />
+              />  
+              <?php }
+              ?>
+              <span class="text-red-700"><?php if(!empty($data['email_err']))echo '*'.$data['email_err']; ?></span>
               <input
+                class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
+                type="text"
+                name="city"
+                placeholder="city"
+                required
+              />
+              <?php
+              if(!empty($data['password_err'])){?>
+              <input
+                class="w-full border-red-500 px-4 py-2 border rounded-md dark:bg-darker focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+              /><?php } else{ ?>
+                <input
                 class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
                 type="password"
                 name="password"
                 placeholder="Password"
                 required
               />
-              <input
+                <?php } ?>
+              <span class="text-red-700"><?php if(!empty($data['password_err']))echo '*'.$data['password_err']; ?></span>
+
+              <?php if(!empty($data['password_err'])){?>
+                <input
+                class="w-full border-red-500 px-4 py-2 border rounded-md dark:bg-darker  focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
+                type="password"
+                name="confirm_password"
+                placeholder="Confirm Password"
+                required
+                />
+              <?php }else{ ?>
+                <input
                 class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
                 type="password"
-                name="password_confirmation"
+                name="confirm_password"
                 placeholder="Confirm Password"
                 required
               />
+                <?php }?>
+              <span class="text-red-700"><?php if(!empty($data['confirm_password_err']))echo '*'.$data['confirm_password_err']; ?></span>
+
               <div class="flex items-center justify-between">
                 <!-- Remember me toggle -->
                 <label class="flex items-center">
@@ -175,7 +225,7 @@
                 <button
                   type="submit"
                   class="w-full px-4 py-2 font-medium text-center text-white transition-colors duration-200 rounded-md bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 dark:focus:ring-offset-darker"
-                >
+                  >
                   Register
                 </button>
               </div>
