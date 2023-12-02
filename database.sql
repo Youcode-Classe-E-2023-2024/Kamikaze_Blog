@@ -28,6 +28,9 @@ CREATE TABLE users (
     city VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
+    is_confirmed INT  DEFAULT 0,
+    confirmation_token INT NULL,
+    reset_token_expires INT  NULL,
     imgUrl VARCHAR(255),
     roleId INT,
     FOREIGN KEY (roleId) REFERENCES role(id)
