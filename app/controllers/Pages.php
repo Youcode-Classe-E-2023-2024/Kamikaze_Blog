@@ -8,7 +8,7 @@
     public function index(){
       
      
-    echo 'test';
+      $this->view('pages/index');
     }
     public function auth(){
       // die("auth");
