@@ -60,3 +60,19 @@ CREATE TABLE likes (
     FOREIGN KEY (idPublication) REFERENCES publication(id),
     FOREIGN KEY (idUser) REFERENCES users(id)
 );
+
+-- Insertion
+
+INSERT INTO `role` (`id`, `name`) VALUES ('1', 'admin'), ('2', 'client');
+
+INSERT INTO `permissions` (`id`, `name`) 
+    VALUES ('1', 'canRead'), 
+            ('2', 'canCreate'),
+            ('3', 'canUpdate'), 
+            ('4', 'canDelete');
+    
+INSERT INTO `permissions_role` (`role_id`, `permission_id`)
+ VALUES ('2', '1'),-- user canRead
+ ('2', '2');-- user canCreate
+
+ 
