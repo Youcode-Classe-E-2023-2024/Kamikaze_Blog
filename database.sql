@@ -1,3 +1,5 @@
+create DATABASE kamikaze_avito_db;
+
 CREATE TABLE permissions (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
@@ -8,9 +10,8 @@ CREATE TABLE permissions (
 
 CREATE TABLE role (
     id INT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    permissionId INT,
-    FOREIGN KEY (permissionId) REFERENCES permissions(id)
+    name VARCHAR(255) NOT NULL
+    
 );
 
 CREATE TABLE permissions_role ( role_id INT,
