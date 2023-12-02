@@ -7,7 +7,11 @@
     }
     
     public function index(){
-      echo "Go to : http://localhost/Kamikaze_Blog/pages/auth";
+      
+     
+      $this->view('pages/index');
+      
+
     }
     public function auth(){
       // die("auth");
