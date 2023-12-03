@@ -166,7 +166,7 @@
                     
                     <p class="text-green-700"><?php if( !empty($data['registered'])) echo $data['registered'];?></p>
                    
-                    <form action="#" class="space-y-6">
+                    <form action="<?php echo URLROOT . '/users/login' ?>" method="POST" class="space-y-6">
                     <input
                         class="w-full px-4 py-2 border rounded-md dark:bg-darker dark:border-gray-700 focus:outline-none focus:ring focus:ring-primary-100 dark:focus:ring-primary-darker"
                         type="email"
