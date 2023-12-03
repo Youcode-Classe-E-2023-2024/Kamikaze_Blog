@@ -41,6 +41,26 @@
     return ($row) ? true : false;
   }
 
+  public function login($email, $password){
+    $this->db->query('SELECT * FROM users WHERE email = :email and is_confirmed = 1');
+    $this->db->bind(':email', $email);
+
+    $row = $this->db->single();
+    //check if user is confirmed
+    if($row){
+     
+      $hashed_password = $row->password;
+      if(password_verify($password, $hashed_password)){
+        return $row;
+      } else {
+        return false;
+      }
+    }else{
+      return false;
+    }
+    
+  }
+
   public function searchUserByToken($token) {
     $this->db->query('SELECT * FROM users WHERE confirmation_token = :token');
     $this->db->bind(':token', $token);
