@@ -12,6 +12,7 @@
 
     public function register(){
       $data = [];
+      
       // Check for POST
       if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
@@ -75,11 +76,12 @@
           // Hash Password
           $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
           $data['token'] = $this->generateToken();
-
+         
           // Register User
           if($this->userModel->register($data)){
-            $activationLink = URLROOT . "/pages/activate/" . $data['token'];
+            $activationLink = URLROOT . "/users/activate/" . $data['token'];
             $to = $data['email'];
+            
             $subject = "Account activation";
             $message = "Click the following link to activate your account: $activationLink";
 
@@ -108,25 +110,49 @@
                   $data['error1'] = $mail->ErrorInfo;
                   // die($mail->ErrorInfo);
               }
-         
-            $this->view('pages/auth', $data);
+              $data['registered'] = '*Check you email for activation';  
+              $data['display'] = 'login';
+              $this->view('users/auth', $data);
           } else {
             // die('Something went wrong');
             echo "err" . $data['error'];
             die('inside upld 3');
           }
+          
+          
+         
+        }else{
+          $data['display'] = 'register';
+          $this->view('users/auth', $data);
         }
     
+      }else{
+        $data['display'] = 'register';
+        $this->view('users/auth', $data);
       }
-      
-        $this->view('pages/auth', $data);
-        
+     
       }
     
-
+      public function login(){
+        $data['display'] = 'login';
+        $this->view('users/auth', $data);
+      }
       function generateToken($length = 32)
       {
           return bin2hex(random_bytes($length));
+      }
+
+      public function activate($token){
+        $userIsExist = $this->userModel->searchUserByToken($token);
+        if($userIsExist){
+          $confirmUser = $this->userModel->updateConfirmationToken($token);
+          if($confirmUser){
+            $data['display'] = 'login';
+            $this->view('users/auth' , $data);
+          } 
+        }else{
+          redirect('/');
+        }
       }
   }
 
