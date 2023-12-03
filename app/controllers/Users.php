@@ -132,16 +132,80 @@
       }
      
       }
+
     
       public function login(){
-        $data['display'] = 'login';
-        $this->view('users/auth', $data);
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        // Init data
+          $data =[
+            'email' => trim($_POST['email']),
+            'password' => trim($_POST['password']),
+            'email_err' => '',
+            'password_err' => '',      
+          ];
+
+          // Validate Email
+          if(empty($data['email'])){
+            $data['email_err'] = 'Pleae enter email';
+          }
+
+          // Validate Password
+          if(empty($data['password'])){
+            $data['password_err'] = 'Please enter password';
+          }
+          if(empty($data['email_err']) && empty($data['password_err'])){
+            if($this->userModel->findUserByEmail($data['email'])){
+              $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+              if($loggedInUser){
+                $this->createUserSession($loggedInUser);
+              } else {
+                // User Password incorrect
+                $data['password_err'] = 'Password not correct';
+                $data['display'] = 'login';
+                $this->view('users/auth', $data);
+              }
+            } else {
+              // User not found
+              $data['email_err'] = 'No user found';
+              $data['display'] = 'login';
+              $this->view('users/auth', $data);
+            }
+          }else{
+            $data['display'] = 'login';
+            $this->view('users/auth', $data);
+          }
+        }else{
+          $data['display'] = 'login';
+          $this->view('users/auth', $data);
+        }
+        
       }
       function generateToken($length = 32)
       {
           return bin2hex(random_bytes($length));
       }
 
+      public function createUserSession($user){
+        
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['fullName'] = $user->fullName;
+        $_SESSION['email'] = $user->email;
+        $_SESSION['roleId'] = $user->roleId;
+        if($_SESSION['roleId'] === 1){
+          redirect('admin');
+        }else{
+          redirect('');
+        }
+      }
+      public function logout(){
+        unset($_SESSION['user_id']);
+        unset($_SESSION['fullName']);
+        unset($_SESSION['email']);
+        unset($_SESSION['roleId']);
+        session_destroy();
+        redirect('');
+      }
       public function activate($token){
         $userIsExist = $this->userModel->searchUserByToken($token);
         if($userIsExist){
