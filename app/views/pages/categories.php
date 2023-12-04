@@ -103,7 +103,7 @@
         <div class="select">
             <select name="format" id="format">
                 <option selected disabled>Categories</option>
-                <option></option>
+                <option>file</option>
                 <option>txt</option>
                 <option>ePub</option>
                 <option>fb2</option>
@@ -113,11 +113,11 @@
         <div class="select">
             <select name="format" id="format">
                 <option selected disabled>Ville</option>
-                <option>PDF</option>
-                <option>txt</option>
-                <option>ePub</option>
-                <option>fb2</option>
-                <option>mobi</option>
+                <option>Marrakech</option>
+                <option>Casablanca</option>
+                <option>Safi</option>
+                <option>Rabat</option>
+                <option>Zagora</option>
             </select>
         </div>
         </div>
@@ -151,9 +151,11 @@
 
         </div>
     </form>
-   
+    
 
-
+    <?php 
+    require_once APPROOT.'/views/inc/footer.php';
+    ?>
     <script>
         $(document).click(function(event) {
   if(
