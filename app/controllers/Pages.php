@@ -13,7 +13,11 @@
       
 
     }
-   
+    public function categories(){
+    
+      $this->view('pages/categories');
+
+    }
 
     
     
