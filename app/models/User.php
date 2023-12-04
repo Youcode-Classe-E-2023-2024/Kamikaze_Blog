@@ -82,5 +82,15 @@
 
   }
 
+  public function getRolePermissions($roleId){
+    $this->db->query('SELECT permissions.name FROM permissions_role , permissions WHERE role_id = :roleId AND permissions.id = permissions_role.permission_id');
+    $this->db->bind(':roleId', $roleId);
+    if($this->db->execute()){
+      return $this->db->resultSet();
+    }else{
+      die("error in exc getRolePermissions");
+    }
+  }
+
 
 }
