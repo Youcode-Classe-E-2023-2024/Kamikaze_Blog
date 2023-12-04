@@ -92,5 +92,15 @@
     }
   }
 
+  public function countUsers(){
+    $this->db->query('SELECT id FROM users where roleId = 2 ');
+    if($this->db->execute()){
+       return $this->db->rowCount();
+    }else{
+        die("Error in countPublications");
+    }
+
+
+}
 
 }
