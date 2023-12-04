@@ -221,6 +221,28 @@
           redirect('/');
         }
       }
+
+      public function hasPermission($roleId, $permission){
+        
+        $rolePermissions = $this->userModel->getRolePermissions($roleId);
+
+        $permissionExists = false;
+        foreach ($rolePermissions as $perm) {
+            if ($perm->name === $permission) {
+                $permissionExists = true;
+                break;
+            }
+        }
+        
+        if($permissionExists){
+          // echo "has permission";
+          return true;
+        }else{
+          // echo "has not permission";
+          return false;
+        }
+        // var_dump($rolePermissions);
+      }
   }
 
     
