@@ -9,7 +9,10 @@
       $this->userModel = $this->model('User');
       
     }
-
+    public function index(){
+      $data['display'] = 'login';
+      $this->view('users/auth' , $data);
+    }
     public function register(){
       $data = [];
       
