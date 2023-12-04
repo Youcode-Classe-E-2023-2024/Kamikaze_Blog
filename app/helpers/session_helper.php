@@ -2,8 +2,17 @@
   session_start();
 
  
-  function userIsLoggedIn(){
-    if(isset($_SESSION['user_id'])){
+  function adminIsLoggedIn(){
+    if(isset($_SESSION['user_id']) && $_SESSION['roleId'] ===1){
+      return true;
+    } else {
+      return false;
+    }
+    
+  }
+
+  function clientIsLoggedIn(){
+    if(isset($_SESSION['user_id']) && $_SESSION['roleId'] ===2){
       return true;
     } else {
       return false;
