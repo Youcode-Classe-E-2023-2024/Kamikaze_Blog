@@ -127,4 +127,22 @@
     return $users;
   }
 
+  public function addModerator($data){
+    $this->db->query('INSERT INTO users (fullName, email, city , password , is_confirmed , imgUrl, roleId) 
+    VALUES(:fullName, :email, :city, :password , :is_confirmed, :imgUrl, :roleId)');
+
+    $password = password_hash('123456', PASSWORD_DEFAULT);
+    $isConfirmed = 1;
+    $roleId = 2;
+
+    $this->db->bind(':fullName', $data['fullName']);
+    $this->db->bind(':email' , $data['email']);
+    $this->db->bind(':city', $data['city']);
+    $this->db->bind(':password' , $password );
+    $this->db->bind(':is_confirmed' , $isConfirmed);
+    $this->db->bind(':roleId', $roleId);
+
+    $this->db->execute() ? true : false;
+  }
+
 }
