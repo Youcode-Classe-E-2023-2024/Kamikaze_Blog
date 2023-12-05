@@ -13,6 +13,12 @@
       
 
     }
+
+    public function details(){
+      $this->view('pages/details');
+    }
+
+
     public function categories(){
     
       $this->view('pages/categories');
