@@ -10,12 +10,13 @@ Class Admin extends Controller {
         //     redirect('users/login');
         // }
     }
-
+    
     public function index(){
         $data =[
             'numOfUsers' => $this->userModel->countUsers(),
             'numOfPublications' => $this->publicationModel->countPublications(),
         ];
+        $data;
         return $this->view('admin/index' , $data);
     }
 
@@ -28,7 +29,7 @@ Class Admin extends Controller {
         
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $data = [
-                '$fullName' => trim($_POST['fullName']) ,
+                'fullName' => trim($_POST['fullName']) ,
                 'email' => trim($_POST['email']),
                 'city' => trim($_POST['city']) ,
                 'fullName_err' => '',
@@ -39,24 +40,32 @@ Class Admin extends Controller {
             ];
             // 
             if(empty($data['fullName'])){
-                $data['fullName_err'] = 'Pleae enter the full name';
+                $data['fullName_err'] = 'Please enter the full name';
             }
             if(empty($data['email'])){
-                $data['email_err'] = 'Pleae enter the email address';
+                $data['email_err'] = 'Please enter the email address';
             }
             if(empty($data['city'])){
-            $data['city_err'] = 'Pleae enter the city';
+            $data['city_err'] = 'Please enter the city';
             }
-            if($_FILES['moderator_Img'] === null){
-                $data['img_err'] = 'Pleae enter the photo';
+            if($_FILES['moderator_Img']['size'] == 0){
+                $data['img_err'] = 'Please enter the photo';
             }
-
-            if(empty($data['fullName_err']) && empty($data['email_err']) && empty($data['city_err']) && $data['img_err'] ){
-                // if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-
-                // }else{
-                //     $data['image_err'] = 'File upload error.';
-                // }
+            
+            if(empty($data['fullName_err']) && empty($data['email_err']) && empty($data['city_err']) && empty($data['img_err']) ){
+                if (isset($_FILES['moderator_Img']) && $_FILES['moderator_Img']['error'] === UPLOAD_ERR_OK) {
+                    if($this->uploadImage($_FILES['moderator_Img'])){
+                        $data['image'] = $_FILES['moderator_Img']['name'];
+                        $this->userModel->addModerator($data);  //  
+                       
+                    }else{
+                        // $data['img_err'] = 'Invalid file type. Please upload a JPEG, PNG, or GIF image.';
+                        echo "error uploading image";
+                    }
+                }else{
+                    die("Error uploading image 1"); 
+                    
+                }
             }else{
                 $this->view('admin/moderator', $data);
             }
@@ -79,16 +88,23 @@ Class Admin extends Controller {
     }
 
     private function uploadImage($file) {
-        $target_dir = APPROOT . "/../public/img/users";
-        $target_file = $target_dir . basename($file["name"]);
-    
-        // Ensure the directory exists, create it if not
-        if (!is_dir($target_dir)) {
-            mkdir($target_dir, 0755, true);
+        $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+        
+        if (in_array($file['type'], $allowedTypes)) {
+            $target_dir = APPROOT . "/../public/img/users/";
+            $target_file = $target_dir . basename($file["name"]);
+        
+            // Ensure the directory exists, create it if not
+            if (!is_dir($target_dir)) {
+                mkdir($target_dir, 0755, true);
+            }
+           
+            move_uploaded_file($file["tmp_name"], $target_file);
+            return true;
+        }else{
+            return false;
         }
-    
-        move_uploaded_file($file["tmp_name"], $target_file);
-        return basename($file["name"]);
+        
       }
 
     
