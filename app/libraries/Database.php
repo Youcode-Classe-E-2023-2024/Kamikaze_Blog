@@ -27,8 +27,7 @@
       // Create PDO instance
       try {
         $this->dbh = new PDO($dsn, $this->user, $this->pass, $options);
-        $this->createPublicationsTable();
-        $this->createUserTable();
+        
         
       } catch(PDOException $e) {
           $this->error = $e->getMessage();
@@ -83,31 +82,6 @@
     public function rowCount(){
       return $this->stmt->rowCount();
     }
-    public function createPublicationsTable() {
-      $sql = "
-          CREATE TABLE IF NOT EXISTS publications (
-              id INT AUTO_INCREMENT PRIMARY KEY,
-              title VARCHAR(255) NOT NULL,
-              description TEXT,
-              price DECIMAL(10, 2),
-              imgUrl VARCHAR(255)  DEFAULT 'teambg.jpeg',
-              user_id INT
-          )";
-      $this->query($sql);
-      return $this->execute();
-    }
-    public function createUserTable() {
-      $sql = "
-          CREATE TABLE IF NOT EXISTS users  (
-              id INT AUTO_INCREMENT PRIMARY KEY,
-              name VARCHAR(255) NOT NULL,
-              email VARCHAR(255) NOT NULL,
-              city VARCHAR(255) NOT NULL,
-              imgUrl VARCHAR(255)  DEFAULT 'med hachami.jpg',
-              password VARCHAR(255) NOT NULL
-          )";
-      $this->query($sql);
-      return $this->execute();
-    }
+    
   }
   ?>

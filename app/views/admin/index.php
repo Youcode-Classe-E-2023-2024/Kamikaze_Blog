@@ -24,9 +24,9 @@
                 <h6
                   class="text-xs font-medium leading-none tracking-wider text-gray-500 uppercase dark:text-primary-light"
                 >
-                  Publications
+                  Publications 
                 </h6>
-                <span class="text-xl font-semibold">12000</span>
+                <span class="text-xl font-semibold"><?php echo $data['numOfPublications']; ?></span>
                 
               </div>
               <div>
@@ -59,7 +59,7 @@
                 >
                   Users
                 </h6>
-                <span class="text-xl font-semibold">50,021</span>
+                <span class="text-xl font-semibold"><?php echo $data['numOfUsers']; ?></span>
                 
               </div>
               <div>
