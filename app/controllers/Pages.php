@@ -1,9 +1,10 @@
 <?php
   class Pages extends Controller {
     private $userModel ;
+    private $publicationModel ;
     public function __construct(){
       $this->userModel = $this->model('User');
-      
+      $this->publicationModel = $this->model('Publication');
     }
     
     public function index(){
@@ -13,21 +14,30 @@
       
 
     }
-
-    public function details(){
-      $this->view('pages/details');
-    }
-
-
     public function categories(){
-    
-      $this->view('pages/categories');
+      $cities = $this->allCities();
+      $categories = $this->allCategories();
+     
+
+      
+      $data =[
+        'categories' => $categories, 
+        'cities'=>$cities, 
+      ];
+      $this->view('pages/categories' , $data);
 
     }
 
-    
-    
-   
+    public function allCities(){
+      return $cities = $this->publicationModel->getCities();
+     
+    }
+    public function allCategories(){
+       $categories = $this->publicationModel->getCategories();
+ 
+        return $categories;
+    }
+
     
   }
   ?>
