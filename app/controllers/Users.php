@@ -195,7 +195,7 @@
         $_SESSION['fullName'] = $user->fullName;
         $_SESSION['email'] = $user->email;
         $_SESSION['roleId'] = $user->roleId;
-        if($_SESSION['roleId'] === 1){
+        if($_SESSION['roleId'] === 1 || $_SESSION['roleId'] ===2){
           redirect('admin');
         }else{
           redirect('');
