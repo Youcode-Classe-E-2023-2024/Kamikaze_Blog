@@ -101,6 +101,30 @@
     }
 
 
-}
+  }
+
+  public function getManagers(){
+    $this->db->query('SELECT id , fullName , email from users where roleId =1 OR roleId = 3  ');
+    //1 admin role , 3 moderators role 
+    
+    if($this->db->execute()){
+      $managers = $this->db->resultSet();
+    }else{
+      die("Error in getManagers");
+    }
+    return $managers;
+
+  }
+
+  public function getUsers(){
+    $this->db->query('SELECT id , fullName , email from users  where roleId =2 ');
+    // 2 client role 
+    if($this->db->execute()){
+      $users = $this->db->resultSet();
+    }else{
+      die("Error in getusers");
+    }
+    return $users;
+  }
 
 }
