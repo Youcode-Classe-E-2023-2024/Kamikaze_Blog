@@ -109,26 +109,30 @@
                 <input class="w-full border border-black rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline" type="text" placeholder="Search">
             </div>
         </div>
-
+        
         <div class="search">
         <div class="select">
-            <select name="format" id="format">
-                <option selected disabled>Categories</option>
-                <option>VEHICULES</option>
+            <select name="category" id="category">
+                <option selected disabled>Category</option>
+                <?php 
+                foreach ($data['categories'] as $category): ?>
+                    <option value="<?php echo $category->name ?>"><?php echo $category->name?></option>
+                <?php endforeach; ?>
+                <!-- <option>VEHICULES</option>
                 <option>INFORMATIQUE ET MULTIMEDIA</option>
                 <option>IMMOBILIER</option>
                 <option>HABILLEMENT</option>
-                <option>SPORT</option>
+                <option>SPORT</option> -->
             </select>
         </div>
         <div class="select">
-            <select name="format" id="format">
+        
+            <select name="city" id="city">
                 <option selected disabled>Ville</option>
-                <option>Marrakech</option>
-                <option>Casablanca</option>
-                <option>Safi</option>
-                <option>Rabat</option>
-                <option>Zagora</option>
+                <?php 
+                foreach ($data['cities'] as $city): ?>
+                    <option value="<?php echo $city->city?>"><?php echo $city->city?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         </div>
