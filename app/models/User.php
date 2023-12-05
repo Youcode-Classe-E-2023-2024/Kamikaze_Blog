@@ -93,7 +93,7 @@
   }
 
   public function countUsers(){
-    $this->db->query('SELECT id FROM users where roleId = 2 ');
+    $this->db->query('SELECT id FROM users where roleId = 3 ');
     if($this->db->execute()){
        return $this->db->rowCount();
     }else{
@@ -104,7 +104,7 @@
   }
 
   public function getManagers(){
-    $this->db->query('SELECT id , fullName , email from users where roleId =1 OR roleId = 3  ');
+    $this->db->query('SELECT id , fullName , email from users where roleId =1 OR roleId = 2  ');
     //1 admin role , 3 moderators role 
     
     if($this->db->execute()){
@@ -117,7 +117,7 @@
   }
 
   public function getUsers(){
-    $this->db->query('SELECT id , fullName , email from users  where roleId =2 ');
+    $this->db->query('SELECT users.id , fullName , email , role.name as role_name  from users , role  where users.roleId  = role.id ;');
     // 2 client role 
     if($this->db->execute()){
       $users = $this->db->resultSet();
@@ -139,6 +139,7 @@
     $this->db->bind(':email' , $data['email']);
     $this->db->bind(':city', $data['city']);
     $this->db->bind(':password' , $password );
+    $this->db->bind(':imgUrl', $data['image']);
     $this->db->bind(':is_confirmed' , $isConfirmed);
     $this->db->bind(':roleId', $roleId);
 
