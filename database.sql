@@ -48,6 +48,7 @@ CREATE TABLE publication (
     description TEXT,
     imgUrl VARCHAR(255),
     prix DECIMAL(10, 2) NOT NULL,
+    city VARCHAR NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL,
     category_Id INT,
