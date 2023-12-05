@@ -24,6 +24,13 @@
       $this->view('pages/categories');
 
     }
+    public function about(){
+      
+     
+      $this->view('pages/aboutus');
+      
+
+    }
 
     
     
