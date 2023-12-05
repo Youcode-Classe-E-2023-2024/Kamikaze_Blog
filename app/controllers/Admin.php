@@ -6,9 +6,9 @@ Class Admin extends Controller {
     public function __construct(){
         $this->userModel = $this->model('User');
         $this->publicationModel = $this->model('Publication');
-        // if(!adminIsLoggedIn()){
-        //     redirect('users/login');
-        // }
+        if(!adminIsLoggedIn()){
+            redirect('users/login');
+        }
     }
     
     public function index(){
@@ -56,7 +56,12 @@ Class Admin extends Controller {
                 if (isset($_FILES['moderator_Img']) && $_FILES['moderator_Img']['error'] === UPLOAD_ERR_OK) {
                     if($this->uploadImage($_FILES['moderator_Img'])){
                         $data['image'] = $_FILES['moderator_Img']['name'];
-                        $this->userModel->addModerator($data);  //  
+                        if($this->userModel->addModerator($data)){
+                            redirect('admin/');
+                        }else{
+                            $this->view('admin/moderator');
+                            
+                        }
                        
                     }else{
                         // $data['img_err'] = 'Invalid file type. Please upload a JPEG, PNG, or GIF image.';
