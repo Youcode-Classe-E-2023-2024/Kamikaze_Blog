@@ -92,92 +92,25 @@
                     <i class="fas fa-list mr-3"></i> Managers
                 </p>
                 <div class="overflow-auto bg-white rounded-md dark:bg-darker">
-                    <table class="min-w-full leading-normal m-b-8">
+                    <table id="managers" class="min-w-full leading-normal m-b-8">
                         <thead>
                             <tr>
                                 <th
                                     class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
-                                    User
+                                    Id
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
-                                    Rol
+                                    Full name
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
-                                    Created at
+                                    email
                                 </th>
-                                <th
-                                    class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
-                                    Status
-                                </th>
+                                
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 w-10 h-10">
-                                            <img class="w-full h-full rounded-full"
-                                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                                alt="" />
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class=" whitespace-no-wrap">
-                                                Vera Carpenter
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                                    <p class=" whitespace-no-wrap">Admin</p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                                    <p class=" whitespace-no-wrap">
-                                        Jan 21, 2020
-                                    </p>
-                                </td>
-                                <td class="px-5 py-5 border-b border-gray-200 text-sm">
-                                    <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Activo</span>
-                                    </span>
-                                </td>
-                            </tr>
-                            
-                            <tr>
-                                <td class="px-5 py-5  text-sm">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 w-10 h-10">
-                                            <img class="w-full h-full rounded-full"
-                                                src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
-                                                alt="" />
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="whitespace-no-wrap">
-                                                Alonzo Cox
-                                            </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-5 py-5  text-sm">
-                                    <p class="whitespace-no-wrap">Admin</p>
-                                </td>
-                                <td class="px-5 py-5  text-sm">
-                                    <p class="whitespace-no-wrap">Jan 18, 2020</p>
-                                </td>
-                                <td class="px-5 py-5  text-sm">
-                                    <span
-                                        class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
-                                        <span class="relative">Inactive</span>
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
+                        
                     </table>
                 </div>
                 
@@ -189,4 +122,39 @@
       </div>
     </div>
     <!-- All javascript code in this project for now is just for demo DON'T RELY ON IT  -->
+  <script>
+    //Data tables
+      $(document).ready(function() {
+        var endpoint = 'http://localhost/Kamikaze_Blog/admin/allManagers';
+        fetch(endpoint)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                $('#managers').DataTable({
+                    paging: false, 
+                    searching: true,
+                    ordering: true,
+                    info:false,
+                    data: data, // Pass the fetched data to DataTable
+                    columns: [
+                        { data: 'id' , className: ' py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker'},
+                        { data: 'fullName' , className: ' py-5 border-b border-gray-200 text-sm  bg-white dark:bg-darker' },
+                        { data: 'email' , className: ' py-5 border-b border-gray-200 text-sm  bg-white dark:bg-darker' },
+                        
+                    ],
+                    autoWidth: false 
+
+                });
+                
+                $('#managers_filter input')
+                      .addClass('py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500')
+                      .attr('placeholder', 'by name / email ...');
+                $('label')
+                      .addClass('text-sm bg-white dark:bg-darker');
+                // $('.dataTables_filter label').hide();
+            })
+
+            .catch(error => console.log('Error fetching data:', error));
+      });
+  </script>
 <?php require APPROOT . '/views/inc/footerAdmin.php'; ?>
