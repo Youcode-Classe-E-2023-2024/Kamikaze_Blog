@@ -76,6 +76,23 @@ INSERT INTO `permissions` (`id`, `name`)
             ('4', 'canDelete');
     
 INSERT INTO `permissions_role` (`role_id`, `permission_id`)
- VALUES ('2', '1'),-- user canRead
- ('2', '2');-- user canCreate
+ VALUES ('1', '1'),
+  ('1', '2'),
+  ('1', '3'),
+   ('1', '4');
 
+INSERT INTO `permissions_role` (`role_id`, `permission_id`) 
+VALUES ('2', '1'), 
+('2', '2'),
+('2', '3');
+
+INSERT INTO `permissions_role` (`role_id`, `permission_id`) VALUES 
+('3', '2')
+, ('3', '1');
+  
+
+select users.fullName , users.email , permissions.name , role.name
+from permissions_role , users , permissions , role
+ where users.roleId = permissions_role.role_id
+  and permissions_role.permission_id = permissions.id 
+  and role.id = permissions_role.role_id;
