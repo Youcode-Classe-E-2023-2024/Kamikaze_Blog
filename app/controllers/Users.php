@@ -113,7 +113,7 @@
                   $data['error1'] = $mail->ErrorInfo;
                   // die($mail->ErrorInfo);
               }
-              $data['registered'] = '*Check you email for activation';  
+              $data['registered'] = '*Registration complete. Please check your email, then visit the login page.';  
               $data['display'] = 'login';
               $this->view('users/auth', $data);
           } else {
