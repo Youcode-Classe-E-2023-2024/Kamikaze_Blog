@@ -1,8 +1,9 @@
 <?php
 
 Class Publications extends Controller{
+    private $publicationModel ;
     public function __construct(){
-
+        $this->publicationModel = $this->model('Publication');
     }
 
     public function index(){
@@ -34,4 +35,6 @@ Class Publications extends Controller{
         
     
     }   
+
+   
 }
