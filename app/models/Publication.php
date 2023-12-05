@@ -17,4 +17,29 @@ Class Publication {
         }
 
     }
+    public function getCities() {
+        // Query
+        $this->db->query("SELECT DISTINCT city FROM publication");
+    
+        if($this->db->execute()){
+            $cities = $this->db->resultSet();
+        }else{
+            die("eror n getcitir");
+        }
+
+        return $cities;
+    }
+
+    public function getCategories() {
+        // Query
+        $this->db->query("SELECT DISTINCT name FROM category");
+    
+        if($this->db->execute()){
+            $categories = $this->db->resultSet();
+        }else{
+            die("eror n get");
+        }
+
+        return $categories;
+    }
 }
