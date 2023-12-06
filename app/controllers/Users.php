@@ -3,10 +3,12 @@
  use PHPMailer\PHPMailer\Exception;
   class Users extends Controller {
     private $userModel;
+    private $CategoryModel;
     public function __construct(){
       
 
       $this->userModel = $this->model('User');
+      $this->CategoryModel = $this->model('Category');
       
     }
     public function index(){
@@ -242,6 +244,18 @@
           return false;
         }
         // var_dump($rolePermissions);
+      }
+      public function add(){
+        if($_SERVER['REQUEST_METHOD'] =='POST'){
+       print_r($_POST['name']);
+          $this->view('users/addpost');
+      }else{
+       $Category = $this->CategoryModel->getCategory();
+       $data = [
+        'category'=>$Category
+       ];
+        $this->view('users/addpost',$data);
+      }
       }
   }
 
