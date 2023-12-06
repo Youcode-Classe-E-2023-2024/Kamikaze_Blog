@@ -15,29 +15,30 @@
 
     }
     public function categories(){
-      $cities = $this->allCities();
+      // $cities = $this->allCities();
       $categories = $this->allCategories();
      
 
       
       $data =[
         'categories' => $categories, 
-        'cities'=>$cities, 
+        // 'cities'=>$cities, 
       ];
       $this->view('pages/categories' , $data);
 
     }
 
-    public function allCities(){
-      return $cities = $this->publicationModel->getCities();
+    // public function allCities(){
+    //   return $cities = $this->publicationModel->getCities();
      
-    }
+    // }
     public function allCategories(){
        $categories = $this->publicationModel->getCategories();
  
         return $categories;
     }
 
-    
+
+
   }
   ?>
