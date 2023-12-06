@@ -14,6 +14,12 @@
 
     }
 
+    public function add(){
+      $this->view('users/addpost');
+    }
+   
+
+
     public function details(){
       $this->view('pages/details');
     }
@@ -24,6 +30,7 @@
       $this->view('pages/categories');
 
     }
+
 
     
     
