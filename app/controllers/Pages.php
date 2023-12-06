@@ -13,6 +13,9 @@
       
 
     }
+    public function  contact(){
+        $this->view('pages/contact');
+    }
    
 
     
