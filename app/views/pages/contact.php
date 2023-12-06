@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
           rel="stylesheet"/>
     <!-- Tailwind -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"
           rel="stylesheet"/>
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/tailwind.css">
@@ -17,7 +17,6 @@
     <style>
         svg {
             height: 23rem;
-            margin-right: 4rem;
         }
 
         #envelope {
@@ -61,8 +60,6 @@
             height: 100vh;
         }
 
-        form {
-            min-width: 25rem;
 
         .title {
             font-family: 'Pacifico', cursive;
@@ -175,16 +172,16 @@
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">About</a>
                 </div>
             </nav>
-            <div class="relative mt-6 max-w-lg mx-auto">
-            <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
-                <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
-                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </span>
+<!--            <div class="relative mt-6 max-w-lg mx-auto">-->
+<!--            <span class="absolute inset-y-0 left-0 pl-3 flex items-center">-->
+<!--                <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">-->
+<!--                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"-->
+<!--                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>-->
+<!--                </svg>-->
+<!--            </span>-->
 
-                <input class="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"
-                       type="text" placeholder="Search">
+<!--                <input class="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline"-->
+<!--                       type="text" placeholder="Search">-->
             </div>
         </div>
     </header>
@@ -197,9 +194,9 @@
           -------------------------------------------------------------
           -- Note: need to use inline svg to manipulate its components
           ------------------------------------------------------------>
-        <div class="grid grid-cols-2 divide-x">
-            <div style="padding-left: 100px">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 563" fill="none">
+        <div class="flex flex-col md:grid md:grid-cols-2 md:divide-x mb-40">
+            <div class="flex items-center">
+                <svg class="w-[95%] mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 563" fill="none">
                 <g id="Image">
                     <g id="g14">
                         <g id="g16">
@@ -507,7 +504,7 @@
                         <label for="formName" class="d-block">
                             <i class="icon" data-feather="user"></i>
                         </label>
-                        <input type="text" id="formName" class="form-control form-control-lg thick" placeholder="Name">
+                        <input type="text" id="formName" class="w-[90%] form-control form-control-lg thick md:w-[50%]" placeholder="Name">
                     </div>
 
                     <!-- E-mail -->
@@ -515,27 +512,98 @@
                         <label for="formEmail" class="d-block">
                             <i class="icon" data-feather="mail"></i>
                         </label>
-                        <input type="email" id="formEmail" class="form-control form-control-lg thick" placeholder="E-mail">
+                        <input type="email" id="formEmail" class="w-[90%] form-control form-control-lg thick md:w-[50%]" placeholder="E-mail">
                     </div>
 
                     <!-- Message -->
                     <div class="form-group message text-center pb-4">
-                        <textarea id="formMessage" class="form-control form-control-lg" rows="7" placeholder="Mensagem"></textarea>
+                        <textarea id="formMessage" class= "resize-none w-[90%] form-control form-control-lg md:w-[50%]" rows="7" placeholder="Message"></textarea>
                     </div>
 
                     <!-- Submit btn -->
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary" tabIndex="-1">Send message</button>
+                        <button type="submit" class="btn btn-primary p-1 pb-2 px-2 bg-green-600 rounded-lg" tabIndex="-1">Send message</button>
                     </div>
                 </form>
             </div>
 
         </div>
+        <!-- component -->
+        <div class="flex flex-col w-full md:flex-row">
+            <div class="w-[95%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:w-1/2">
+            <!--Email-->
+                <div class="w-1/2  flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
+                    <div class="w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
+                        <div class="w-full bg-white grid place-items-center">
+                            <img src=" <?php echo URLROOT . "/img/contact_us/logo_adresse.png" ?> " class="w-[80px] object-contain" alt="Logo Adresse">
+                            <div class="flex items-center justify-center">
+                                <h3 class="font-black text-gray-800 md:text-xl text-sm">ADRESSE</h3>
+                            </div>
+                            <p class="md:text-xs text-gray-500 text-base w-full">62 Quartier bourgogne Casablanca - Maroc</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
+                    <div class="w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
+                        <div class="w-full bg-white grid place-items-center">
+                            <img src=" <?php echo URLROOT . "/img/contact_us/logo_email.jpg"?> " class="w-[80px] object-contain" alt="Logo Email">
+                            <div class="flex items-center justify-center">
+                                <h3 class="font-black text-gray-800 md:text-xl text-sm">EMAIL</h3>
+                            </div>
+                            <p class="md:text-[11px] text-gray-500 text-base">AVITO.maroc@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
+                    <div class="w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
+                        <div class="w-full bg-white grid place-items-center">
+                            <img src=" <?php echo URLROOT ."/img/contact_us/logo_phone.png" ?> " class="w-[80px] object-contain" alt="Logo Telephone">
+                            <div class="flex items-center justify-center">
+                                <h3 class="font-black text-gray-800 md:text-xl text-sm">TELEPHONE</h3>
+                            </div>
+                            <p class="md:text-xs text-gray-500 text-base">0522222222</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
+                    <div class=" w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
+                        <div class="w-full bg-white grid place-items-center">
+                            <img src= "<?php echo URLROOT ."/img/contact_us/logo_whatsapp.png" ?> " class="w-[80px] object-contain" alt="whatsapp">
+                            <p class="md:text-xs text-gray-500 text-base">0622222222</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
+                    <div class="w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
+                        <div class="w-full  bg-white grid place-items-center">
+                            <img src= <?php echo URLROOT ."/img/contact_us/logo_instagram.png" ?> " class="w-[80px] object-contain" alt="instagram">
+                            <p class="md:text-xs text-gray-500 text-base">avito ma</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
+                    <div class=" w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
+                        <div class="w-full bg-white grid place-items-center">
+                            <img src= <?php echo URLROOT ."/img/contact_us/logo_facebook.jpg" ?> " class="w-[80px] object-contain" alt="facebook">
+                            <p class="md:text-xs text-gray-500 text-base">avito ma</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2">
+            <!--Right side Image-->
+                <img src=" <?php echo URLROOT . "/img/contact_us/avito_logo.jpg" ?> " class="w-[80%] mx-auto" alt="Logo Adresse">
+            </div>
+        </div>
 
     </main>
 
     <footer class="bg-gray-200">
-        <div class="">
+        <div class="text-center">
             <a href="#" class="text-xl font-bold text-gray-500 hover:text-gray-400">Brand</a>
             <p class="py-2 text-gray-500 sm:py-0">All rights reserved</p>
         </div>
