@@ -19,7 +19,7 @@ Class Publication {
     }
     public function getCities() {
         // Query
-        $this->db->query("SELECT DISTINCT city FROM publication");
+        $this->db->query("SELECT DISTINCT * FROM city");
     
         if($this->db->execute()){
             $cities = $this->db->resultSet();
