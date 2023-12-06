@@ -98,7 +98,7 @@
     <?php 
     require_once APPROOT.'/views/inc/cltNavBar.php';
     ?>
-    <form action="" method="get">
+    <form onsubmit="">
         <div class="relative mt-6 max-w-lg mx-auto">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
                 <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
@@ -116,13 +116,8 @@
                 <option selected disabled>Category</option>
                 <?php 
                 foreach ($data['categories'] as $category): ?>
-                    <option value="<?php echo $category->name ?>"><?php echo $category->name?></option>
+                    <option value="<?php echo $category->id ?>"><?php echo $category->name?></option>
                 <?php endforeach; ?>
-                <!-- <option>VEHICULES</option>
-                <option>INFORMATIQUE ET MULTIMEDIA</option>
-                <option>IMMOBILIER</option>
-                <option>HABILLEMENT</option>
-                <option>SPORT</option> -->
             </select>
         </div>
         <div class="select">
@@ -131,7 +126,7 @@
                 <option selected disabled>Ville</option>
                 <?php 
                 foreach ($data['cities'] as $city): ?>
-                    <option value="<?php echo $city->city?>"><?php echo $city->city?></option>
+                    <option value="<?php echo $city->id?>"><?php echo $city->name?></option>
                 <?php endforeach; ?>
             </select>
         </div>
