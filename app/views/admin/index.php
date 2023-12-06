@@ -4,7 +4,7 @@
     
   <?php require APPROOT . '/views/inc/adminNavBar.php'; ?>
     <!-- Main content -->
-    <div class="flex-1 items-center justify-center flex-1 h-full p-4">
+    <div class="flex-1 items-center justify-center h-full p-4">
        <!-- Main content -->
       <main>
         <!-- Content header -->

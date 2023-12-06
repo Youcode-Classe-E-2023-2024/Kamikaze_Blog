@@ -13,6 +13,9 @@
       
 
     }
+    public function add(){
+      $this->view('users/addpost');
+    }
    
 
     
