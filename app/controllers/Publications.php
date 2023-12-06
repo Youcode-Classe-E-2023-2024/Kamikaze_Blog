@@ -11,30 +11,37 @@ Class Publications extends Controller{
     }
 
     
-    public function filter($category=null , $city=null){
+    public function filter($category='all', $city='all') {
         switch (true) {
-            case ($category == null && $city == null):
-                echo 'Displaying all publications' ;
+                case ($category == null && $city == null):  
+                    $pub= $this->publicationModel->allPublications();
+                    echo json_encode($pub);
                 break;
     
-            case ($category != 'all' && $city == 'all'):
-                echo "Filtering by category: $category";
+                case ($category != 'all' && $city == 'all'):
+                    // die('hello');
+                    $cat= $this->publicationModel->filterCategory($category);
+                    echo json_encode($cat);
                 break;
     
-            case ($category == 'all' && $city != 'all'):
-                echo "Filtering by city: $city";
+                case ($category == 'all' && $city != 'all'):
+                    $cit= $this->publicationModel->filterCity($city);
+                    echo json_encode($cit);
                 break;
     
-            case ($category != 'all' && $city != 'all'):
-                echo "Filtering by category: $category and city: $city";
+                case ($category != 'all' && $city != 'all'):
+                   
+                    $filterAll= $this->publicationModel->filterCategoryCity($category , $city);
+                    echo json_encode($filterAll);
                 break;
     
             default:
-                echo 'Displaying all publications';
+            $pub= $this->publicationModel->allPublications();
+            echo json_encode($pub);
         }
-        
+    }
     
-    }   
+   
 
    
 }
