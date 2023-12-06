@@ -113,7 +113,7 @@
                   $data['error1'] = $mail->ErrorInfo;
                   // die($mail->ErrorInfo);
               }
-              $data['registered'] = '*Check you email for activation';  
+              $data['registered'] = '*Registration complete. Please check your email, then visit the login page.';  
               $data['display'] = 'login';
               $this->view('users/auth', $data);
           } else {
@@ -195,7 +195,7 @@
         $_SESSION['fullName'] = $user->fullName;
         $_SESSION['email'] = $user->email;
         $_SESSION['roleId'] = $user->roleId;
-        if($_SESSION['roleId'] === 1){
+        if($_SESSION['roleId'] === 1  || $_SESSION['roleId'] ===2){
           redirect('admin');
         }else{
           redirect('');

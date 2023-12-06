@@ -3,7 +3,7 @@
 
  
   function adminIsLoggedIn(){
-    if(isset($_SESSION['user_id']) && $_SESSION['roleId'] ===1){
+    if(isset($_SESSION['user_id']) && ($_SESSION['roleId'] ===1 || $_SESSION['roleId'] ===2)){
       return true;
     } else {
       return false;
