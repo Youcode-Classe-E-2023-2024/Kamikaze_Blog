@@ -98,7 +98,7 @@
     <?php 
     require_once APPROOT.'/views/inc/cltNavBar.php';
     ?>
-    <form onsubmit="">
+    <form id="myForm"  >
         <div class="relative mt-6 max-w-lg mx-auto">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
                 <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
@@ -113,7 +113,7 @@
         <div class="search">
         <div class="select">
             <select name="category" id="category">
-                <option selected disabled>Category</option>
+                <option  value="all" selected >Category</option>
                 <?php 
                 foreach ($data['categories'] as $category): ?>
                     <option value="<?php echo $category->id ?>"><?php echo $category->name?></option>
@@ -123,7 +123,7 @@
         <div class="select">
         
             <select name="city" id="city">
-                <option selected disabled>Ville</option>
+                <option value="all" selected >Ville</option>
                 <?php 
                 foreach ($data['cities'] as $city): ?>
                     <option value="<?php echo $city->id?>"><?php echo $city->name?></option>
@@ -132,7 +132,7 @@
         </div>
         </div>
         <div class="bout">
-            <button type="submit" class="py-2 px-4 bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+            <button type="button" id="save" class="py-2 px-4 bg-blue-700 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
             Save 
             </button>  
         </div>
@@ -166,7 +166,7 @@
     <?php 
     require_once APPROOT.'/views/inc/footer.php';
     ?>
-    <script>
+    <!-- <script>
         $(document).click(function(event) {
   if(
     $('.toggle > input').is(':checked') &&
@@ -175,6 +175,6 @@
     $('.toggle > input').prop('checked', false);
   }
 })
-    </script>
+    </script> -->
 </body>
 </html>
