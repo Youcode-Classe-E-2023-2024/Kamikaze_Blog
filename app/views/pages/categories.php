@@ -6,22 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories</title>
     <style>
-        /* .pubs{
-           
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        } */
-        .pub {
-            border: 1px solid black;
-            width: 24rem;
-            height: 22rem;
-            border-radius: 1rem;
-            background-color: #fafafa;
-            display: flex;
-            justify-content: space-around;
-        }
-
         .cards {
             padding: 2rem;
             display: flex;
@@ -30,7 +14,7 @@
             gap: 3rem;
         }
 
-        .card {
+        .category-card {
             width: 10rem;
             height: 10rem;
             padding: 1rem;
@@ -44,8 +28,9 @@
             /* border: 1px solid black; */
         }
 
-        .card img {
+        .category-card img {
             width: 5rem;
+
         }
 
         .bout {
@@ -167,44 +152,47 @@
         </div>
 
         <div class="cards">
-            <div class="card" style="background-color: #ffe9da">
+            <div class="category-card" data-category="1" style="background-color: #ffe9da">
+        
                 <img src="<?php echo URLROOT . "/img/categories/779505_10252-NML4GG-removebg-preview.png" ?>" alt="">
                 <h6>VEHICULES</h6>
+           
             </div>
-            <div class="card" style="background-color: #e9daff">
+
+            <div class="category-card" data-category="2" style="background-color: #e9daff">
+            
                 <img src="<?php echo URLROOT . "/img/categories/2606088_5568-removebg-preview.png" ?>" alt="">
                 <h6>INFORMATIQUE ET MULTIMEDIA</h6>
+            
             </div>
-            <div class="card" style="background-color: #daf0ff">
-                <img src="<?php echo URLROOT . "/img/categories/home-icon-sign-front-side-white-background-removebg-preview.png" ?>" alt="">
+
+            <div class="category-card" data-category="3" style="background-color: #daf0ff">
+            
+                 <img src="<?php echo URLROOT . "/img/categories/home-icon-sign-front-side-white-background-removebg-preview.png" ?>" alt="">
                 <h6>IMMOBILIER</h6>
+           
             </div>
-            <div class="card" style="background-color: #ffe9da">
-                <img src="<?php echo URLROOT . "/img/categories/20346276_v1057-element-19-removebg-preview.png" ?>" alt="">
+
+            <div class="category-card" data-category="4" style="background-color: #ffe9da">
+            
+                  <img src="<?php echo URLROOT . "/img/categories/20346276_v1057-element-19-removebg-preview.png" ?>" alt="">
                 <h6>HABILLEMENT </h6>
+            
             </div>
-            <div class="card" style="background-color: #ebebeb">
+
+            <div class="category-card" data-category="5" style="background-color: #ebebeb">
+            
                 <img src="<?php echo URLROOT . "/img/categories/10603279_42615-removebg-preview.png" ?>" alt="">
                 <h6>SPORT</h6>
+            
             </div>
 
         </div>
     </form>
 
-    <div id="dataContainer" class="flex flex-wrap border border-red-500 py-9  gap-2">
-        
-        </div>
+    <div id="dataContainer" class="flex flex-wrap border py-9  gap-2">
+    </div>
 
         <?php
         require_once APPROOT . '/views/inc/footer.php';
         ?>
-        <!-- <script>
-        $(document).click(function(event) {
-  if(
-    $('.toggle > input').is(':checked') &&
-    !$(event.target).parents('.toggle').is('.toggle')
-  ) {
-    $('.toggle > input').prop('checked', false);
-  }
-})
-    </script> -->
