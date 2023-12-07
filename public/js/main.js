@@ -5,13 +5,16 @@ function displayData(data) {
   const rows = data.map((pub) => {
     console.log(pub);
     return (
-      `<a href="" class="hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10 w-full max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white">
-        <div class="flex items-end justify-end h-56 w-80 bg-cover" style="background-image: url('../public/img/categories/${pub.imgUrl}')"></div>
-        <div class="px-5 py-3">
+      `
+      <div class="hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10  max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300  bg-white">
+      <div class="flex items-end justify-end h-56 w-80 bg-cover" style="background-image: url('../public/img/categories/Corded-Telephone-Desktop-Phone-Office-Phone-Hotel-Telephone-Landline-Telephone-Analog-Telephone.jpg')"></div>
+      <div class="px-5 py-3">
           <h3 class="text-gray-700 uppercase">${pub.title}</h3>
           <span class="text-gray-500 mt-2">${pub.prix} DH</span>
-        </div>
-      </a>`
+      </div>
+  </div>
+       
+     `
     );
   });
 
