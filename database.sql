@@ -3,7 +3,7 @@ create DATABASE kamikaze_avito_db;
 CREATE TABLE permissions (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
-    module VARCHAR(255) NOT NULL,
+    module VARCHAR(255) NOT NULL
 );
 
 
@@ -83,13 +83,13 @@ CREATE TABLE likes (
 
 -- Insertion
 
-INSERT INTO `role` (`id`, `name`) VALUES ('1', 'admin'), ('2', 'client');
+INSERT INTO `role` (`id`, `name`) VALUES ('1', 'admin'), ('2', 'moderator'), ('3', 'client');;
 
-INSERT INTO `permissions` (`id`, `name`) 
-    VALUES ('1', 'canRead'), 
-            ('2', 'canCreate'),
-            ('3', 'canUpdate'), 
-            ('4', 'canDelete');
+INSERT INTO `permissions` (`id`, `name` , `module`) 
+    VALUES ('1', 'canRead' , 'user'), 
+            ('2', 'canCreate' , 'user'),
+            ('3', 'canUpdate' , 'user'), 
+            ('4', 'canDelete' , 'user');
     
 INSERT INTO `permissions_role` (`role_id`, `permission_id`)
  VALUES ('1', '1'),
