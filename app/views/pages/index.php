@@ -1,5 +1,5 @@
 <!-- require header -->
-<?php require APPROOT . '\views\inc\cltNavBar.php'; ?>
+<?php require APPROOT . '/views/inc/cltNavBar.php'; ?>
 
 <main class="my-8 py-4 bg-gray-100 ">
     <div class="container mx-auto px-6">
