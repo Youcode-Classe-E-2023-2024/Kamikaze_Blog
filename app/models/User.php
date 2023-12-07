@@ -22,7 +22,7 @@
     $this->db->bind(':password', $data['password']);
     $this->db->bind(':imgUrl', 'img.png');
     $this->db->bind('confirmation_token', $data['token']);
-    $this->db->bind(':roleId', 2);
+    $this->db->bind(':roleId', 3);//role id for client
 
     // Execute
     if($this->db->execute()){
