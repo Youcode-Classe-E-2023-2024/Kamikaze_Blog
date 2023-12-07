@@ -6,8 +6,8 @@
     <div class="w-full">
         <h2 class="text-center drop-shadow-md font-bold text-6xl uppercase mb-10">new posts</h2>
         <div class="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
-
-            <form action="<?php echo URLROOT ?>/Users/add" method="post" enctype="multipart/form-data">
+        
+            <form action="<?php echo URLROOT ?>/Publications/add" method="post" enctype="multipart/form-data">
                 <div>
                     <div class="mb-5">
                         <label for="name" class="block mb-2 font-bold text-gray-600 uppercase">Name</label>
@@ -18,12 +18,12 @@
                         <label for="category" class="block mb-2 font-bold text-gray-600 uppercase">category</label>
                         <div class="relative border border-gray-300 text-gray-800 bg-white shadow-lg">
                             <label for="category" class="sr-only">My field</label>
-                            <select class="appearance-none w-full py-1 px-2 bg-white" name="category[0]" id="category">
+                            <select class="appearance-none w-full py-1 px-2 bg-white" name="category[0]" id="category" >
                                 <option value="">Please choose&hellip;</option>
-                      
+
                                 <?php foreach ($data["category"] as $item) : ?>
-                                    <option value="<?php echo $item->id ;?>"><?= $item->name ;?></option>
-                                    <?php endforeach; ?>
+                                    <option value="<?php echo $item->id; ?>"><?= $item->name; ?></option>
+                                <?php endforeach; ?>
                             </select>
                             <div class="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center px-2 text-gray-700 border-l">
                                 <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -53,10 +53,12 @@
 
                     </div>
                 </div>
-                <div id="dynamicDivContainer"></div>
+                <div id="addContainer">
+                    
+                </div>
                 <div class="flex justify-between">
 
-                    <button type="button" onclick="createDynamicDiv()" class="flex justify-center w-1/3 bg-blue-500 text-white font-bold p-4   rounded-lg">
+                    <button type="button" id="addButton" class="flex justify-center w-1/3 bg-blue-500 text-white font-bold p-4   rounded-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -76,14 +78,17 @@
     </div>
 </div>
 <script>
-    var number = 0;
-
-    function createDynamicDiv() {
-        // Create the HTML structure using innerHTML
-        number++;
-        newDivHtml = `
+    const addContainer = document.getElementById('addContainer');
+    const addButton = document.getElementById('addButton');
+    console.log(addButton); 
+    console.log(addContainer);
+    addButton.addEventListener('click', function(event) {
+        addContainer.insertAdjacentHTML('beforeend', html);
+    })
+    
+    const html = `
       <br>
-      <h2 class="text-center drop-shadow-md font-bold text-2xl uppercase mb-10" >Post ${number} </h2>
+      <h2 class="text-center drop-shadow-md font-bold text-2xl uppercase mb-10" >Post </h2>
       <div>
                     <div class="mb-5">
                         <label for="name" class="block mb-2 font-bold text-gray-600 uppercase">Name</label>
@@ -96,9 +101,10 @@
                             <label for="category" class="sr-only">My field</label>
                             <select class="appearance-none w-full py-1 px-2 bg-white" name="category[]" id="category">
                                 <option value="">Please choose&hellip;</option>
-                                <option value="1">Item 1</option>
-                                <option value="2">Item 2</option>
-                                <option value="3">Item 3</option>
+
+                                <?php foreach ($data["category"] as $item) : ?>
+                                    <option value="<?php echo $item->id; ?>"><?= $item->name; ?></option>
+                                <?php endforeach; ?>
                             </select>
                             <div class="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center px-2 text-gray-700 border-l">
                                 <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -128,12 +134,8 @@
 
                     </div>
                 </div>
+                <div id="dynamicDivContainer"></div>
+                <div class="flex justify-between">
       `
-
-
-        ;
-        document.getElementById("dynamicDivContainer").innerHTML += newDivHtml;
-        // Append the new div to the dynamicDivContainer
-    }
 </script>
 <?php require_once APPROOT . '/views/inc/footer.php' ?>
