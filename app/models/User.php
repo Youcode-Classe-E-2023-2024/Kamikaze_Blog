@@ -82,11 +82,13 @@
 
   }
 
-  public function getRolePermissions($roleId){
-    $this->db->query('SELECT permissions.name FROM permissions_role , permissions WHERE role_id = :roleId AND permissions.id = permissions_role.permission_id');
-    $this->db->bind(':roleId', $roleId);
+  public function getRolePermissions($userId , $module){
+    $this->db->query('SELECT p.name FROM users u JOIN permissions_role rp
+     ON u.roleId = rp.role_id JOIN permissions p ON rp.permission_id = p.id WHERE u.id = :userId and p.module = :module');
+    $this->db->bind(':userId', $userId);
+    $this->db->bind(':module', $module);
     if($this->db->execute()){
-      return $this->db->resultSet();
+      return $this->db->rowCount() >0 ? true : false;
     }else{
       die("error in exc getRolePermissions");
     }
