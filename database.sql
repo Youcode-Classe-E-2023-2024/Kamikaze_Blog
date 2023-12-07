@@ -2,7 +2,8 @@ create DATABASE kamikaze_avito_db;
 
 CREATE TABLE permissions (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL
+    name VARCHAR(255) NOT NULL,
+    module VARCHAR(255) NOT NULL,
 );
 
 
@@ -42,19 +43,34 @@ CREATE TABLE category (
     name VARCHAR(255) NOT NULL
 );
 
+INSERT INTO category (id, name)
+VALUES('1', 'Motos'),
+('2', 'Voitures');
+
+
+CREATE TABLE city (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
+);
+
+INSERT INTO city (id, name)
+VALUES('1', 'Marrakech'),
+('2', 'City');
+
 CREATE TABLE publication (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255) NOT NULL,
     description TEXT,
     imgUrl VARCHAR(255),
     prix DECIMAL(10, 2) NOT NULL,
-    city VARCHAR NULL,
+    cityId INT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL,
     category_Id INT,
     userId INT,
     FOREIGN KEY (category_Id) REFERENCES category(id),
-    FOREIGN KEY (userId) REFERENCES users(id)
+    FOREIGN KEY (userId) REFERENCES users(id),
+    FOREIGN KEY (cityId) REFERENCES city(id)
 );
 
 CREATE TABLE likes (
@@ -91,8 +107,3 @@ INSERT INTO `permissions_role` (`role_id`, `permission_id`) VALUES
 , ('3', '1');
   
 
-select users.fullName , users.email , permissions.name , role.name
-from permissions_role , users , permissions , role
- where users.roleId = permissions_role.role_id
-  and permissions_role.permission_id = permissions.id 
-  and role.id = permissions_role.role_id;
