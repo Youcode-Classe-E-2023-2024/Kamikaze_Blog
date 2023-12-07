@@ -16,6 +16,5 @@ Class Publication {
             die("Error in countPublications");
         }
 
-
     }
 }
