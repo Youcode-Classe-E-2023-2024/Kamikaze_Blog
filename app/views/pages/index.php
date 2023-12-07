@@ -75,21 +75,22 @@
             <h3 class="text-gray-600 text-2xl font-medium">Fashions</h3>
 
             <div class="flex overflow-x-scroll  hide-scroll-bar  py-7">
-                <?php for ($i = 0; $i < 100; $i++) { ?>
-                  
+                <?php 
+                    foreach($data['pub'] as $item):
+                    ?>
 
                         <a href="" class="  hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10 w-full max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white">
-                            <div class="flex items-end justify-end h-56 w-80 bg-cover" style="background-image: url('https://images.unsplash.com/photo-1563170351-be82bc888aa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=376&q=80')">
-    
+                            <div class="flex items-end justify-end h-56 w-80 bg-cover" style="background-image: url('<?php echo URLROOT?>/public/img/e-commerce.png')">
                             </div>
                             <div class="px-5 py-3">
-                                <h3 class="text-gray-700 uppercase  ">Chanel</h3>
-                                <span class="text-gray-500 mt-2  ">$12</span>
+                                <h3 class="text-gray-700 uppercase  "><?php echo $item->title; ?></h3>
+                                <span class="text-gray-500 mt-2  ">$<?php echo $item->prix; ?></span><br>
+                                <span class="text-gray-500 mt-2  ">$<?php echo $item->created_at; ?></span>
                             </div>
     
                             </a>
                   
-                <?php } ?>
+                <?php endforeach ?>
 
 
             </div>

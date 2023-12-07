@@ -1,15 +1,20 @@
 <?php
   class Pages extends Controller {
     private $userModel ;
+    private $publicationModel;
     public function __construct(){
       $this->userModel = $this->model('User');
+      $this->publicationModel = $this->model('Publication');
       
     }
     
     public function index(){
       
-     
-      $this->view('pages/index');
+     $Publication = $this->publicationModel->homepub();
+     $data=[
+      'pub' => $Publication
+     ];
+      $this->view('pages/index', $data);
       
 
     }
