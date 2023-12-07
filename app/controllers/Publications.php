@@ -11,7 +11,7 @@ Class Publications extends Controller{
     }
 
     
-    public function filter($category='all', $city='all') {
+    public function filter($category, $city) {
         switch (true) {
                 case ($category == null && $city == null):  
                     $pub= $this->publicationModel->allPublications();
