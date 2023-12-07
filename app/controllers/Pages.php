@@ -16,11 +16,11 @@
 
     public function  contact(){
         $this->view('pages/contact');
-
+    }
     public function add(){
       $this->view('users/addpost');
 
-    }
+      }
    
 
 
