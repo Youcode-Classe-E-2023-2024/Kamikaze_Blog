@@ -1,6 +1,13 @@
 <?php  require APPROOT . '/views/inc/cltNavBar.php';?>
+<?php  
+//  echo '<pre>';
+ var_dump($data['publication']); 
+//  echo '<pre>';
+?>
 
-    <div class=" w-full h-screen flex flex-col justify-start items-center pt-16 my-9 ">
+
+    <div class=" w-full h-screen flex flex-col justify-start items-center pt-16 my-9  bg-blue-600">
+        
         <div class=" bg-gray-300 w-3/5 h-48 flex justify-center rounded-t-lg">
             <div class="h-48 w-96" style="background-image: url('https://images.unsplash.com/photo-1532667449560-72a95c8d381b?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'); background-repeat:no-repeat;"></div>
         </div>
@@ -11,10 +18,10 @@
 
                         <div class=" w-full h-9 flex justify-between items-center  ">
                             <div class=" w-fit h-9 flex justify-center items-end gap-6 ">
-                                <h1 class="text-2xl font-bold text-gray-700">MASERATI_77</h1>
-                                <h2 class="text-sm  text-gray-600  font-bold">voiture</h2>
+                                <h1 class="text-2xl font-bold text-gray-700"><?= $data['publication']->fullName; ?></h1>
+                                <h2 class="text-sm  text-gray-600  font-bold"><?= $data['publication']->name; ?></h2>
                             </div>
-                            <h4 class="text-lg font-bold text-blue-500">200 000 MAD</h4>
+                            <h4 class="text-lg font-bold text-blue-500"><?= $data['publication']->prix; ?></h4>
                         </div>
                         <div class="w-[100%] h-fit flex  items-center gap-2 ">
 
@@ -23,14 +30,14 @@
                                     <path
                                         d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
                                 </svg>
-                                <p class="text-sm font-medium text-gray-600">Casablanca</p>
+                                <p class="text-sm font-medium text-gray-600"><?= $data['publication']->name; ?></p>
                             </div>
 
                             <div class="w-fit h-6 flex justify-evenly items-center gap-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
                                     <path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
                                 </svg>
-                                <p class="text-sm font-medium text-gray-600">il y a 33 minutes</p>
+                                <p class="text-sm font-medium text-gray-600"><?= "il y a" . $data['publication']->created_at . "minutes"; ?></p>
                             </div>
                         </div>
 
@@ -39,14 +46,12 @@
 
                 <div class="w-[100%] h-fit">
                     <h3 class="text-xl font-bold text-gray-700">description</h3>
-                    <p class="text-gray-500 text-base">A vendre un magasin commercialSuperficie 180 m2 (124 m2 au magasin et 56 m2 soupente)Faisant Angle
-                        (chouka) ayant 5 Rideaux.Convenable pour tout commerce et servicesDans un lieu stratégique à coté de
-                        toutes commoditésQuartier 2 mars pas loin du Boulevard AnoualPrix 2750000 DhContacter notre Agence
-                        immobilière</p>
+                    <p class="text-gray-500 text-base"><?= $data['publication']->description; ?></p>
                 </div>
             </div>
 
         </div>
+        
     </div>
 
 
