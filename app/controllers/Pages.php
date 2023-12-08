@@ -3,9 +3,7 @@
     private $userModel ;
     private $publicationModel;
     
-    public function __construct(){
-      $this->userModel = $this->model('User');
-      $this->publicationModel = $this->model('Publication');
+    
       
 
     public function __construct(){
@@ -47,12 +45,6 @@
       $this->view('users/addpost');
 
       }
-
-   
-
-
-    
-
 
     public function categories(){
     
