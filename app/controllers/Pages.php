@@ -29,7 +29,7 @@
     }
 
     public function allCities(){
-      return $cities = $this->publicationModel->getCities();
+     $cities = $this->publicationModel->getCities();
      
       return $cities;
     }
