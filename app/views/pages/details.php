@@ -23,7 +23,7 @@
 ?>
 
 
-    <div class=" w-full h-screen flex flex-col justify-start items-center pt-16 my-9  ">
+    <div class=" w-full h-screen flex flex-col justify-start items-center pt-16 my-9">
         
         <div class=" bg-gray-300 w-3/5 h-48 flex justify-center rounded-t-lg">
             <div class="h-48 w-96" style="background-image: url('https://images.unsplash.com/photo-1532667449560-72a95c8d381b?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'); background-repeat:no-repeat;"></div>
