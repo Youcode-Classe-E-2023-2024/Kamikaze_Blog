@@ -20,6 +20,60 @@
 
 
 
+$temps = $data['publication']->created_at;
+function chek_time($temps){
+    
+
+$dateString = $temps;
+$first_time = time();
+$last_time  = strtotime($dateString);
+$diff = $first_time - $last_time;
+$res = $diff - 3600;
+
+
+
+if ($res > 0 && $res < 60 || $res < 0 && $res > -60) {
+
+    echo "il y a" . " " . $date = date('s', $res) . " " . "s";
+
+} elseif ($res > 60 && $res < 3600 || $res < -60 && $res > -3600) {
+
+   
+    echo "il y a" . " " . $date = date('i', $res) . " " . "m";
+
+} elseif ($res > 3600 && $res < 43200 || $res < -3600 && $res > -43200) {
+
+  
+    echo "il y a" . " " . $date = date('H:i', $res) . " " . "h";
+
+} elseif ($res > 43200 && $res < 1296000 || $res < -43200 && $res > -1296000) {
+
+   
+    echo " " . $date = date('d', $res) . " " . "jour";
+
+} elseif ($res > 1296000 && $res < 15552000 || $res < -1296000 && $res > -15552000) {
+
+   
+    echo " " . $date = date('m', $res) . " " . "mois";
+
+} elseif ($res >= 15552000 || $res <= -15552000 ) {
+
+   
+    echo " " . $date = date('y-m', $res) . " " . "années";
+    
+} else {
+    echo "Erreur";
+}
+}
+
+
+
+
+
+
+
+
+
 ?>
 
 
@@ -55,7 +109,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
                                     <path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
                                 </svg>
-                                <p class="text-sm font-medium text-gray-600"><?= "il y a" . $data['publication']->created_at . "minutes"; ?></p>
+                                <p class="text-sm font-medium text-gray-600"><?= chek_time($temps); ?></p>
                             </div>
                         </div>
 
