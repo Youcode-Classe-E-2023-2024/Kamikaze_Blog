@@ -15,6 +15,7 @@
 
     }
 
+
     public function details($id){
       $publication_result = $this->PublicationModel->get_publicatin_byId($id);
       // var_dump($publication_result);
@@ -23,8 +24,18 @@
       ];
       // var_dump($data);
        $this->view('pages/details', $data);
-    
     }
+    public function  contact(){
+        $this->view('pages/contact');
+    }
+    public function add(){
+      $this->view('users/addpost');
+
+      }
+   
+
+
+    
 
 
     public function categories(){
@@ -32,6 +43,14 @@
       $this->view('pages/categories');
 
     }
+    public function about(){
+      
+     
+      $this->view('pages/aboutus');
+      
+
+    }
+
 
     
     

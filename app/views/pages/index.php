@@ -1,5 +1,5 @@
 <!-- require header -->
-<?php require APPROOT . '\views\inc\cltNavBar.php'; ?>
+<?php require APPROOT . '/views/inc/cltNavBar.php'; ?>
 
 <main class="my-8 py-4 bg-gray-100 ">
     <div class="container mx-auto px-6">
@@ -20,8 +20,13 @@
                 <div class="flex flex-col sm:flex-row">
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Home</a>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Shop</a>
+
+                    <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Categories</a>
+                    <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="index.php?url=contact">Contact</a>
+
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/pages/categories" >Categories</a>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
+
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">About</a>
                 </div>
             </nav>
@@ -109,4 +114,4 @@
 
 
 
-<?php require APPROOT . '\views\inc\footer.php'; ?>
+<?php require APPROOT . '/views/inc/footer.php'; ?>
