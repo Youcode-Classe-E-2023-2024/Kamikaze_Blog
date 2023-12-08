@@ -1,12 +1,29 @@
 <?php  require APPROOT . '/views/inc/cltNavBar.php';?>
 <?php  
 //  echo '<pre>';
- var_dump($data['publication']); 
+//  var_dump($data['publication']); 
 //  echo '<pre>';
+
+// $dateString = $data['created_at'];
+// $first_time = time();
+// $last_time  = strtotime($dateString);
+// $diff = $first_time - $last_time ;
+
+// $hours = floor($diff / 3600);
+// $minutes = floor(($diff % 3600) / 60);
+// $seconds = $diff % 60;
+
+// Format the time difference
+// $formattedTime = sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
+// echo "le timz is : " . $formattedTime . "<br>";
+
+
+
+
 ?>
 
 
-    <div class=" w-full h-screen flex flex-col justify-start items-center pt-16 my-9  bg-blue-600">
+    <div class=" w-full h-screen flex flex-col justify-start items-center pt-16 my-9  ">
         
         <div class=" bg-gray-300 w-3/5 h-48 flex justify-center rounded-t-lg">
             <div class="h-48 w-96" style="background-image: url('https://images.unsplash.com/photo-1532667449560-72a95c8d381b?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80'); background-repeat:no-repeat;"></div>
