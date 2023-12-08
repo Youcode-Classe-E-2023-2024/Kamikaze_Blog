@@ -1,8 +1,11 @@
 <?php
   class Pages extends Controller {
     private $userModel ;
+    private $aboutModel;
     public function __construct(){
       $this->userModel = $this->model('User');
+      $this->aboutModel = $this->model('About');
+      
       
     }
     
@@ -25,16 +28,15 @@
 
     }
     public function about(){
-      
+
+      $about_data = $this->aboutModel->cmnt_about();
+      $data = [
+        'about'=> $about_data
+      ];
      
-      $this->view('pages/aboutus');
-      
+    return  $this->view('pages/aboutus',$data);
 
-    }
 
-    
-    
-   
-    
+    } 
   }
   ?>
