@@ -1,7 +1,13 @@
 <?php
   class Pages extends Controller {
     private $userModel ;
-    private $PublicationModel;
+    private $publicationModel;
+    
+    public function __construct(){
+      $this->userModel = $this->model('User');
+      $this->publicationModel = $this->model('Publication');
+      
+
     public function __construct(){
       $this->userModel = $this->model('User');
       $this->PublicationModel = $this->model('Publication');
@@ -9,8 +15,11 @@
     
     public function index(){
       
-     
-      $this->view('pages/index');
+     $Publication = $this->publicationModel->homepub();
+     $data=[
+      'pub' => $Publication
+     ];
+      $this->view('pages/index', $data);
       
 
     }
@@ -20,7 +29,7 @@
 
     public function details($id){
       $publication_result = $this->PublicationModel->get_publicatin_byId($id);
-      // var_dump($publication_result);
+      
       $data = [
         'publication' => $publication_result,
       ];
@@ -50,6 +59,8 @@
       $this->view('pages/categories');
 
     }
+      
+      
     public function about(){
       
      
@@ -60,8 +71,6 @@
 
 
     
-    
-   
     
   }
   ?>
