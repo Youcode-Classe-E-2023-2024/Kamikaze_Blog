@@ -37,6 +37,10 @@
                                     class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
                                     email
                                 </th>
+                                <th
+                                    class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                                    Role
+                                </th>
                                 
                             </tr>
                         </thead>
@@ -70,7 +74,7 @@ $(document).ready(function() {
                   { data: 'id' , className: ' py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker'},
                   { data: 'fullName' , className: ' py-5 border-b border-gray-200 text-sm  bg-white dark:bg-darker' },
                   { data: 'email' , className: ' py-5 border-b border-gray-200 text-sm  bg-white dark:bg-darker' },
-                  
+                  { data: 'role_name' , className: ' py-5 border-b border-gray-200 text-sm  bg-white dark:bg-darker' },
               ],
               autoWidth: false 
 

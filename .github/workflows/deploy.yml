@@ -1,0 +1,32 @@
+name: Deploy to InfiniteFree
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Up PHP and Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          tools: composer:v2
+
+      - name: Install Composer Dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name:  Deploy to InfiniteFree
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{secrets.FTP_SERVER}}
+          username: ${{secrets.FTP_USERNAME}}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          server-dir: ./htdocs/
