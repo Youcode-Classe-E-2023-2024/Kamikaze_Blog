@@ -26,7 +26,7 @@
 
 
     public function details($id){
-      $publication_result = $this->PublicationModel->get_publicatin_byId($id);
+      $publication_result = $this->publicationModel->get_publicatin_byId($id);
       
       $data = [
         'publication' => $publication_result,
