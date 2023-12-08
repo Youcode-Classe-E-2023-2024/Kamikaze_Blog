@@ -2,20 +2,21 @@
   class Pages extends Controller {
     private $userModel ;
     private $publicationModel;
+    private $aboutModel;
     
-    
-      
-
     public function __construct(){
+      
       $this->userModel = $this->model('User');
+      $this->aboutModel = $this->model('About');
       $this->publicationModel = $this->model('Publication');
+     
     }
     
     public function index(){
       
      $Publication = $this->publicationModel->homepub();
      $data=[
-      'pub' => $Publication
+      'pub' => $Publication,
      ];
       $this->view('pages/index', $data);
       
@@ -31,7 +32,7 @@
       $data = [
         'publication' => $publication_result,
       ];
-      // var_dump($data);
+   
        $this->view('pages/details', $data);
     }
     
@@ -54,15 +55,14 @@
       
       
     public function about(){
-      
+
+      $about_data = $this->aboutModel->cmnt_about();
+      $data = [
+        'about'=> $about_data
+      ];
      
-      $this->view('pages/aboutus');
-      
+    return  $this->view('pages/aboutus',$data);
+    } 
 
-    }
-
-
-    
-    
   }
   ?>
