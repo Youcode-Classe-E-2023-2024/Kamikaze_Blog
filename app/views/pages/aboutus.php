@@ -98,20 +98,11 @@
             title="Bali, Indonesia">
             <div class="absolute inset-0 flex flex-col items-center justify-center p-10 text-center text-white  ">
                 <div class="max-w-3xl mx-auto text-center">
-                    <h1 class="mb-4 text-4xl font-semibold text-black dark:text-gray-300">
+                    <h1 class="mb-4 text-4xl font-semibold text-black dark:text-gray-300 font-serif">
                         about us
                     </h1>
+                    <h3 class="mb-4 text-4xl font-semibold text-black dark:text-gray-300 font-serif">Bonjour, comment pouvons-nous vous aider?</h3>
                     <div class="flex flex-wrap items-center justify-center">
-                        <button
-                            class="inline-flex items-center px-4 py-2 my-4 font-bold text-white bg-black border border-black rounded hover:bg-white hover:text-black">
-                            <span>Find out more</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="w-4 h-4 ml-3 bi bi-arrow-right" viewBox="0 0 16 16" class="w-4 h-4 ml-2">
-                                <path fill-rule="evenodd"
-                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
-                                </path>
-                            </svg>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -121,6 +112,8 @@
     <!-- END -->
 
     <!-- ABOUT US -->
+    <div class="  m-24 rounded overflow-hidden ring ring-red-500 ring-offset-2">
+
     <div class="justify-center flex-1 max-w-6xl py-4 mx-auto lg:py-6 md:px-6">
         <div class="flex flex-wrap ">
             <div class="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
@@ -139,7 +132,7 @@
                         class="absolute -top-20   left-0 text-[20px] lg:text-[100px] text-gray-900 font-bold  dark:text-gray-200 opacity-5 md:block hidden">
                         About Us
                     </h1>
-                    <h1 class="pl-2 text-3xl font-bold border-l-8 border-blue-400 md:text-5xl dark:text-white">
+                    <h1 class="pl-2 text-3xl font-bold border-l-8 border-red-400 md:text-5xl dark:text-white">
                         Welcome to AVITO
                     </h1>
                 </div>
@@ -189,16 +182,13 @@
                     sous "Demande". "A louer" et "Demande de location" sont disponibles sous certaines catégories.
                     Dans d'autres catégories, les annonces "A louer" doivent être classées sous "Offre (vous vendez
                     un bien)", les annonces de demandes de location sous "Demande (vous recherchez un bien)".
-
-
-
                 </p>
-                <a href="#"
-                    class="px-4 py-3 text-gray-50 transition-all transform bg-blue-400 rounded-[80px] hover:bg-blue-500 dark:hover:text-gray-100 dark:text-gray-100 ">
-                    Learn more
-                </a>
+                <button class="mt-4 bg-red-500 text-white font-bold py-2 px-4 rounded">
+            Read More
+        </button>
             </div>
         </div>
+    </div>
     </div>
     <!-- END -->
 
