@@ -8,7 +8,7 @@
 
     public function __construct(){
       $this->userModel = $this->model('User');
-      $this->PublicationModel = $this->model('Publication');
+      $this->publicationModel = $this->model('Publication');
     }
     
     public function index(){
