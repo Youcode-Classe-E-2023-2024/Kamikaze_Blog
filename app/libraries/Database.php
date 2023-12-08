@@ -71,6 +71,10 @@
       $this->execute();
       return $this->stmt->fetchAll(PDO::FETCH_OBJ);
     }
+    public function resultassoc(){
+      $this->execute();
+      return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     // Get single record as object
     public function single(){
