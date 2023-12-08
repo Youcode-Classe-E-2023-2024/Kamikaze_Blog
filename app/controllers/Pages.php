@@ -17,12 +17,24 @@
 
     public function details($id){
       $publication_result = $this->PublicationModel->get_publicatin_byId($id);
-      // var_dump($publication_result);
+      $category_Id = $publication_result->category_Id;
+      
+      $result_publication_category = $this->PublicationModel->get_publication_category($category_Id);
+      // echo '<pre>';
+      // print_r($result_publication_category);
+      // echo '<pre>';
+      
+     
+      
       $data = [
         'publication' => $publication_result,
+        'publication_category' => $result_publication_category,
       ];
+      // echo '<pre>';
+      //  print_r($data['publication_category']);
+      //  echo '<pre>';
       // var_dump($data);
-       $this->view('pages/details', $data);
+      $this->view('pages/details', $data);
     
     }
 
