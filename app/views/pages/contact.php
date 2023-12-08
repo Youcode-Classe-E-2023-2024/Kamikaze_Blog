@@ -112,7 +112,7 @@
             left: 1.5rem;
             top: 1.1rem;
         }
-        }
+        
 
         .btn.btn-primary {
             font-family: 'Quicksand', sans-serif;
@@ -496,34 +496,62 @@
           -------------------------------------------------------------
           ------------------------------------------------------------>
             <div>
-                <form>
-                    <h1 class="title text-center mb-4">Talk to Us</h1>
 
+
+                <form action="<?php echo URLROOT?>/Contact/index" method="post">
+
+                    <h1 class="title text-center mb-4">Talk to Us</h1>
+                    <?php if(!empty($data["succes"])):?>
+                    <div class="bg-green-500 flex justify-center mx-auto mb-2 rounded-full w-3/5 text-center  border-t border-b border-green-100 text-white  px-4 py-3" role="alert">
+<!-- ------------------- -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                        </svg>
+
+                        <!--  ----------- -->
+                        <p class="font-bold"><?php echo $data["succes"];?></p>
+                    </div>
+                    <?php endif;?>
                     <!-- Name -->
                     <div class="form-group position-relative text-center pb-4">
                         <label for="formName" class="d-block">
                             <i class="icon" data-feather="user"></i>
                         </label>
-                        <input type="text" id="formName" class="w-[90%] form-control form-control-lg thick md:w-[50%]" placeholder="Name">
-                    </div>
+                        <input type="text" id="formName" name="name" class="w-[90%] form-control form-control-lg thick md:w-[50%]" placeholder="Name" value="<?php if(!empty($data["name"])){echo $data["name"];}?>">
+                    <?php if(!empty($data["namevide"])):?>
 
+                        <p class="text-red-500 text-xs italic"><?php  echo $data["namevide"];?></p>
+                    <?php endif;
+                    ?>
+                    </div>
                     <!-- E-mail -->
                     <div class="form-group position-relative text-center pb-4">
                         <label for="formEmail" class="d-block">
                             <i class="icon" data-feather="mail"></i>
                         </label>
-                        <input type="email" id="formEmail" class="w-[90%] form-control form-control-lg thick md:w-[50%]" placeholder="E-mail">
-                    </div>
+                        <input type="email" name="email" id="formEmail" class="w-[90%] form-control form-control-lg thick md:w-[50%]" placeholder="E-mail" value="<?php if(!empty($data["email"])){echo $data["email"];}?>">
 
+                    <?php if(!empty($data["emailvide"])):?>
+                        <p class="text-red-500 text-xs italic"><?php  echo $data["emailvide"];?></p>
+                    <?php endif;
+                    ?>
+                    </div>
                     <!-- Message -->
                     <div class="form-group message text-center pb-4">
-                        <textarea id="formMessage" class= "resize-none w-[90%] form-control form-control-lg md:w-[50%]" rows="7" placeholder="Message"></textarea>
-                    </div>
+                        <textarea id="formMessage" name="message" class= "resize-none w-[90%] form-control form-control-lg md:w-[50%]" rows="7" placeholder="Message" ><?php if(!empty($data["message"])){echo $data["message"];}?></textarea>
+                    <?php if(!empty($data["messagevide"])):?>
 
+                        <p class="text-red-500 text-xs italic"><?php  echo $data["messagevide"];?></p>
+                    <?php endif;
+                    ?>
+                    </div>
                     <!-- Submit btn -->
                     <div class="text-center">
-                        <button type="submit" class="btn btn-primary p-1 pb-2 px-2 bg-green-600 rounded-lg" tabIndex="-1">Send message</button>
+                        <button type="submit" class="btn btn-primary p-1 pb-2 px-2 bg-green-600 rounded-lg text-white font-bold" tabIndex="-1">Send message</button>
                     </div>
+
+<!--                    --><?php //if(!empty($data["succes"])) echo $data["succes"];?>
+
                 </form>
             </div>
 
@@ -532,67 +560,23 @@
         <div class="flex flex-col w-full md:flex-row">
             <div class="w-[95%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:w-1/2">
             <!--Email-->
+            <?php 
+            
+            foreach($data["info"] as $item):
+            ?>
                 <div class="w-1/2  flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
                     <div class="w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
                         <div class="w-full bg-white grid place-items-center">
-                            <img src=" <?php echo URLROOT . "/img/contact_us/logo_adresse.png" ?> " class="w-[80px] object-contain" alt="Logo Adresse">
+                            <img src=" <?php echo URLROOT . "/img/contact_us/".$item->image; ?> " class="w-[80px] object-contain" alt="Logo Adresse">
                             <div class="flex items-center justify-center">
-                                <h3 class="font-black text-gray-800 md:text-xl text-sm">ADRESSE</h3>
+                                <h3 class="font-black text-gray-800 md:text-xl text-sm"><?php echo $item->name ?></h3>
                             </div>
-                            <p class="md:text-xs text-gray-500 text-base w-full">62 Quartier bourgogne Casablanca - Maroc</p>
+                            <p class="md:text-xs text-gray-500 text-base w-full"><?php echo $item->contenue?></p>
                         </div>
                     </div>
                 </div>
+                <?php endforeach; ?>
 
-                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
-                    <div class="w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
-                        <div class="w-full bg-white grid place-items-center">
-                            <img src=" <?php echo URLROOT . "/img/contact_us/logo_email.jpg"?> " class="w-[80px] object-contain" alt="Logo Email">
-                            <div class="flex items-center justify-center">
-                                <h3 class="font-black text-gray-800 md:text-xl text-sm">EMAIL</h3>
-                            </div>
-                            <p class="md:text-[11px] text-gray-500 text-base">AVITO.maroc@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
-                    <div class="w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
-                        <div class="w-full bg-white grid place-items-center">
-                            <img src=" <?php echo URLROOT ."/img/contact_us/logo_phone.png" ?> " class="w-[80px] object-contain" alt="Logo Telephone">
-                            <div class="flex items-center justify-center">
-                                <h3 class="font-black text-gray-800 md:text-xl text-sm">TELEPHONE</h3>
-                            </div>
-                            <p class="md:text-xs text-gray-500 text-base">0522222222</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
-                    <div class=" w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
-                        <div class="w-full bg-white grid place-items-center">
-                            <img src= "<?php echo URLROOT ."/img/contact_us/logo_whatsapp.png" ?> " class="w-[80px] object-contain" alt="whatsapp">
-                            <p class="md:text-xs text-gray-500 text-base">0622222222</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
-                    <div class="w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
-                        <div class="w-full  bg-white grid place-items-center">
-                            <img src= <?php echo URLROOT ."/img/contact_us/logo_instagram.png" ?> " class="w-[80px] object-contain" alt="instagram">
-                            <p class="md:text-xs text-gray-500 text-base">avito ma</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w-1/2 flex flex-col justify-center items-center mx-auto h-fit md:w-[150px] md:h-[197px]">
-                    <div class=" w-full h-full relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
-                        <div class="w-full bg-white grid place-items-center">
-                            <img src= <?php echo URLROOT ."/img/contact_us/logo_facebook.jpg" ?> " class="w-[80px] object-contain" alt="facebook">
-                            <p class="md:text-xs text-gray-500 text-base">avito ma</p>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="w-full md:w-1/2">
             <!--Right side Image-->
