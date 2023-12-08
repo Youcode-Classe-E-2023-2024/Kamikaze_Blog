@@ -52,7 +52,7 @@ Class Publication {
   
 
     public function get_publicatin_byId($id){
-     $this->db->query("SELECT publication.title , publication.prix , publication.description, publication.created_at, users.fullName, category.name, city.name
+     $this->db->query("SELECT publication.title , publication.prix , publication.description, publication.imgUrl, publication.created_at, users.fullName, category.name, city.name
      FROM publication, users, category , city
      WHERE   publication.category_Id = category.id AND publication.cityId = city.id 
      AND publication.userId = users.id AND publication.id = :id  ;");
