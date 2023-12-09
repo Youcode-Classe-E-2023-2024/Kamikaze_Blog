@@ -6,7 +6,7 @@
     <div class="w-full">
         <h2 class="text-center drop-shadow-md font-bold text-6xl uppercase mb-10">new posts</h2>
         <div class="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
-        
+
             <form action="<?php echo URLROOT ?>/Publications/add" method="post" enctype="multipart/form-data">
                 <div>
                     <div class="mb-5">
@@ -22,6 +22,24 @@
                                 <option value="">Please choose&hellip;</option>
 
                                 <?php foreach ($data["category"] as $item) : ?>
+                                    <option value="<?php echo $item->id; ?>"><?= $item->name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center px-2 text-gray-700 border-l">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label for="category" class="block mb-2 font-bold text-gray-600 uppercase">city</label>
+                        <div class="relative border border-gray-300 text-gray-800 bg-white shadow-lg">
+                            <label for="category" class="sr-only">My field</label>
+                            <select class="appearance-none w-full py-1 px-2 bg-white" name="city[0]" id="city" >
+                                <option value="">Please choose&hellip;</option>
+
+                                <?php foreach ($data["cities"] as $item) : ?>
                                     <option value="<?php echo $item->id; ?>"><?= $item->name; ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -103,6 +121,24 @@
                                 <option value="">Please choose&hellip;</option>
 
                                 <?php foreach ($data["category"] as $item) : ?>
+                                    <option value="<?php echo $item->id; ?>"><?= $item->name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <div class="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center px-2 text-gray-700 border-l">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5">
+                        <label for="category" class="block mb-2 font-bold text-gray-600 uppercase">city</label>
+                        <div class="relative border border-gray-300 text-gray-800 bg-white shadow-lg">
+                            <label for="category" class="sr-only">My field</label>
+                            <select class="appearance-none w-full py-1 px-2 bg-white" name="city[]" id="city">
+                                <option value="">Please choose&hellip;</option>
+
+                                <?php foreach ($data["cities"] as $item) : ?>
                                     <option value="<?php echo $item->id; ?>"><?= $item->name; ?></option>
                                 <?php endforeach; ?>
                             </select>
