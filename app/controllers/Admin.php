@@ -24,6 +24,16 @@ Class Admin extends Controller {
         return $this->view('admin/users');
     }
 
+    public function deleteUser(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            if($this->userModel->deleteUser($_POST['userId'])){
+                redirect('admin/users');
+            }else{
+                redirect('admin/users');
+            }
+        }
+    }
+
     public function add_Moderator(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
