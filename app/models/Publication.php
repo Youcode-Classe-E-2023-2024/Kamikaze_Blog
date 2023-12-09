@@ -121,7 +121,7 @@ Class Publication {
     }
 
     public function filterCity($city ) {
-        $this->db->query("SELECT * FROM publication WHERE city_Id = :city ");
+        $this->db->query("SELECT * FROM publication WHERE cityId = :city ");
         $this->db->bind(':city', $city);
         if($this->db->execute()){
             $filterCity = $this->db->resultSet();
@@ -133,7 +133,7 @@ Class Publication {
     }
 
     public function filterCategoryCity($category, $city) {
-        $this->db->query("SELECT * FROM publication WHERE city_Id = :city AND category_Id = :category");
+        $this->db->query("SELECT * FROM publication WHERE cityId = :city AND category_Id = :category");
         $this->db->bind(':category', $category);
         $this->db->bind(':city', $city);
     
