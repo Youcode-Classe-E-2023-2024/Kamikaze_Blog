@@ -193,6 +193,6 @@
     <div id="dataContainer" class="flex flex-wrap border py-9  gap-2">
     </div>
 
-        <?php
-        require_once APPROOT . '/views/inc/footer.php';
-        ?>
+
+
+    <?php require_once APPROOT . '/views/inc/footer.php'; ?>
