@@ -7,7 +7,7 @@
     public function __construct(){
       
       $this->userModel = $this->model('User');
-      $this->aboutModel = $this->model('About');
+      $this->aboutModel = $this->model('about');
       $this->publicationModel = $this->model('Publication');
     }
     
