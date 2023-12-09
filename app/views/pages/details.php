@@ -14,7 +14,7 @@
                     <div class=" w-full h-9 flex justify-between items-center  ">
                         <div class=" w-fit h-9 flex justify-center items-end gap-6 ">
                             <h1 class="text-2xl font-bold text-gray-700"><?= $data['publication']->fullName; ?></h1>
-                            <h2 class="text-sm  text-gray-600  font-bold"><?= $data['publication']->name; ?></h2>
+                            <h2 class="text-sm  text-gray-600  font-bold"><?= $data['publication']->category_name; ?></h2>
                         </div>
                         <h4 class="text-lg font-bold text-blue-500"><?= $data['publication']->prix; ?></h4>
                     </div>
@@ -50,45 +50,43 @@
         
     </div>
 
+<div class="flex flex-col bg-transparent m-auto py-12">
+    <h3 class="text-gray-600 text-2xl ml-12 mb-4 font-medium">Related publications</h3>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     
-    <div class="m-16">
-    <h3 class="text-gray-600 text-2xl font-medium">Related publications</h3>
-    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+    <div class="flex overflow-x-scroll  hide-scroll-bar  py-7">
+        <?php
+        foreach($data['publication_category'] as $item):
+            ?>
 
-        <?php foreach($data["publication_category"] as $item):?>
-            <a href=<?php echo  URLROOT . '/pages/details/' . $item->id ?>
-            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
-                <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url(<?= URLROOT . '/img/publications/' . $data['publication']->imgUrl; ?>)">
-                    <button class="p-2 rounded-full bg-blue-600 text-white mx-5 -mb-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                        <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </button>
+            <a href="<?= URLROOT . '/pages/details/' . $item->id ?>" class="  hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10 w-full max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white">
+                <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url(<?=  URLROOT . '/img/publications/' . $item->imgUrl ?>)">
                 </div>
                 <div class="px-5 py-3">
-                    <h3 class="text-gray-700 uppercase"><?= $item->title; ?></h3>
-                    <span class="text-gray-500 mt-2"><?= $item->prix; ?></span>
+                    <h3 class="text-gray-700 uppercase  "><?php echo $item->title; ?></h3>
+                    <span class="text-gray-500 mt-2  ">$<?php echo $item->prix; ?></span><br>
+                    <span class="text-gray-500 mt-2  ">$<?php echo $item->created_at; ?></span>
                 </div>
 
-            </div>
             </a>
-        <?php  endforeach; ?>
 
-    </div>
-
-
+        <?php endforeach ?>
 
 
     </div>
-    </div>
+</div>
+
+</div>
+<style>
+    .hide-scroll-bar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .hide-scroll-bar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+
 
 
 
