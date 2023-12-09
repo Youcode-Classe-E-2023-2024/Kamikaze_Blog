@@ -38,9 +38,15 @@ Class Contact extends Controller {
             }
             if (empty($data['namevide'])&& empty($data['emailvide'])&& empty($data['messagevide'])){
                 if($this->contactModel->Message($data))
+
+                $data=[
+                    'succes'=>'Votre message a été envoyé'
+                ];
+
                     $data=[
                         'succes'=>'Votre message a été envoyé'
                     ];
+
                 $this->view('pages/contact',$data);
             }else{
                 $this->view('pages/contact',$data);
@@ -49,14 +55,24 @@ Class Contact extends Controller {
 
         }
         else{
+
+         $infoAvito = $this->contactModel->infoAvito();
+         $data=[
+            "info"=> $infoAvito
+         ];
+
             $infoAvito = $this->contactModel->infoAvito();
             $data=[
                 "info"=> $infoAvito
             ];
+
             $this->view('pages/contact',$data);
         }
 
 
     }
+
+
+}
 
 }
