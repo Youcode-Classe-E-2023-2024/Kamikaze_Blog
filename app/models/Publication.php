@@ -64,9 +64,10 @@ Class Publication {
      return $publication;
     }
 
-    public function get_publication_category($category_Id){
-        $this->db->query("SELECT * FROM publication WHERE category_Id =:category_Id");
+    public function get_publication_category($category_Id , $id){
+        $this->db->query("SELECT * FROM publication WHERE category_Id =:category_Id AND id <> :id");
         $this->db->bind('category_Id' , $category_Id);
+        $this->db->bind('id' , $id);
         $publication_category = $this->db->resultSet();
         return $publication_category;
     }
@@ -109,13 +110,7 @@ Class Publication {
     }
 
 
-    public function get_publication_category($category_Id){
 
-        $this->db->query("SELECT * FROM publication WHERE category_Id =:category_Id");
-        $this->db->bind('category_Id' , $category_Id);
-        $publication_category = $this->db->resultSet();
-        return $publication_category;
-    }
 
     public function filterCategory($category ) {
         // die($category);

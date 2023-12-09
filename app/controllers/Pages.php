@@ -41,7 +41,7 @@
       $publication_result = $this->publicationModel->get_publicatin_byId($id);
       $category_Id = $publication_result->category_Id;
 
-      $result_publication_category = $this->publicationModel->get_publication_category($category_Id); 
+      $result_publication_category = $this->publicationModel->get_publication_category($category_Id , $id);
 
 
       
