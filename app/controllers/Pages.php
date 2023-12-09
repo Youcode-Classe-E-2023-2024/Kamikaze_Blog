@@ -1,6 +1,6 @@
 <?php
   class Pages extends Controller {
-    private $userModel ;
+    private $userModel;
     private $publicationModel;
     private $aboutModel;
     
@@ -9,7 +9,6 @@
       $this->userModel = $this->model('User');
       $this->aboutModel = $this->model('About');
       $this->publicationModel = $this->model('Publication');
-     
     }
     
     public function index(){
@@ -22,7 +21,16 @@
       
 
     }
-
+    public function categories(){
+      $cities = $this->allCities();
+      $categories = $this->allCategories();
+ 
+      $data =[
+        'categories' => $categories, 
+        'cities'=>$cities, 
+      ];
+      $this->view('pages/categories' , $data);
+    }
 
 
 
@@ -39,9 +47,21 @@
       ];
 
       $this->view('pages/details', $data);
+
     }
     
 
+
+    public function allCities(){
+     $cities = $this->publicationModel->getCities();
+     
+      return $cities;
+    }
+    public function allCategories(){
+       $categories = $this->publicationModel->getCategories();
+ 
+        return $categories;
+    }
     
     public function  contact(){
         $this->view('pages/contact');
@@ -53,11 +73,8 @@
 
       }
 
-    public function categories(){
-    
-      $this->view('pages/categories');
 
-    }
+
       
       
     public function about(){
@@ -69,6 +86,7 @@
      
     return  $this->view('pages/aboutus',$data);
     } 
+
 
   }
   ?>
