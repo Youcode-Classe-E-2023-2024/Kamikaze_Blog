@@ -106,7 +106,8 @@
                     class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100"
                   >
                     <span class="sr-only">User menu</span>
-                    <img class="w-10 h-10 rounded-full" src="../build/images/avatar.jpg" alt="Ahmed Kamel" />
+                    <img class="w-10 h-10 rounded-full" src="<?= URLROOT . '/img/users/' . $_SESSION['userImg']  ?>" alt="Ahmed Kamel" />
+
                   </button>
 
                   <!-- User dropdown menu -->
@@ -318,11 +319,11 @@
                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                     <a
-                      href="../index.html"
+                      href="<?php echo URLROOT . '/admin' ?>"
                       role="menuitem"
                       class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
                     >
-                      Default
+                      Home
                     </a>
                     <a
                       href="#"
@@ -454,21 +455,21 @@
                     <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                     <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                     <a
-                      href="../auth/register.html"
+                      href="<?php echo URLROOT . '/admin/users' ?>"
                       role="menuitem"
                       class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                     >
                       Users
                     </a>
                     <a
-                      href="../auth/register.html"
+                      href="<?php echo URLROOT . '/admin/add_Moderator' ?>"
                       role="menuitem"
                       class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                     >
                     Ajouter Sous Admin
                     </a>
                     <a
-                      href="../auth/register.html"
+                      href="<?php echo URLROOT . '/admin/manage_pemissions' ?>"
                       role="menuitem"
                       class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                     >

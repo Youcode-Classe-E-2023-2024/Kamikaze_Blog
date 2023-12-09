@@ -11,8 +11,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/tailwind.css">
+    <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
     <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.5.x/dist/component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTables CSS and JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 </head>
 <body>
     <div x-data="setup()" x-init="$refs.loading.classList.add('hidden'); setColors(color);" :class="{ 'dark': isDark}" style="background-color: #152e4d;">
@@ -77,18 +83,18 @@
                   <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                   <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                   <a
-                    href="../index.html"
+                    href="<?php echo URLROOT . '/admin' ?>"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
                   >
-                    Publications
+                    Home
                   </a>
                   <a
                     href="#"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                   >
-                    Project Mangement (soon)
+                   Publications
                   </a>
                   <a
                     href="#"
@@ -221,21 +227,21 @@
                   <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                   <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                   <a
-                    href="../auth/register.html"
+                    href="<?php echo URLROOT . '/admin/users' ?>"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                   >
                     Users
                   </a>
                   <a
-                    href="../auth/login.html"
+                    href="<?php echo URLROOT . '/admin/add_Moderator' ?>"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                   >
                     Ajouter Sous Admin
                   </a>
                   <a
-                    href="../auth/forgot-password.html"
+                    href="<?php echo URLROOT . '/admin/manage_pemissions' ?>"
                     role="menuitem"
                     class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                   >

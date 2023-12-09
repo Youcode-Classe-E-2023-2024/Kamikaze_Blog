@@ -22,7 +22,7 @@
     $this->db->bind(':password', $data['password']);
     $this->db->bind(':imgUrl', 'img.png');
     $this->db->bind('confirmation_token', $data['token']);
-    $this->db->bind(':roleId', 2);
+    $this->db->bind(':roleId', 3);//role id for client
 
     // Execute
     if($this->db->execute()){
@@ -82,18 +82,20 @@
 
   }
 
-  public function getRolePermissions($roleId){
-    $this->db->query('SELECT permissions.name FROM permissions_role , permissions WHERE role_id = :roleId AND permissions.id = permissions_role.permission_id');
-    $this->db->bind(':roleId', $roleId);
+  public function getRolePermissions($userId , $module){
+    $this->db->query('SELECT p.name FROM users u JOIN permissions_role rp
+     ON u.roleId = rp.role_id JOIN permissions p ON rp.permission_id = p.id WHERE u.id = :userId and p.module = :module');
+    $this->db->bind(':userId', $userId);
+    $this->db->bind(':module', $module);
     if($this->db->execute()){
-      return $this->db->resultSet();
+      return $this->db->rowCount() >0 ? true : false;
     }else{
       die("error in exc getRolePermissions");
     }
   }
 
   public function countUsers(){
-    $this->db->query('SELECT id FROM users where roleId = 2 ');
+    $this->db->query('SELECT id FROM users where roleId = 3 ');
     if($this->db->execute()){
        return $this->db->rowCount();
     }else{
@@ -101,6 +103,68 @@
     }
 
 
-}
+  }
+
+  public function getManagers(){
+    $this->db->query('SELECT id , fullName , email from users  where roleId =1 OR roleId = 2  ');
+  
+    
+    if($this->db->execute()){
+      $managers = $this->db->resultSet();
+    }else{
+      die("Error in getManagers");
+    }
+    return $managers;
+
+  }
+
+  public function getModerators(){
+    $this->db->query('SELECT users.id as user_id , fullName , users.imgUrl as profile_img  , role.name as role_name from users , role where roleId = 2 AND roleId = role.id  ');
+     
+    
+    if($this->db->execute()){
+      $managers = $this->db->resultSet();
+    }else{
+      die("Error in getManagers");
+    }
+    return $managers;
+
+  }
+
+  public function getUsers(){
+    $this->db->query('SELECT users.id , fullName , email , role.name as role_name  from users , role  where users.roleId  = role.id ;');
+    // 2 client role 
+    if($this->db->execute()){
+      $users = $this->db->resultSet();
+    }else{
+      die("Error in getusers");
+    }
+    return $users;
+  }
+
+  public function addModerator($data){
+    $this->db->query('INSERT INTO users (fullName, email, city , password , is_confirmed , imgUrl, roleId) 
+    VALUES(:fullName, :email, :city, :password , :is_confirmed, :imgUrl, :roleId)');
+
+    $password = password_hash('123456', PASSWORD_DEFAULT);
+    $isConfirmed = 1;
+    $roleId = 2;
+
+    $this->db->bind(':fullName', $data['fullName']);
+    $this->db->bind(':email' , $data['email']);
+    $this->db->bind(':city', $data['city']);
+    $this->db->bind(':password' , $password );
+    $this->db->bind(':imgUrl', $data['image']);
+    $this->db->bind(':is_confirmed' , $isConfirmed);
+    $this->db->bind(':roleId', $roleId);
+
+    $this->db->execute() ? true : false;
+  }
+
+  public function deleteUser($id){
+        $this->db->query("DELETE FROM users WHERE id = :id");
+        $this->db->bind(':id', $id);
+        $this->db->execute() ? true : false;
+  }
 
 }
