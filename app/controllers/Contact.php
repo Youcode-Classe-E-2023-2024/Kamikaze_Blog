@@ -56,11 +56,6 @@ Class Contact extends Controller {
         }
         else{
 
-         $infoAvito = $this->contactModel->infoAvito();
-         $data=[
-            "info"=> $infoAvito
-         ];
-
             $infoAvito = $this->contactModel->infoAvito();
             $data=[
                 "info"=> $infoAvito
