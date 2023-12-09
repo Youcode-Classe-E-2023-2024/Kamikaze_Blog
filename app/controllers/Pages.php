@@ -69,7 +69,12 @@
     
     
     public function add(){
-      $this->view('users/addpost');
+        $categories = $this->allCategories();
+        $data =[
+           'category'=>$categories,
+
+        ];
+      $this->view('users/addpost' , $data);
 
       }
 
