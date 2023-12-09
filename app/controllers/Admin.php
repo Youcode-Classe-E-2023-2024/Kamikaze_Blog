@@ -24,6 +24,16 @@ Class Admin extends Controller {
         return $this->view('admin/users');
     }
 
+    public function deleteUser(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            if($this->userModel->deleteUser($_POST['userId'])){
+                redirect('admin/users');
+            }else{
+                redirect('admin/users');
+            }
+        }
+    }
+
     public function add_Moderator(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
@@ -80,11 +90,16 @@ Class Admin extends Controller {
             return $this->view('admin/moderator');
         }
     }
-
+   
     public function manage_pemissions(){
-        // $hasPermission = $this->userModel->getRolePermissions($userId,$module);
-        
-        return $this->view('admin/manage_pemissions');  
+        $hasPermission = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'user');
+        $moderators = $this->userModel->getModerators();
+
+        $data = [
+            'moderators' => $moderators,
+            'hasPermission'=>$hasPermission,
+        ];
+        return $this->view('admin/manage_pemissions' , $data);  
     }
 
     public function allManagers(){
