@@ -36,10 +36,11 @@
 
     public function details($id){
 
-      $publication_result = $this->PublicationModel->get_publicatin_byId($id);
+      $publication_result = $this->publicationModel->get_publicatin_byId($id);
+
       $category_Id = $publication_result->category_Id;
       
-      $result_publication_category = $this->PublicationModel->get_publication_category($category_Id);
+      $result_publication_category = $this->publicationModel->get_publication_category($category_Id);
       
       $data = [
         'publication' => $publication_result,
