@@ -194,6 +194,7 @@ class Users extends Controller
     $_SESSION['user_id'] = $user->id;
     $_SESSION['fullName'] = $user->fullName;
     $_SESSION['email'] = $user->email;
+    $_SESSION['userImg'] = $user->imgUrl;
     $_SESSION['roleId'] = $user->roleId;
     if ($_SESSION['roleId'] === 1  || $_SESSION['roleId'] === 2) {
       redirect('admin');
