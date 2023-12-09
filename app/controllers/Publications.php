@@ -1,14 +1,24 @@
 <?php
 
-Class Publications extends Controller{
-    private $publicationModel ;
-    public function __construct(){
-        $this->publicationModel = $this->model('Publication');
+
+
+class Publications extends Controller
+{
+    private $CategoryModel;
+    private $PublicationModel;
+
+    public function __construct()
+    {
+        $this->CategoryModel = $this->model('Category');
+        $this->PublicationModel = $this->model('Publication');
+
     }
 
-    public function index(){
+    public function index()
+    {
         echo "all the pub";
     }
+
 
     
     public function filter($category, $city) {
@@ -33,15 +43,44 @@ Class Publications extends Controller{
                    
                     $filterAll= $this->publicationModel->filterCategoryCity($category , $city);
                     echo json_encode($filterAll);
-                break;
-    
-            default:
-            $pub= $this->publicationModel->allPublications();
-            echo json_encode($pub);
-        }
+          }
     }
-    
-   
 
-   
-}
+      public function add()
+      {
+          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+              for ($i = 0; $i < count($_POST['name']); $i++) {
+                  $data = [
+                      "name" => $_POST['name'][$i],
+                      "category" => $_POST['category'][$i],
+                      "desc" => $_POST['desc'][$i],
+                      "prix" => $_POST['prix'][$i],
+                      "image" => ""
+                  ];
+
+                  if (!empty($_FILES['image']['name'][$i])) {
+                      $image = $_FILES['image'];
+
+                      $file_name = time() . '_' . $image['name'][$i];
+                      $file_tmp = $image['tmp_name'][$i];
+                      $file_destination = 'C://xampp//htdocs//Kamikaze_Blog//public//img//publications//' . $file_name;
+                      $data['image'] = $file_name;
+
+                      if (move_uploaded_file($file_tmp, $file_destination)) {
+                          $this->PublicationModel->addpub($data);
+                      } else {
+                          die('File upload failed: ' . $image['error'][$i]);
+                      }
+                  }
+              }
+              die('200');
+          } else {
+              $Category = $this->CategoryModel->getCategory();
+              $data = [
+                  'category' => $Category
+              ];
+              $this->view('users/addpost', $data);
+          }
+      }
+ }
+
