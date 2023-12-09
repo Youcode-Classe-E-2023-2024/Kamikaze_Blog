@@ -1,6 +1,6 @@
 
     <!-------------------------- navbar ------------------------------->
-    <?php require APPROOT . '\views\inc\cltNavBar.php'; ?>
+    <?php require APPROOT . '/views/inc/cltNavBar.php'; ?>
     <!----------------------- end navbar -------------------->
 
     <!-- IMAGE -->
