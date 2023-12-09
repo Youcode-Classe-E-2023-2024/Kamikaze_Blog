@@ -1,5 +1,6 @@
 <?php  require APPROOT . '/views/inc/cltNavBar.php';?>
 
+
     <div class=" w-full h-screen flex flex-col justify-start items-center pt-16 my-9">
         
         <div class=" bg-gray-300 w-3/5 h-48 flex justify-center rounded-t-lg">
@@ -29,7 +30,11 @@
                             <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512">
                                 <path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
                             </svg>
+
+                            <p class="text-sm font-medium text-gray-600">ily a 33 min</p>
+
                             <p class="text-sm font-medium text-gray-600"><?= chek_time($temps); ?></p>
+
                         </div>
                     </div>
                 </div>
@@ -71,6 +76,12 @@
                     <h3 class="text-gray-700 uppercase"><?= $item->title; ?></h3>
                     <span class="text-gray-500 mt-2"><?= $item->prix; ?></span>
                 </div>
+
+            </div>
+        <?php   endforeach; ?>  
+            
+        
+
             </div>
            
             <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
@@ -107,6 +118,7 @@
                 </div>
             </div> 
         <?php   endforeach; ?>
+
     </div>
     </div>
 

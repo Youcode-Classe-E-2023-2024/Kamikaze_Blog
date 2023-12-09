@@ -52,6 +52,7 @@ Class Publication {
   
 
     public function get_publicatin_byId($id){
+
      $this->db->query("SELECT publication.title , publication.prix , publication.description, publication.imgUrl, publication.created_at, publication.category_Id, users.fullName, category.name, city.name
      FROM publication, users, category , city
      WHERE   publication.category_Id = category.id AND publication.cityId = city.id 
@@ -105,6 +106,15 @@ Class Publication {
             die("error");
         }
         return $allPublications;
+    }
+
+
+    public function get_publication_category($category_Id){
+
+        $this->db->query("SELECT * FROM publication WHERE category_Id =:category_Id");
+        $this->db->bind('category_Id' , $category_Id);
+        $publication_category = $this->db->resultSet();
+        return $publication_category;
     }
 
     public function filterCategory($category ) {
