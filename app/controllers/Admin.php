@@ -81,6 +81,12 @@ Class Admin extends Controller {
         }
     }
 
+    public function manage_pemissions(){
+        // $hasPermission = $this->userModel->getRolePermissions($userId,$module);
+        
+        return $this->view('admin/manage_pemissions');  
+    }
+
     public function allManagers(){
         $managers = $this->userModel->getManagers();
         echo json_encode($managers);
@@ -110,7 +116,7 @@ Class Admin extends Controller {
             return false;
         }
         
-      }
+    }
 
     
 }
