@@ -5,12 +5,12 @@
 class Publications extends Controller
 {
     private $CategoryModel;
-    private $PublicationModel;
+    private $publicationModel;
 
     public function __construct()
     {
         $this->CategoryModel = $this->model('Category');
-        $this->PublicationModel = $this->model('Publication');
+        $this->publicationModel = $this->model('Publication');
 
     }
 
@@ -21,9 +21,9 @@ class Publications extends Controller
 
 
     
-    public function filter($category, $city) {
+    public function filter($category = 'all', $city = 'all') {
         switch (true) {
-                case ($category == null && $city == null):  
+                case ($category == 'all' && $city == 'all'):
                     $pub= $this->publicationModel->allPublications();
                     echo json_encode($pub);
                 break;
