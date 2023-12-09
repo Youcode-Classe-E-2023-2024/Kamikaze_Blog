@@ -21,7 +21,11 @@ Class Admin extends Controller {
     }
 
     public function users(){
-        return $this->view('admin/users');
+        $hasPermission = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'user');
+        $data = [
+            'hasPermission'=>$hasPermission,
+        ];
+        return $this->view('admin/users' , $data);
     }
 
     public function deleteUser(){
