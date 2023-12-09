@@ -43,7 +43,7 @@
                       </ul>
                   </div>
               </div>
-              <div class="flex flex-col items-center pb-10">
+              <div class="flex flex-col items-center pb-10 bg-white rounded-md dark:bg-darker">
                   <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="<?php echo URLROOT . '/img/users/' . $moderator->profile_img ?>" alt="Bonnie image"/>
                   <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><?php echo $moderator->fullName ?></h5>
                   <span class="text-sm text-gray-500 dark:text-gray-400"><?php echo $moderator->role_name ?> </span>
@@ -60,7 +60,7 @@
           </div>
         </div>
         <!--End  Content -->
-        <?php var_dump($data  ) ?>
+
       </main>
           
           </div>
