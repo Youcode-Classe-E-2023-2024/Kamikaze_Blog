@@ -161,4 +161,10 @@
     $this->db->execute() ? true : false;
   }
 
+  public function deleteUser($id){
+        $this->db->query("DELETE FROM users WHERE id = :id");
+        $this->db->bind(':id', $id);
+        $this->db->execute() ? true : false;
+  }
+
 }
