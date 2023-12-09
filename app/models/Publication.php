@@ -12,16 +12,17 @@ Class Publication {
   public function addpub($data)
   {
       $this->db->query("
-          INSERT INTO `publication`( `title`, `description`, `imgUrl`, `prix`,  `category_Id`, `userId`)
-          VALUES (:name,:desc,:image,:prix,:category,:userId)
+          INSERT INTO `publication`( `title`, `description`, `imgUrl`, `prix`,  `category_Id`, `cityId`, `userId`)
+          VALUES (:name,:desc,:image,:prix,:category,:cityId , :userId)
       ");
 
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':image', $data['image']);
       $this->db->bind(':desc', $data['desc']);
       $this->db->bind(':prix', $data['prix']);
+      $this->db->bind(':cityId', $data['city']);
       $this->db->bind(':category', $data['category']);
-      $this->db->bind(':userId', 1);
+      $this->db->bind(':userId', 31);
 
       $this->db->execute();
   }
@@ -53,7 +54,7 @@ Class Publication {
 
     public function get_publicatin_byId($id){
 
-     $this->db->query("SELECT publication.title , publication.prix , publication.description, publication.imgUrl, publication.created_at, publication.category_Id, users.fullName, category.name, city.name
+     $this->db->query("SELECT publication.title , category.name as category_name , publication.prix , publication.description, publication.imgUrl, publication.created_at, publication.category_Id, users.fullName, category.name, city.name
      FROM publication, users, category , city
      WHERE   publication.category_Id = category.id AND publication.cityId = city.id 
      AND publication.userId = users.id AND publication.id = :id  ;");
