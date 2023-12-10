@@ -61,6 +61,7 @@ Class Contact extends Controller {
                 "info"=> $infoAvito
             ];
 
+
             $this->view('pages/contact',$data);
         }
 
