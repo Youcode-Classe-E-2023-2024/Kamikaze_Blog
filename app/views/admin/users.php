@@ -55,7 +55,43 @@
 
                     </table>
                 </div>
+                <p class="text-xl mt-2 pb-3 flex items-center">
+                    <i class="fas fa-list mr-3"></i> Banned Users
+                </p>
+                <div class="overflow-auto bg-white rounded-md dark:bg-darker">
+                <table id="bUsers" class="min-w-full leading-normal m-b-8">
+                    <thead>
+                    <tr>
+                        <th
+                                class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                            Id
+                        </th>
+                        <th
+                                class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                            Full name
+                        </th>
+                        <th
+                                class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                            email
+                        </th>
+                        <th
+                                class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                            Role
+                        </th>
 
+                        <?php
+                        if($data['hasPermission']){
+                            ?>
+                            <th class="px-5 py-3 border-b border-gray-200 text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                                Actions
+
+                            </th>
+                        <?php } ?>
+                    </tr>
+                    </thead>
+
+                </table>
+            </div>
         </div>
 
 
@@ -107,8 +143,7 @@
             .then(response => response.json())
             .then(data => {
 
-            var hasPemission = <?= $data['hasPermission'] ?>
-                console.log(hasPemission);
+
                 data.forEach(user => {
                     user.actions = '' +
                         `<button href="#" onclick="toggleModal(${user.id})" class="delete-link"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg></button>`;
@@ -142,6 +177,45 @@
             .catch(error => console.log('Error fetching data:', error));
     });
 
+    $(document).ready(function() {
+        var endpoint = 'http://localhost/Kamikaze_Blog/admin/bannedUsers';
+        fetch(endpoint)
+            .then(response => response.json())
+            .then(data => {
+
+
+                data.forEach(user => {
+                    user.actions = '' +
+                        `<button href="#" onclick="toggleModal(${user.id})" class="delete-link"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"/></svg></button>`;
+                });
+
+
+
+                $('#bUsers').DataTable({
+                    paging: false,
+                    searching: true,
+                    ordering: true,
+                    info: false,
+                    data: data, // Pass the fetched data to DataTable
+                    columns: [
+                        { data: 'id', className: 'py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' },
+                        { data: 'fullName', className: 'py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' },
+                        { data: 'email', className: 'py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' },
+                        { data: 'role_name', className: 'py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' },
+                        { data: 'actions', className: 'flex justify-center gap-2 py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' }, // Static Actions column
+                    ],
+                    autoWidth: false,
+                });
+
+                $('#bUsers_filter input')
+                    .addClass('py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500')
+                    .attr('placeholder', 'by name / email ...');
+                $('label')
+                    .addClass('text-sm bg-white dark:bg-darker');
+
+            })
+            .catch(error => console.log('Error fetching data:', error));
+    });
 
     function toggleModal(id ,name) {
         var modal = document.getElementById('popup-modal');
