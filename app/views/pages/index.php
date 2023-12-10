@@ -2,10 +2,38 @@
 <?php require APPROOT . '/views/inc/cltNavBar.php'; ?>
 
 <main class="my-8 py-4 bg-gray-100 ">
+    <!-- ------------------------------------------------------ -->
+    <div class="flex items-center justify-center h-39 w-full py-24 sm:py-8 px-4">
+        <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+        <div class="w-full relative flex items-center justify-center">
+            
+            <div class="w-4/5 h-full mx-auto overflow-x-hidden overflow-y-hidden">
+                <div id="slider" class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
+                    <?php
+                    foreach ($data['pub'] as $item) :
+                        ?>
+                        <div class="flex flex-shrink-0 relative w-full sm:w-auto">
+                            <img src="<?php echo URLROOT ?>/public/img/publications/<?= $item->imgUrl ?>" alt="black chair and white table" class="object-cover  object-center w-full" style="aspect-ratio: 16/9;" />
+                            <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
+                                <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"><?php echo $item->title; ?></h2>
+                                <div class="flex h-full items-end pb-6">
+                                    <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900"><?php echo $item->title; ?></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endforeach; ?>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------------------------ -->
     <div class="container mx-auto px-6">
-        <div class="h-64 rounded-md overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144')">
-            <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
-                <div class="px-10 max-w-xl">
+
+    <div class="h-64 rounded-md overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144')">
+        <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
+            <div class="px-10 max-w-xl">
                     <h2 class="text-2xl text-white font-semibold">Sport Shoes</h2>
                     <p class="mt-2 text-gray-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore facere provident molestias ipsam sint voluptatum pariatur.</p>
                     <button class="flex items-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
@@ -24,18 +52,18 @@
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Categories</a>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="index.php?url=contact">Contact</a>
 
-                    <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/pages/categories" >Categories</a>
+                    <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/pages/categories">Categories</a>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">Contact</a>
 
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="#">About</a>
                 </div>
             </nav>
             <div class="relative mt-6 max-w-lg mx-auto">
-            <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
-                <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
-                    <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </span>
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+                    <svg class="h-5 w-5 text-gray-500" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
 
                 <input class="w-full border rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline" type="text" placeholder="Search">
             </div>
@@ -75,22 +103,24 @@
             <h3 class="text-gray-600 text-2xl font-medium">Fashions</h3>
 
             <div class="flex overflow-x-scroll  hide-scroll-bar  py-7">
-                <?php 
-                    foreach($data['pub'] as $item):
-                    ?>
+                <?php
+echo $_SESSION['name'];
+                foreach ($data['pub'] as $item) :
+                ?>
 
-                        <a href="" class="  hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10 w-full max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white">
-                            <div class="flex items-end justify-end h-56 w-80 bg-cover" style="background-image: url('<?php echo URLROOT?>/public/img/e-commerce.png')">
-                            </div>
-                            <div class="px-5 py-3">
-                                <h3 class="text-gray-700 uppercase  "><?php echo $item->title; ?></h3>
-                                <span class="text-gray-500 mt-2  ">$<?php echo $item->prix; ?></span><br>
-                                <span class="text-gray-500 mt-2  ">$<?php echo $item->created_at; ?></span>
-                            </div>
-    
-                            </a>
-                  
-                <?php endforeach ?>
+                    <a href="" class="  hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10 w-full max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white">
+                        <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('<?php echo URLROOT ?>/public/img/publications/<?php echo $item->imgUrl ?>')">
+                        </div>
+                        <div class="px-5 py-3">
+
+                            <h3 class="text-gray-700 uppercase  "><?php echo $item->title; ?></h3>
+                            <span class="text-gray-500 mt-2  ">$<?php echo $item->prix; ?></span><br>
+                            <span class="text-gray-500 mt-2  ">$<?php echo $item->created_at; ?></span>
+                        </div>
+
+                    </a>
+
+                <?php endforeach; ?>
 
 
             </div>
@@ -110,6 +140,49 @@
 
     </div>
 </main>
+<script>
+    let defaultTransform = 0;
+    let autoScrollInterval;
+
+    function goNext() {
+        defaultTransform = defaultTransform - 1530;
+        var slider = document.getElementById("slider");
+        if (Math.abs(defaultTransform) >= slider.scrollWidth / 1.2)
+            defaultTransform = 0;
+            slider.style.transition = "transform 1.5s";
+        slider.style.transform = "translateX(" + defaultTransform + "px) ";
+       
+    
+    }
+
+    function goPrev() {
+        var slider = document.getElementById("slider");
+        if (Math.abs(defaultTransform) === 0) defaultTransform = 0;
+        else defaultTransform = defaultTransform + 1530;
+        slider.style.transform = "translateX(" + defaultTransform + "px)";$
+    }
+
+    function startAutoScroll() {
+        autoScrollInterval = setInterval(goNext, 2000);
+        slider.style.animationDelay = 3000;
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScrollInterval);
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        startAutoScroll();
+
+        document.getElementById("slider").addEventListener("mouseenter", stopAutoScroll);
+
+        document.getElementById("slider").addEventListener("mouseleave", startAutoScroll);
+    });
+
+   
+    next.addEventListener("click", goNext);
+    prev.addEventListener("click", goPrev);
+</script>
 
 
 

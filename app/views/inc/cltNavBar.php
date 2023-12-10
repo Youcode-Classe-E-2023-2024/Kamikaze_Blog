@@ -28,8 +28,12 @@
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/pages/categories">Categories</a>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/pages/contact">Contact</a>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/pages/about">About</a>
+                    <?php if(empty($_SESSION['user_id'])){ ?>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/users/login">Login</a>
+                    <?php }else{ ?>
+                    <a class="mt-3 text-red-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/users/logout">logout</a>
                     <!-- test  -->
+                    <?php }; ?>
                     
                     <a href="#" class=" flex justify-around bg-red-400 no-underline hover:bg-red-600  hover:no-underline hover:text-white rounded-md py-3 p-1 shadow-md hover:shadow-2xl transition duration-500">
                         <svg class="av-icon" height="24" width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" aria-labelledby="AddNoteTitleID" style="fill: currentcolor; stroke: currentcolor; stroke-width: 0;">

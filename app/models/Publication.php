@@ -22,7 +22,7 @@ Class Publication {
       $this->db->bind(':prix', $data['prix']);
       $this->db->bind(':cityId', $data['city']);
       $this->db->bind(':category', $data['category']);
-      $this->db->bind(':userId', 31);
+      $this->db->bind(':userId', $_SESSION['user_id']);
 
       $this->db->execute();
   }

@@ -12,7 +12,7 @@
   }
 
   function clientIsLoggedIn(){
-    if(isset($_SESSION['user_id']) && $_SESSION['roleId'] ===2){
+    if(isset($_SESSION['user_id']) && $_SESSION['roleId'] ===3){
       return true;
     } else {
       return false;
