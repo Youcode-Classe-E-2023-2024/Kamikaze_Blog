@@ -3,18 +3,19 @@ let publication;
 function displayData(data) {
   // Use map to create an array of table rows
   const rows = data.map((pub) => {
-    console.log(pub);
+
     return (
       `
-      <div class="hover:no-underline text-xl  lg:ml-30 md:ml-20  bg-gray-100	 max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300  ">
+        <div class="hover:no-underline text-xl  lg:ml-30 md:ml-20  bg-gray-100	 max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300  ">
       <div class="flex items-end justify-end h-56 w-80 bg-cover" style="background-image: url('../public/img/categories/Corded-Telephone-Desktop-Phone-Office-Phone-Hotel-Telephone-Landline-Telephone-Analog-Telephone.jpg')"></div>
       <div class="px-5 py-3">
           <h3 class="text-gray-700 uppercase">${pub.title}</h3>
           <span class="text-gray-500 mt-2">${pub.prix} DH</span>
       </div>
   </div>
-       
+     
      `
+
     );
   });
 
@@ -22,14 +23,25 @@ function displayData(data) {
   dataContainer.innerHTML = rows.join('');
 }
 
-// Fetch data when the page loads
+
+// search
+const searchInput = document.getElementById('searchInput');
+
+// Ajoutez un gestionnaire d'événements "input" à la barre de recherche
+searchInput.addEventListener('input', function () {
+  const searchTerm = searchInput.value.trim().toLowerCase();
+
+  const filteredPublications = publication.filter(pub => pub.title.toLowerCase().includes(searchTerm));
+
+  displayData(filteredPublications);
+});
+
 fetch('http://localhost/Kamikaze_Blog/Publications/filter/all/all')
   .then(response => response.json())
   .then(data => {
-    // Assign the data to the global variable
+    
     publication = data;
 
-    // Display the data initially
     displayData(publication);
   })
   .catch(error => {

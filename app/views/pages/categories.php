@@ -120,8 +120,7 @@
                 </svg>
             </span>
 
-            <input class="w-full border border-black rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline" type="text" placeholder="Search">
-        </div>
+            <input class="w-full border border-black rounded-md pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:shadow-outline" type="text" id="searchInput" placeholder="Search">        </div>
         </div>
 
         <div class="search">
