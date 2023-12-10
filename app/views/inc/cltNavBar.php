@@ -26,7 +26,7 @@
                 <div class="flex flex-col sm:flex-row">
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/">Home</a>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/pages/categories">Categories</a>
-                    <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/pages/contact">Contact</a>
+                    <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/contact">Contact</a>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/pages/about">About</a>
                     <a class="mt-3 text-gray-600 hover:underline sm:mx-3 sm:mt-0" href="<?php echo URLROOT; ?>/users/login">Login</a>
                     <!-- test  -->
