@@ -21,33 +21,41 @@ Class Admin extends Controller {
     }
 
     public function users(){
-        $hasPermission = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'user');
 
-        $data = [
-            'hasPermission'=>$hasPermission,
-
-        ];
-        return $this->view('admin/users' , $data);
+        return $this->view('admin/users' );
     }
 
     public function deleteUser(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            if($this->userModel->deleteUser($_POST['userId'])){
-                redirect('admin/users');
-            }else{
-                redirect('admin/users');
+
+        if($_SESSION['roleId'] ===1 ) {
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                if($this->userModel->deleteUser($_POST['userId'])){
+                    redirect('admin/users');
+                }else{
+                    redirect('admin/users');
+                }
             }
+        }else{
+            redirect('admin/users');
         }
+
     }
 
     public function returnUser(){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-            if($this->userModel->returnUser($_POST['userid'])){
-                redirect('admin/users');
-            }else{
-                redirect('admin/users');
+        if($_SESSION['roleId'] ===1 ) {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+                if ($this->userModel->returnUser($_POST['userid'])) {
+                    redirect('admin/users');
+                } else {
+                    redirect('admin/users');
+                }
             }
+        }else{
+            redirect('admin/users');
+
         }
     }
 
@@ -109,58 +117,72 @@ Class Admin extends Controller {
     }
    
     public function manage_pemissions(){
-        $hasPermission = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'user');
+
+        $hasPermissionRead = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'moderateor', 'canRead');
+        $hasPermissionUpdate = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'client', 'canUpdate');
         $moderators = $this->userModel->getModerators();
 
         $data = [
             'moderators' => $moderators,
-            'hasPermission'=>$hasPermission,
+            'hasPermissionRead'=>$hasPermissionRead,
+            'hasPermissionUpdate'=>$hasPermissionUpdate
         ];
-        return $this->view('admin/manage_pemissions' , $data);  
+        return $this->view('admin/manage_pemissions' , $data);
     }
     public function edit_permissions(){
-        $hasPermission = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'user');
-        if(!$hasPermission){
+
+        if($_SESSION['roleId'] ===1){
+            $managerPermissions = $this->userModel->getManagerPermissions();
+            $userRole = $this->userModel->getUserRole();
+            $permissions = $this->userModel->getPermissions();
+
+
+            $data = [
+                'managerPermissions'=>$managerPermissions,
+                'roles'=>$userRole,
+                'permissions'=>$permissions,
+
+            ];
+            $this->view('admin/edit_permissions' , $data);
+        }else{
             redirect('admin/manage_pemissions');
         }
-        $managerPermissions = $this->userModel->getManagerPermissions();
-        $userRole = $this->userModel->getUserRole();
-        $permissions = $this->userModel->getPermissions();
 
-
-        $data = [
-            'managerPermissions'=>$managerPermissions,
-            'roles'=>$userRole,
-            'permissions'=>$permissions,
-
-        ];
-        $this->view('admin/edit_permissions' , $data);
     }
 
     public function addPermission(){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $data = [
-              'roleId' => $_POST['role'],
-                'permissionId'=> $_POST['permission'],
+        if($_SESSION['roleId'] ===1) {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            ];
-            if($this->userModel->addPermission($data)){
-                redirect('admin/edit_permissions');
+                $data = [
+                    'roleId' => $_POST['role'],
+                    'permissionId' => $_POST['permission'],
+
+                ];
+                if ($this->userModel->addPermission($data)) {
+                    redirect('admin/edit_permissions');
+                }
+
             }
-
+        }else{
+            redirect('admin/users');
         }
     }
     public function deleteModPer($permissionId){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $deleted = $this->userModel->deleteModPermission($permissionId);
-            if($deleted){
-                echo json_encode(['status' => 'deleted', 'message' => ' delete successfully!']);
+        if($_SESSION['roleId'] === 1){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $deleted = $this->userModel->deleteModPermission($permissionId);
+                if($deleted){
+                    echo json_encode(['status' => 'deleted', 'message' => ' delete successfully!']);
+                }else{
+                    echo json_encode(['status' => 'failed', 'message' => 'cant delete !']);
+                }
             }else{
-                echo json_encode(['status' => 'failed', 'message' => 'cant delete !']);
+                echo json_encode(['status' => 'error', 'message' => 'mod permission delete !']);
             }
         }else{
-            echo json_encode(['status' => 'error', 'message' => 'mod permission delete !']);
+            redirect('admin/users');
         }
     }
 
