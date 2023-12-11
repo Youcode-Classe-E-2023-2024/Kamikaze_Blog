@@ -9,8 +9,10 @@
       <main>
         <!-- Content header -->
         <div class="flex items-center justify-between px-4 py-4 border-b lg:py-6 dark:border-primary-darker">
-          <h1 class="text-2xl font-semibold">Manage permissions</h1>
-          
+          <h1 class="text-2xl font-semibold">Manage permissions - Moderators</h1>
+                <?php if($data['hasPermission']) { ?>
+            <a href="<?= URLROOT . '/admin/edit_permissions/' ?>" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</a>
+            <?php } ?>
         </div>
         <!-- End Content header -->
 
@@ -49,7 +51,6 @@
                   <span class="text-sm text-gray-500 dark:text-gray-400"><?php echo $moderator->role_name ?> </span>
                   <?php if($data['hasPermission']) { ?>
                   <div class=" justify-between mt-4 md:mt-6">
-                      <a href="<?= URLROOT . '/admin/edit_permissions/' . $moderator->user_id ?>" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</a>
                       <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700 ms-3">Delete profile</a>
                   </div>
                   <?php } ?>
