@@ -46,11 +46,11 @@ Avant de commencer, assurez-vous d'avoir un des éléments suivants installés s
 
 1. diagramme de cas d'utilisation
 
- [![diagramme de cas d'utilisation](/uml/diagramme-de-cas-d-utilisation.png)]
+(/uml/diagramme-de-cas-d-utilisation.png)]
 
 2. diagramme de classe 
 
- [![diagramme de classe](/uml/diagramme-de-classe.png)]
+(/uml/diagramme-de-classe.png)
 
 
 ## Host url
