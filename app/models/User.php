@@ -106,8 +106,21 @@
   }
 
   public function getManagers(){
-    $this->db->query('SELECT id , fullName , email from users where roleId =1 OR roleId = 2  ');
-    //1 admin role , 3 moderators role 
+    $this->db->query('SELECT id , fullName , email from users  where roleId =1 OR roleId = 2  ');
+  
+    
+    if($this->db->execute()){
+      $managers = $this->db->resultSet();
+    }else{
+      die("Error in getManagers");
+    }
+    return $managers;
+
+  }
+
+  public function getModerators(){
+    $this->db->query('SELECT users.id as user_id , fullName , users.imgUrl as profile_img  , role.name as role_name from users , role where roleId = 2 AND roleId = role.id  ');
+     
     
     if($this->db->execute()){
       $managers = $this->db->resultSet();
@@ -146,6 +159,12 @@
     $this->db->bind(':roleId', $roleId);
 
     $this->db->execute() ? true : false;
+  }
+
+  public function deleteUser($id){
+        $this->db->query("DELETE FROM users WHERE id = :id");
+        $this->db->bind(':id', $id);
+        $this->db->execute() ? true : false;
   }
 
 }

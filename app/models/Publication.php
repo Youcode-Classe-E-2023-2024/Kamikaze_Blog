@@ -53,12 +53,7 @@ Class Publication {
 
     public function get_publicatin_byId($id){
 
-    //  $this->db->query("SELECT publication.title , publication.prix , publication.description, publication.imgUrl, publication.created_at, users.fullName, category.name, city.name
-
-     $this->db->query("SELECT publication.title , publication.prix , 
-     publication.description, publication.imgUrl, publication.created_at, 
-     publication.category_Id, users.fullName, category.name, city.name
-
+     $this->db->query("SELECT publication.title , publication.prix , publication.description, publication.imgUrl, publication.created_at, publication.category_Id, users.fullName, category.name, city.name
      FROM publication, users, category , city
      WHERE   publication.category_Id = category.id AND publication.cityId = city.id 
      AND publication.userId = users.id AND publication.id = :id  ;");
@@ -67,8 +62,52 @@ Class Publication {
      $publication = $this->db->single();
       
      return $publication;
-
     }
+
+    public function get_publication_category($category_Id){
+        $this->db->query("SELECT * FROM publication WHERE category_Id =:category_Id");
+        $this->db->bind('category_Id' , $category_Id);
+        $publication_category = $this->db->resultSet();
+        return $publication_category;
+    }
+
+    public function getCities() {
+        // Query
+        $this->db->query("SELECT DISTINCT * FROM city");
+    
+        if($this->db->execute()){
+            $cities = $this->db->resultSet();
+        }else{
+            die("eror n getcitir");
+        }
+
+        return $cities;
+    }
+
+    public function getCategories() {
+        // Query
+        $this->db->query("SELECT DISTINCT * FROM category");
+    
+        if($this->db->execute()){
+            $categories = $this->db->resultSet();
+        }else{
+            die("eror n get");
+        }
+
+        return $categories;
+    }
+
+    public function allPublications() {
+        $this->db->query("SELECT * FROM publication ");
+        if($this->db->execute()){
+            $allPublications = $this->db->resultSet();
+        }
+        else{
+            die("error");
+        }
+        return $allPublications;
+    }
+
 
     public function get_publication_category($category_Id){
 
@@ -77,5 +116,46 @@ Class Publication {
         $publication_category = $this->db->resultSet();
         return $publication_category;
     }
+
+    public function filterCategory($category ) {
+        // die($category);
+        $this->db->query("SELECT * FROM publication WHERE category_Id = :category ");
+        $this->db->bind(':category', $category);
+        if($this->db->execute()){
+            $filterCategory = $this->db->resultSet();
+        }
+        else{
+            die("error");
+        }
+        return $filterCategory;
+    }
+
+    public function filterCity($city ) {
+        $this->db->query("SELECT * FROM publication WHERE cityId = :city ");
+        $this->db->bind(':city', $city);
+        if($this->db->execute()){
+            $filterCity = $this->db->resultSet();
+        }
+        else{
+            die("error");
+        }
+        return $filterCity;
+    }
+
+    public function filterCategoryCity($category, $city) {
+        $this->db->query("SELECT * FROM publication WHERE cityId = :city AND category_Id = :category");
+        $this->db->bind(':category', $category);
+        $this->db->bind(':city', $city);
+    
+        if ($this->db->execute()) {
+            $filterResults = $this->db->resultSet();
+        } else {
+            die("Erreur lors de l'exécution de la requête SQL");
+        }
+    
+        return $filterResults;
+    }
+    
+
 
 }
