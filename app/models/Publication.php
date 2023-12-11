@@ -109,14 +109,7 @@ Class Publication {
     }
 
 
-    public function get_publication_category($category_Id){
-
-        $this->db->query("SELECT * FROM publication WHERE category_Id =:category_Id");
-        $this->db->bind('category_Id' , $category_Id);
-        $publication_category = $this->db->resultSet();
-        return $publication_category;
-    }
-
+ 
     public function filterCategory($category ) {
         // die($category);
         $this->db->query("SELECT * FROM publication WHERE category_Id = :category ");
