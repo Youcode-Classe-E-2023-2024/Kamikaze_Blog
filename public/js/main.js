@@ -27,13 +27,12 @@ function displayData(data) {
 // search
 const searchInput = document.getElementById('searchInput');
 
-// Ajoutez un gestionnaire d'événements "input" à la barre de recherche
-searchInput.addEventListener('input', function () {
-  const searchTerm = searchInput.value.trim().toLowerCase();
+searchInput.addEventListener('keyup', function () {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    console.log(publication)
+    const filteredPublications = publication.filter(pub => pub.title.toLowerCase().includes(searchTerm));
 
-  const filteredPublications = publication.filter(pub => pub.title.toLowerCase().includes(searchTerm));
-
-  displayData(filteredPublications);
+    displayData(filteredPublications);
 });
 
 fetch('http://localhost/Kamikaze_Blog/Publications/filter/all/all')
