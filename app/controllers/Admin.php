@@ -21,12 +21,29 @@ Class Admin extends Controller {
     }
 
     public function users(){
-        return $this->view('admin/users');
+        $hasPermission = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'user');
+
+        $data = [
+            'hasPermission'=>$hasPermission,
+
+        ];
+        return $this->view('admin/users' , $data);
     }
 
     public function deleteUser(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if($this->userModel->deleteUser($_POST['userId'])){
+                redirect('admin/users');
+            }else{
+                redirect('admin/users');
+            }
+        }
+    }
+
+    public function returnUser(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            if($this->userModel->returnUser($_POST['userid'])){
                 redirect('admin/users');
             }else{
                 redirect('admin/users');
@@ -101,6 +118,16 @@ Class Admin extends Controller {
         ];
         return $this->view('admin/manage_pemissions' , $data);  
     }
+    public function edit_permissions($userId){
+
+        $moderators = $this->userModel->getManagerPermissions($userId);
+        var_dump($moderators);
+        die();
+        $data = [
+            'moderators'=>$moderators,
+        ];
+        $this->view('admin/edit_permissions' , $data);
+    }
 
     public function allManagers(){
         $managers = $this->userModel->getManagers();
@@ -112,6 +139,13 @@ Class Admin extends Controller {
         $users = $this->userModel->getUsers();
         echo json_encode($users);
     }
+
+    public function bannedUsers(){
+        $bannedUsers = $this->userModel->getBannedUsers();
+        echo json_encode($bannedUsers);
+    }
+
+
 
     private function uploadImage($file) {
         $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];

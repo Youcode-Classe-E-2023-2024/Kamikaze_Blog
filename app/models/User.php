@@ -42,7 +42,7 @@
   }
 
   public function login($email, $password){
-    $this->db->query('SELECT * FROM users WHERE email = :email and is_confirmed = 1');
+    $this->db->query('SELECT * FROM users WHERE email = :email and is_confirmed = 1 and is_deleted <>1');
     $this->db->bind(':email', $email);
 
     $row = $this->db->single();
@@ -94,6 +94,15 @@
     }
   }
 
+  public function getManagerPermissions($userId){
+        $this->db->query('SELECT users.fullName , permissions.name , permissions.module 
+            from users, permissions_role , permissions , role where 
+            users.roleId = permissions_role.role_id and permissions_role.role_id = role.id
+            and permissions_role.permission_id = permissions.id and users.id = :userId');
+        $this->db->bind(':userId' , $userId);
+        return $this->db->resultSet();
+  }
+
   public function countUsers(){
     $this->db->query('SELECT id FROM users where roleId = 3 ');
     if($this->db->execute()){
@@ -132,7 +141,7 @@
   }
 
   public function getUsers(){
-    $this->db->query('SELECT users.id , fullName , email , role.name as role_name  from users , role  where users.roleId  = role.id ;');
+    $this->db->query('SELECT users.id , fullName , email , role.name as role_name  from users , role  where users.roleId  = role.id and is_deleted<>1 ;');
     // 2 client role 
     if($this->db->execute()){
       $users = $this->db->resultSet();
@@ -140,6 +149,17 @@
       die("Error in getusers");
     }
     return $users;
+  }
+
+  public  function getBannedUsers(){
+      $this->db->query('SELECT users.id , fullName , email , role.name as role_name  from users , role  where users.roleId  = role.id and is_deleted = 1 ;');
+      // 2 client role
+      if($this->db->execute()){
+          $users = $this->db->resultSet();
+      }else{
+          die("Error in getBusers");
+      }
+      return $users;
   }
 
   public function addModerator($data){
@@ -162,9 +182,15 @@
   }
 
   public function deleteUser($id){
-        $this->db->query("DELETE FROM users WHERE id = :id");
+        $this->db->query("UPDATE users SET is_deleted = 1 WHERE id = :id");
         $this->db->bind(':id', $id);
         $this->db->execute() ? true : false;
+  }
+
+  public function returnUser($id){
+      $this->db->query("UPDATE users SET is_deleted = 0 WHERE id = :id");
+      $this->db->bind(':id', $id);
+      $this->db->execute() ? true : false;
   }
 
 }

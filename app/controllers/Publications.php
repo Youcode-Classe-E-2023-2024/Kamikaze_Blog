@@ -55,6 +55,7 @@ class Publications extends Controller
                       "category" => $_POST['category'][$i],
                       "desc" => $_POST['desc'][$i],
                       "prix" => $_POST['prix'][$i],
+                      "city"=>$_POST['city'][$i],
                       "image" => ""
                   ];
 
@@ -63,21 +64,24 @@ class Publications extends Controller
 
                       $file_name = time() . '_' . $image['name'][$i];
                       $file_tmp = $image['tmp_name'][$i];
-                      $file_destination = 'C://xampp//htdocs//Kamikaze_Blog//public//img//publications//' . $file_name;
+                      $file_destination = APPROOT . '/../public/img/publications/' . $file_name;
                       $data['image'] = $file_name;
 
                       if (move_uploaded_file($file_tmp, $file_destination)) {
-                          $this->PublicationModel->addpub($data);
+                          $this->publicationModel->addpub($data);
                       } else {
                           die('File upload failed: ' . $image['error'][$i]);
                       }
                   }
               }
-              die('200');
+              redirect('');
           } else {
               $Category = $this->CategoryModel->getCategory();
+              $Cities = $this->publicationModel->getCities();
+
               $data = [
-                  'category' => $Category
+                  'category' => $Category,
+                  'cities'=>$Cities,
               ];
               $this->view('users/addpost', $data);
           }

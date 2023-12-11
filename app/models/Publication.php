@@ -12,16 +12,17 @@ Class Publication {
   public function addpub($data)
   {
       $this->db->query("
-          INSERT INTO `publication`( `title`, `description`, `imgUrl`, `prix`,  `category_Id`, `userId`)
-          VALUES (:name,:desc,:image,:prix,:category,:userId)
+          INSERT INTO `publication`( `title`, `description`, `imgUrl`, `prix`,  `category_Id`, `cityId`, `userId`)
+          VALUES (:name,:desc,:image,:prix,:category,:cityId , :userId)
       ");
 
       $this->db->bind(':name', $data['name']);
       $this->db->bind(':image', $data['image']);
       $this->db->bind(':desc', $data['desc']);
       $this->db->bind(':prix', $data['prix']);
+      $this->db->bind(':cityId', $data['city']);
       $this->db->bind(':category', $data['category']);
-      $this->db->bind(':userId', 1);
+      $this->db->bind(':userId', 31);
 
       $this->db->execute();
   }
@@ -53,7 +54,7 @@ Class Publication {
 
     public function get_publicatin_byId($id){
 
-     $this->db->query("SELECT publication.title , publication.prix , publication.description, publication.imgUrl, publication.created_at, publication.category_Id, users.fullName, category.name, city.name
+     $this->db->query("SELECT publication.title , category.name as category_name , publication.prix , publication.description, publication.imgUrl, publication.created_at, publication.category_Id, users.fullName, category.name, city.name
      FROM publication, users, category , city
      WHERE   publication.category_Id = category.id AND publication.cityId = city.id 
      AND publication.userId = users.id AND publication.id = :id  ;");
@@ -64,9 +65,10 @@ Class Publication {
      return $publication;
     }
 
-    public function get_publication_category($category_Id){
-        $this->db->query("SELECT * FROM publication WHERE category_Id =:category_Id");
+    public function get_publication_category($category_Id , $id){
+        $this->db->query("SELECT * FROM publication WHERE category_Id =:category_Id AND id <> :id");
         $this->db->bind('category_Id' , $category_Id);
+        $this->db->bind('id' , $id);
         $publication_category = $this->db->resultSet();
         return $publication_category;
     }
@@ -109,7 +111,7 @@ Class Publication {
     }
 
 
- 
+
     public function filterCategory($category ) {
         // die($category);
         $this->db->query("SELECT * FROM publication WHERE category_Id = :category ");

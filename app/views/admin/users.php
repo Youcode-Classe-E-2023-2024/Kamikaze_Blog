@@ -41,22 +41,61 @@
                                     class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
                                     Role
                                 </th>
+
+                                <?php
+                                if($data['hasPermission']){
+                                ?>
                                 <th class="px-5 py-3 border-b border-gray-200 text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
                                     Actions
 
                                 </th>
-
+                                <?php } ?>
                             </tr>
                         </thead>
 
                     </table>
                 </div>
+                <p class="text-xl mt-2 pb-3 flex items-center">
+                    <i class="fas fa-list mr-3"></i> Banned Users
+                </p>
+                <div class="overflow-auto bg-white rounded-md dark:bg-darker">
+                <table id="bUsers" class="min-w-full leading-normal m-b-8">
+                    <thead>
+                    <tr>
+                        <th
+                                class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                            Id
+                        </th>
+                        <th
+                                class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                            Full name
+                        </th>
+                        <th
+                                class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                            email
+                        </th>
+                        <th
+                                class="px-5 py-3 border-b border-gray-200  text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                            Role
+                        </th>
 
+                        <?php
+                        if($data['hasPermission']){
+                            ?>
+                            <th class="px-5 py-3 border-b border-gray-200 text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
+                                Actions
+
+                            </th>
+                        <?php } ?>
+                    </tr>
+                    </thead>
+
+                </table>
+            </div>
         </div>
 
 
 
-          <div id="overlay" class="hidden fixed top-0 right-0 left-0 z-40 bg-black opacity-50 "></div>
 
           <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
               <div class="relative p-4 w-full max-w-md max-h-full">
@@ -79,6 +118,30 @@
                           </button>
                       </div>
                   </div>
+                  </form>
+              </div>
+          </div>
+          <div id="popup-modal1" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+              <div class="relative p-4 w-full max-w-md max-h-full">
+                  <form action="<?php echo URLROOT . '/Admin/returnUser' ?>" method="POST">
+                      <input type="hidden" id="userid" name="userid" >
+                      <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 top-5 border border-gray-200  bg-white rounded-md dark:bg-darker">
+                          <button type="button" onclick="hideModal1()" class="absolute top-3 left-1 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                              </svg>
+                              <span class="sr-only">Close modal</span>
+                          </button>
+                          <div class="p-4 md:p-5 text-center">
+                              <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                              </svg>
+                              <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to return the user?</h3>
+                              <button  type="submit" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2">
+                                  Yes, I'm sure
+                              </button>
+                          </div>
+                      </div>
                   </form>
               </div>
           </div>
@@ -137,6 +200,45 @@
             .catch(error => console.log('Error fetching data:', error));
     });
 
+    $(document).ready(function() {
+        var endpoint = 'http://localhost/Kamikaze_Blog/admin/bannedUsers';
+        fetch(endpoint)
+            .then(response => response.json())
+            .then(data => {
+
+
+                data.forEach(user => {
+                    user.actions = '' +
+                        `<button href="#" onclick="toggleModal1(${user.id})" class="delete-link"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" /></svg></button>`;
+                });
+
+
+
+                $('#bUsers').DataTable({
+                    paging: false,
+                    searching: true,
+                    ordering: true,
+                    info: false,
+                    data: data, // Pass the fetched data to DataTable
+                    columns: [
+                        { data: 'id', className: 'py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' },
+                        { data: 'fullName', className: 'py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' },
+                        { data: 'email', className: 'py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' },
+                        { data: 'role_name', className: 'py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' },
+                        { data: 'actions', className: 'flex justify-center gap-2 py-5 border-b border-gray-200 text-sm bg-white dark:bg-darker' }, // Static Actions column
+                    ],
+                    autoWidth: false,
+                });
+
+                $('#bUsers_filter input')
+                    .addClass('py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500')
+                    .attr('placeholder', 'by name / email ...');
+                $('label')
+                    .addClass('text-sm bg-white dark:bg-darker');
+
+            })
+            .catch(error => console.log('Error fetching data:', error));
+    });
 
     function toggleModal(id ,name) {
         var modal = document.getElementById('popup-modal');
@@ -148,18 +250,30 @@
 
 
 
-    // Function to hide modal
+
     function hideModal() {
         var modal = document.getElementById('popup-modal');
         modal.style.display = 'none';
 
     }
 
-    function deleteUser(){
-        console.log(
-            'dele'
-        );
+    function toggleModal1(id ,name) {
+        var modal = document.getElementById('popup-modal1');
+        modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
+        var userIdInput = document.getElementById("userid");
+        userIdInput.value = id;
+        console.log(userIdInput.value);
     }
+
+
+
+
+    function hideModal1() {
+        var modal = document.getElementById('popup-modal1');
+        modal.style.display = 'none';
+
+    }
+
 
 
 

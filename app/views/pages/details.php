@@ -6,6 +6,9 @@
         <div class=" bg-gray-300 w-3/5 h-48 flex justify-center rounded-t-lg">
             <div class=" w-3/5 h-full ">
             <img src="data:image/jpeg;base64,<?php echo base64_encode($data['publication']->imgUrl); ?>" alt="" class=" w-full h-full">
+
+            <img src="<?= URLROOT . '/img/publications/' . $data['publication']->imgUrl; ?>" alt="" class=" w-96 h-48 rounded-xl">
+
             
             </div>
         </div>
@@ -16,7 +19,7 @@
                     <div class=" w-full h-9 flex justify-between items-center  ">
                         <div class=" w-fit h-9 flex justify-center items-end gap-6 ">
                             <h1 class="text-2xl font-bold text-gray-700"><?= $data['publication']->fullName; ?></h1>
-                            <h2 class="text-sm  text-gray-600  font-bold"><?= $data['publication']->name; ?></h2>
+                            <h2 class="text-sm  text-gray-600  font-bold"><?= $data['publication']->category_name; ?></h2>
                         </div>
                         <h4 class="text-lg font-bold text-blue-500"><?= $data['publication']->prix; ?></h4>
                     </div>
@@ -35,6 +38,11 @@
 
                             <p class="text-sm font-medium text-gray-600">ily a 33 min</p>
 
+
+
+                           <p class="text-sm font-medium text-gray-600">--><?//= chek_time($temps); ?><!--</p>-->
+
+
                         </div>
                     </div>
                 </div>
@@ -49,6 +57,9 @@
         </div>
         
     </div>
+
+<div class="flex flex-col bg-transparent m-auto py-12">
+    <h3 class="text-gray-600 text-2xl ml-12 mb-4 font-medium">Related publications</h3>
 
 
     
@@ -80,8 +91,40 @@
             
         <?php   endforeach; ?>
 
+    <div class="flex overflow-x-scroll  hide-scroll-bar  py-7">
+        <?php
+        foreach($data['publication_category'] as $item):
+            ?>
+
+            <a href="<?= URLROOT . '/pages/details/' . $item->id ?>" class="  hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10 w-full max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white">
+                <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url(<?=  URLROOT . '/img/publications/' . $item->imgUrl ?>)">
+                </div>
+                <div class="px-5 py-3">
+                    <h3 class="text-gray-700 uppercase  "><?php echo $item->title; ?></h3>
+                    <span class="text-gray-500 mt-2  ">$<?php echo $item->prix; ?></span><br>
+                    <span class="text-gray-500 mt-2  ">$<?php echo $item->created_at; ?></span>
+                </div>
+
+            </a>
+
+        <?php endforeach ?>
+
+
     </div>
-    </div>
+</div>
+
+</div>
+<style>
+    .hide-scroll-bar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .hide-scroll-bar::-webkit-scrollbar {
+        display: none;
+    }
+</style>
+
 
 
 
