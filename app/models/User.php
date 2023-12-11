@@ -82,17 +82,31 @@
 
   }
 
-  public function getRolePermissions($userId , $module){
-    $this->db->query('SELECT p.name FROM users u JOIN permissions_role rp
-     ON u.roleId = rp.role_id JOIN permissions p ON rp.permission_id = p.id WHERE u.id = :userId and p.module = :module');
+  public function getRolePermissions($userId , $module , $permissionName){
+    $this->db->query('SELECT p.name FROM users u JOIN permissions_role rp ON u.roleId = rp.role_id JOIN permissions p ON rp.permission_id = p.id
+              WHERE u.id =:userId and p.module = :module and p.name = :permissionName');
     $this->db->bind(':userId', $userId);
     $this->db->bind(':module', $module);
+    $this->db->bind(':permissionName' ,$permissionName );
     if($this->db->execute()){
       return $this->db->rowCount() >0 ? true : false;
     }else{
       die("error in exc getRolePermissions");
     }
   }
+
+      public function getRolePermission($userId , $module ){
+          $this->db->query('SELECT p.name FROM users u JOIN permissions_role rp ON u.roleId = rp.role_id JOIN permissions p ON rp.permission_id = p.id
+              WHERE u.id =:userId and p.module = :module ');
+          $this->db->bind(':userId', $userId);
+          $this->db->bind(':module', $module);
+
+          if($this->db->execute()){
+              return $this->db->rowCount() >0 ? true : false;
+          }else{
+              die("error in exc getRolePermissions");
+          }
+      }
 
   public function getManagerPermissions(){
         $this->db->query('SELECT distinct permissions.id , permissions.name , permissions.module from users, permissions_role , permissions , role where users.roleId = permissions_role.role_id and permissions_role.role_id = role.id and permissions_role.permission_id = permissions.id and role.id =2;');
@@ -168,7 +182,7 @@
       return $users;
   }
   public  function getUserRole(){
-        $this->db->query('SELECT * FROM role');
+        $this->db->query('SELECT * FROM role where id <>1');
         return $this->db->resultSet();
   }
 
