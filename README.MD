@@ -2,44 +2,59 @@
 
 ## Description
 
-L'entreprise Kamikaze_Blog, spécialisée dans le développement de solutions numériques innovantes, a récemment décidé de renforcer sa présence en ligne en lançant un blog d'entreprise. Le but de ce blog est de partager des informations pertinentes sur les technologies émergentes, les meilleures pratiques de développement, les tendances du marché et les réussites de l'entreprise.
+L'entreprise AVITO, spécialisée dans le développement de solutions numériques innovantes, a récemment décidé de renforcer sa présence en ligne en lançant un blog d'entreprise. Le but de ce blog est de partager des informations pertinentes sur les technologies émergentes, les meilleures pratiques de développement, les tendances du marché et les réussites de l'entreprise.
 
-## Table des matières
+##  Table des matières
 
 - [Installation](#installation)
-- [Utilisation](#utilisation)
+
 - [Conception UML](#Conception-UML)
-- [Captures d'écran](#captures-décran)
+- [Host url](#cHost-url)
 - [Technologies utilisées](#technologies-utilisées)
-- [Contribuer](#contribuer)
 
 
 ## Installation
+ ### Prérequis
 
-Expliquez comment installer le projet sur la machine locale de l'utilisateur. Incluez des détails sur les dépendances, les étapes d'installation et tout autre élément nécessaire.
+Avant de commencer, assurez-vous d'avoir un des éléments suivants installés sur votre environnement de développement :
 
-```bash
-# Exemple de commande d'installation
-npm install
-```
-## Utilisation
-<!-- Fournissez des instructions détaillées sur la manière d'utiliser votre application. Cela peut inclure des exemples de code, des commandes pour lancer le serveur, etc. -->
-```bash
-# Exemple de commande de démarrage
-npm start
-```
+ - [![XAMPP](https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Xampp_logo.svg/1024px-Xampp_logo.svg.png)](https://www.apachefriends.org/fr/index.html) 
+ - [![XAMPP](data:image/jpeg;base64,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)](https://www.apachefriends.org/fr/index.html)
+
+
+### Clonez le dépôt depuis GitHub :
+
+    ```bash
+    git clone https://github.com/Youcode-Classe-E-2023-2024/Kamikaze_Blog.git
+    ```
+
+ - Si vous utilisez Xampp, clonez le dépôt dans le répertoire \xampp\htdocs\.
+ - Pour Laragon, clonez-le dans le répertoire \laragon\www\.
+ 
+### Instal Composer 
+ [![XAMPP](https://blog.lecacheur.com/wp-content/uploads/2015/12/composer.png)](https://getcomposer.org/) 
+   ```bash
+   php composer install
+   ```
+
+
+
+
+
+
 ## Conception UML
 
 1. diagramme de cas d'utilisation
-<!-- Captures d'écran -->
+ [![diagramme de cas d'utilisation](\uml\diagramme-de-cas-d-utilisation.png)]
 
 2. diagramme de classe 
-<!-- Captures d'écran -->
+ [![diagramme de classe](\uml\diagramme-de-classe.png)]
 
-## Captures d'écran
-<!-- Si possible, ajoutez des captures d'écran du site web en action. Cela donne aux utilisateurs une idée visuelle du projet. -->
+
+## Host url
+(http://kamikaze-blog.42web.io/)
 ## Technologies utilisées
-<!-- Listez les technologies principales utilisées dans le projet. Cela peut inclure des langages de programmation, des frameworks, des bibliothèques, des outils, etc. -->
+
 
 - HTML5
 - CSS3
@@ -47,5 +62,4 @@ npm start
 - JavaScript 
 - PHP (OOP,MVC,PDO)
 - SGBD (MySQL)
-## Contribuer
-<!-- Indiquez comment les personnes intéressées peuvent contribuer à votre projet. Cela peut inclure des informations sur la façon de signaler des problèmes, de soumettre des demandes de fonctionnalités, et comment faire des contributions de code. -->
+
