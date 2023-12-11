@@ -41,7 +41,7 @@ Class Publication {
       $this->db->query("SELECT *
       FROM `publication`
       ORDER BY `created_at` DESC
-      LIMIT 4");
+     ");
       
       $result = $this->db->resultSet();
       

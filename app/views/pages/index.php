@@ -4,12 +4,12 @@
 <main class="my-8 py-4 bg-gray-100 ">
     <!-- ------------------------------------------------------ -->
     <div class="flex items-center justify-center h-39 w-full py-24 sm:py-8 px-4">
-        <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
         <div class="w-full relative flex items-center justify-center">
 
             <div class="w-4/5 h-full mx-auto overflow-x-hidden overflow-y-hidden">
                 <div id="slider" class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
                     <?php
+                    $counter = 0;
                     foreach ($data['pub'] as $item) {
                         $text = $item->title;
 
@@ -19,7 +19,7 @@
 
                     ?>
                         <div class="flex flex-shrink-0 relative w-full sm:w-auto">
-                            <img src="<?php echo URLROOT ?>/public/img/publications/<?= $item->imgUrl ?>" alt="black chair and white table" class="object-cover  object-center w-full" style="aspect-ratio: 16/9;" />
+                            <img src="<?php echo URLROOT ?>/public/img/publications/<?= $item->imgUrl ?>" alt="black chair and white table" class="bg-cover object-cover  object-center w-full" style="aspect-ratio: 16/7;" />
                             <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
                                 <div class="lg:text-xl  capitalize  text-3xl lg:leading-5 flex justify-center dark:text-gray-900">
                                     <h2 class="bg-gray-600 bg-opacity-50 text-center text-7xl font-extrabold text-white px-6 rounded-xl"> <?php  echo $firstTwoWords;  ?></h2>
@@ -31,7 +31,11 @@
                             </div>
                         </div>
 
-                    <?php }; ?>
+                    <?php  $counter++;
+                 if ($counter >= 4) {
+                    break; 
+                }
+                }; ?>
                 </div>
 
             </div>
@@ -112,7 +116,7 @@
         <div class="flex flex-col bg-transparent m-auto py-12">
             <h3 class="text-gray-600 text-2xl font-medium"><?php echo $categories->name; ?></h3></h3>
 
-            <div class="flex justify-start overflow-x-scroll  hide-scroll-bar  py-7">
+            <div class="flex  overflow-x-scroll  hide-scroll-bar rounded-3xl  bg-white py-7">
                 <?php
          
                 foreach ($data['pub'] as $item) {
@@ -121,14 +125,19 @@
                     $date = gmdate("Y-m-d", $createdAtTimestamp);
                 ?>
 
-                    <a href="<?php echo URLROOT . '/Pages/details/' . $item->id; ?>" class="  hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10 w-full max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-gray-100">
-                        <div class="flex items-end justify-end h-56 w-80 bg-cover" style="background-image: url('<?php echo URLROOT ?>/public/img/publications/<?php echo $item->imgUrl ?>')">
+                    <a href="<?php echo URLROOT . '/Pages/details/' . $item->id; ?>" class="  hover:no-underline text-xr  lg:mx-20 md:mx-10 mx-5 w-80 max-w-sm  rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-gray-100">
+                        <div class="flex items-end justify-end h-56 w-80 bg-cover bg-no-repeat" style="background-image: url('<?php echo URLROOT ?>/public/img/publications/<?php echo $item->imgUrl ?>')">
                         </div>
-                        <div class="px-5 py-3 text-center">
+                        <div class="px-5 py-3 text-center flex flex-col   ">
 
-                            <h3 class="text-black uppercase text-2xl font-bold float-left p-2 "><?php echo $item->title; ?>kjbgjzerkjg kbg</h3><br>
-                            <span class=" mt-2 text-blue-500 font-bold p-2  "><?php echo $item->prix; ?> DH</span><br>
-                            <span class="float-right p-2 text-gray-400 "><?php echo $date; ?></span>
+                            <h3 class="text-black uppercase text-2xl font-bold  "><?php echo $item->title; ?></h3>
+                            <div>
+                                <span class=" mt-2 text-blue-500 font-bold p-2  "><?php echo $item->prix; ?> DH</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="float-right p-2 text-gray-400 "><?php echo $date; ?></span>
+                                <span class="float-right p-2 text-black-400 bg-blue-100 rounded-2xl "><?php echo $categories->name; ?></span>
+                            </div>
                         </div>
 
                     </a>
