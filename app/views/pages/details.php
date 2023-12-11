@@ -32,11 +32,13 @@
 ?>
 
 
-    <div class=" w-full h-screen flex flex-col justify-start items-center pt-16 my-9">
+    <div class=" w-full h-full flex flex-col justify-start items-center pt-16  ">
         
         <div class=" bg-gray-300 w-3/5 h-48 flex justify-center rounded-t-lg">
-            <img src="data:image/jpeg;base64,<?php echo base64_encode($data['publication']->imgUrl); ?>" alt="" class=" w-96 h-48 rounded-xl">
+            <div class=" w-3/5 h-full ">
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($data['publication']->imgUrl); ?>" alt="" class=" w-full h-full">
             
+            </div>
         </div>
         <div class=" w-3/5 h-[45%]  rounded-b-lg">
 
