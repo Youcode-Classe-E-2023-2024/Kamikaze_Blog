@@ -37,17 +37,17 @@ Class Contact extends Controller {
                 $data['messagevide']="veuillez enter s'il vous plait votre message";
             }
             if (empty($data['namevide'])&& empty($data['emailvide'])&& empty($data['messagevide'])){
-                if($this->contactModel->Message($data))
-
-                $data=[
-                    'succes'=>'Votre message a été envoyé'
-                ];
-
+                if($this->contactModel->Message($data)){
+                    $infoAvito = $this->contactModel->infoAvito();
                     $data=[
+                        'info'=>$infoAvito,
                         'succes'=>'Votre message a été envoyé'
                     ];
 
-                $this->view('pages/contact',$data);
+
+                    $this->view('pages/contact',$data);
+                }
+
             }else{
                 $this->view('pages/contact',$data);
             }
