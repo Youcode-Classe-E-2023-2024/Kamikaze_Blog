@@ -10,9 +10,9 @@
         <!-- Content header -->
         <div class="flex items-center justify-between px-4 py-4 border-b lg:py-6 dark:border-primary-darker">
           <h1 class="text-2xl font-semibold">Manage permissions - Moderators</h1>
-                <?php if($data['hasPermission']) { ?>
+                <?php if($_SESSION['roleId'] ===1 ) { ?>
             <a href="<?= URLROOT . '/admin/edit_permissions/' ?>" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</a>
-            <?php } ?>
+                <?php } ?>
         </div>
         <!-- End Content header -->
 
@@ -20,6 +20,7 @@
         <div class="mt-2">
           <!-- State cards -->
           <div class="grid grid-cols-1 gap-8 p-4 lg:grid-cols-2 xl:grid-cols-4">
+              <?php if($data['hasPermissionRead']){ ?>
             <?php foreach($data['moderators'] as $moderator) { ?>
 
           <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow bg-white rounded-md dark:bg-darker dark:border-gray-700">
@@ -49,7 +50,7 @@
                   <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="<?php echo URLROOT . '/img/users/' . $moderator->profile_img ?>" alt="Bonnie image"/>
                   <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><?php echo $moderator->fullName ?></h5>
                   <span class="text-sm text-gray-500 dark:text-gray-400"><?php echo $moderator->role_name ?> </span>
-                  <?php if($data['hasPermission']) { ?>
+                  <?php if($data['hasPermissionUpdate']) { ?>
                   <div class=" justify-between mt-4 md:mt-6">
                       <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700 ms-3">Delete profile</a>
                   </div>
@@ -58,7 +59,9 @@
           </div>
 
             <?php } ?>
-          
+            <?php }else{ ?>
+                  <p class="text-xl font-semibold text-red-500 w-full">You dont have access to this ressource</p>
+             <?php } ?>
           </div>
         </div>
         <!--End  Content -->
