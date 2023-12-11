@@ -7,13 +7,23 @@ function displayData(data) {
 
     return (
       `
-        <div class="hover:no-underline text-xl  lg:ml-30 md:ml-20  bg-gray-100	 max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300  ">
-      <div class="flex items-end justify-end h-56 w-80 bg-cover" style="background-image: url('../public/img/categories/Corded-Telephone-Desktop-Phone-Office-Phone-Hotel-Telephone-Landline-Telephone-Analog-Telephone.jpg')"></div>
-      <div class="px-5 py-3">
-          <h3 class="text-gray-700 uppercase">${pub.title}</h3>
-          <span class="text-gray-500 mt-2">${pub.prix} DH</span>
-      </div>
-  </div>
+       
+  <a href="<?php echo URLROOT . '/Pages/details/' . $item->id; ?>" class="  hover:no-underline text-xr  lg:mx-20 md:mx-10 mx-5 w-80 max-w-sm  rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-gray-100">
+    <div class="flex items-end justify-end h-56 w-80 bg-cover bg-no-repeat" style="background-image: url('<?php echo URLROOT ?>/public/img/publications/${pub.imgUrl}')">
+    </div>
+    <div class="px-5 py-3 text-center flex flex-col   ">
+
+        <h3 class="text-black uppercase text-2xl font-bold  ">${pub.title}</h3>
+        <div>
+            <span class=" mt-2 text-blue-500 font-bold p-2  ">${pub.prix} DH</span>
+        </div>
+       
+            <span class="float-right p-2 text-gray-400 ">${pub.created_at}</span>
+            
+        
+    </div>
+
+  </a>
      
      `
 
