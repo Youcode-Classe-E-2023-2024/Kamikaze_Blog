@@ -42,14 +42,12 @@
                                     Role
                                 </th>
 
-                                <?php
-                                if($data['hasPermission']){
-                                ?>
+
                                 <th class="px-5 py-3 border-b border-gray-200 text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
                                     Actions
 
                                 </th>
-                                <?php } ?>
+
                             </tr>
                         </thead>
 
@@ -80,13 +78,13 @@
                         </th>
 
                         <?php
-                        if($data['hasPermission']){
+
                             ?>
                             <th class="px-5 py-3 border-b border-gray-200 text-left text-xs font-semibold text-white-600 uppercase tracking-wider">
                                 Actions
 
                             </th>
-                        <?php } ?>
+
                     </tr>
                     </thead>
 
