@@ -51,7 +51,7 @@ Avant de commencer, assurez-vous d'avoir un des éléments suivants installés s
 
 2. diagramme de classe 
 
- [![diagramme de classe](/uml/diagramme-de-classe.png)]
+ ![diagramme de classe](/uml/diagramme-de-classe.png)
 
 
 ## Host url
