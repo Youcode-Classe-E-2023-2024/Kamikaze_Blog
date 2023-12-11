@@ -19,7 +19,7 @@ L'entreprise AVITO, spécialisée dans le développement de solutions numérique
 Avant de commencer, assurez-vous d'avoir un des éléments suivants installés sur votre environnement de développement :
 
  - [![XAMPP](https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Xampp_logo.svg/1024px-Xampp_logo.svg.png)](https://www.apachefriends.org/fr/index.html) 
- - [![XAMPP](2wCEAAkGBxESEhUSEQ8SFhIQFxoVERcXEBUVFxUSFRgXFxUVFhUYHSghGBomGxcXJDEhJikrLi4uGR8zODctNygtLisBCgoKDg0OGhAQGislICY3Ky8yKy8tLS0rMTUtLS0vNTItLS0tLi8vLS0tMjA1LS0tLS0tLS0tLS0tLS0vLS0tLf)](https://www.apachefriends.org/fr/index.html)
+ - [![laragon](https://miro.medium.com/v2/resize:fit:948/0*s4MoRa7VwTm4Ubok.jpg)](https://laragon.org/download/index.html)
 
 
 ### Clonez le dépôt depuis GitHub :
@@ -32,7 +32,7 @@ Avant de commencer, assurez-vous d'avoir un des éléments suivants installés s
  - Pour Laragon, clonez-le dans le répertoire \laragon\www\.
  
 ### Instal Composer 
- [![XAMPP](https://blog.lecacheur.com/wp-content/uploads/2015/12/composer.png)](https://getcomposer.org/) ]
+ [![Composer](https://blog.lecacheur.com/wp-content/uploads/2015/12/composer.png)](https://getcomposer.org/) ]
    ```bash
    php composer install
    ```
