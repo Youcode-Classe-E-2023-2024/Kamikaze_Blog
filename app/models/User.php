@@ -182,9 +182,15 @@
   }
 
   public function deleteUser($id){
-        $this->db->query("DELETE FROM users WHERE id = :id");
+        $this->db->query("UPDATE users SET is_deleted = 1 WHERE id = :id");
         $this->db->bind(':id', $id);
         $this->db->execute() ? true : false;
+  }
+
+  public function returnUser($id){
+      $this->db->query("UPDATE users SET is_deleted = 0 WHERE id = :id");
+      $this->db->bind(':id', $id);
+      $this->db->execute() ? true : false;
   }
 
 }
