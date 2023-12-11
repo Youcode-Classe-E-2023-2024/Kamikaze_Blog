@@ -55,7 +55,7 @@ Avant de commencer, assurez-vous d'avoir un des éléments suivants installés s
 
 
 ## Host url
-(http://kamikaze-blog.42web.io/)
+http://kamikaze-blog.42web.io/
 ## Technologies utilisées
 
 
