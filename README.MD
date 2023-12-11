@@ -32,7 +32,7 @@ Avant de commencer, assurez-vous d'avoir un des éléments suivants installés s
  - Pour Laragon, clonez-le dans le répertoire \laragon\www\.
  
 ### Instal Composer 
- [![XAMPP](https://blog.lecacheur.com/wp-content/uploads/2015/12/composer.png)](https://getcomposer.org/) 
+ [![XAMPP](https://blog.lecacheur.com/wp-content/uploads/2015/12/composer.png)](https://getcomposer.org/) ]
    ```bash
    php composer install
    ```
@@ -46,11 +46,11 @@ Avant de commencer, assurez-vous d'avoir un des éléments suivants installés s
 
 1. diagramme de cas d'utilisation
 
-(/uml/diagramme-de-cas-d-utilisation.png)]
+[(/uml/diagramme-de-cas-d-utilisation.png)]
 
 2. diagramme de classe 
 
-(/uml/diagramme-de-classe.png)
+[(/uml/diagramme-de-classe.png)]
 
 
 ## Host url
