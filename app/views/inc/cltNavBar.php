@@ -35,7 +35,7 @@
                     <!-- test  -->
                     <?php }; ?>
                     
-                    <a href="#" class=" flex justify-around bg-red-400 no-underline hover:bg-red-600  hover:no-underline hover:text-white rounded-md py-3 p-1 shadow-md hover:shadow-2xl transition duration-500">
+                    <a href="<?php echo URLROOT;?>/Publication/add" class=" flex justify-around bg-red-400 no-underline hover:bg-red-600  hover:no-underline hover:text-white rounded-md py-3 p-1 shadow-md hover:shadow-2xl transition duration-500">
                         <svg class="av-icon" height="24" width="24" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" aria-labelledby="AddNoteTitleID" style="fill: currentcolor; stroke: currentcolor; stroke-width: 0;">
                             <title id="AddNoteTitleID">AddNote Icon</title>
                             <path fill="currentColor" fill-rule="evenodd" d="M1.5 5.667c.46 0 .833.373.833.833v9.167H11.5a.833.833 0 010 1.666H2.333c-.92 0-1.666-.746-1.666-1.666V6.5c0-.46.373-.833.833-.833z" clip-rule="evenodd"></path>

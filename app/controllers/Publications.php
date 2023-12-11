@@ -76,6 +76,7 @@ class Publications extends Controller
               }
               redirect('');
           } else {
+           
               $Category = $this->CategoryModel->getCategory();
               $Cities = $this->publicationModel->getCities();
 
@@ -85,6 +86,8 @@ class Publications extends Controller
               ];
               $this->view('users/addpost', $data);
           }
+    
       }
+      
  }
 

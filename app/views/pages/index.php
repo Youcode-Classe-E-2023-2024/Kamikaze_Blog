@@ -6,23 +6,32 @@
     <div class="flex items-center justify-center h-39 w-full py-24 sm:py-8 px-4">
         <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
         <div class="w-full relative flex items-center justify-center">
-            
+
             <div class="w-4/5 h-full mx-auto overflow-x-hidden overflow-y-hidden">
                 <div id="slider" class="h-full flex lg:gap-8 md:gap-6 gap-14 items-center justify-start transition ease-out duration-700">
                     <?php
-                    foreach ($data['pub'] as $item) :
-                        ?>
+                    foreach ($data['pub'] as $item) {
+                        $text = $item->title;
+
+                        $words = explode(' ', $text);
+
+                        $firstTwoWords = implode(' ', array_slice($words, 0, 2));
+
+                    ?>
                         <div class="flex flex-shrink-0 relative w-full sm:w-auto">
                             <img src="<?php echo URLROOT ?>/public/img/publications/<?= $item->imgUrl ?>" alt="black chair and white table" class="object-cover  object-center w-full" style="aspect-ratio: 16/9;" />
                             <div class="bg-gray-800 bg-opacity-30 absolute w-full h-full p-6">
-                                <h2 class="lg:text-xl leading-4 text-base lg:leading-5 text-white dark:text-gray-900"><?php echo $item->title; ?></h2>
+                                <div class="lg:text-xl  capitalize  text-3xl lg:leading-5 flex justify-center dark:text-gray-900">
+                                    <h2 class="bg-gray-600 bg-opacity-50 text-center text-7xl font-extrabold text-white px-6 rounded-xl"> <?php  echo $firstTwoWords;  ?></h2>
+                                </div>
+                
                                 <div class="flex h-full items-end pb-6">
-                                    <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900"><?php echo $item->title; ?></h3>
+                                    <h3 class="text-xl lg:text-2xl font-semibold leading-5 lg:leading-6 text-white dark:text-gray-900"><?php echo $firstTwoWords; ?></h3>
                                 </div>
                             </div>
                         </div>
 
-                    <?php endforeach; ?>
+                    <?php }; ?>
                 </div>
 
             </div>
@@ -31,9 +40,9 @@
     <!-- ------------------------------------------------------ -->
     <div class="container mx-auto px-6">
 
-    <div class="h-64 rounded-md overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144')">
-        <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
-            <div class="px-10 max-w-xl">
+        <div class="h-64 rounded-md overflow-hidden bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1577655197620-704858b270ac?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1280&q=144')">
+            <div class="bg-gray-900 bg-opacity-50 flex items-center h-full">
+                <div class="px-10 max-w-xl">
                     <h2 class="text-2xl text-white font-semibold">Sport Shoes</h2>
                     <p class="mt-2 text-gray-400">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore facere provident molestias ipsam sint voluptatum pariatur.</p>
                     <button class="flex items-center mt-4 px-3 py-2 bg-blue-600 text-white text-sm uppercase font-medium rounded hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
@@ -98,33 +107,38 @@
                 </div>
             </div>
         </div>
-
+        
+<?php foreach($data['categories'] as $categories):?>
         <div class="flex flex-col bg-transparent m-auto py-12">
-            <h3 class="text-gray-600 text-2xl font-medium">Fashions</h3>
+            <h3 class="text-gray-600 text-2xl font-medium"><?php echo $categories->name; ?></h3></h3>
 
-            <div class="flex overflow-x-scroll  hide-scroll-bar  py-7">
+            <div class="flex justify-start overflow-x-scroll  hide-scroll-bar  py-7">
                 <?php
-echo $_SESSION['name'];
-                foreach ($data['pub'] as $item) :
+         
+                foreach ($data['pub'] as $item) {
+                    if($item->category_Id===$categories->id){
+                    $createdAtTimestamp = strtotime($item->created_at);
+                    $date = gmdate("Y-m-d", $createdAtTimestamp);
                 ?>
 
-                    <a href="" class="  hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10 w-full max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white">
-                        <div class="flex items-end justify-end h-56 w-full bg-cover" style="background-image: url('<?php echo URLROOT ?>/public/img/publications/<?php echo $item->imgUrl ?>')">
+                    <a href="<?php echo URLROOT . '/Pages/details/' . $item->id; ?>" class="  hover:no-underline text-xl  lg:ml-40 md:ml-20 ml-10 w-full max-w-sm mx-4 rounded-md shadow-md   hover:shadow-xl transition-shadow duration-300 ease-in-out bg-gray-100">
+                        <div class="flex items-end justify-end h-56 w-80 bg-cover" style="background-image: url('<?php echo URLROOT ?>/public/img/publications/<?php echo $item->imgUrl ?>')">
                         </div>
-                        <div class="px-5 py-3">
+                        <div class="px-5 py-3 text-center">
 
-                            <h3 class="text-gray-700 uppercase  "><?php echo $item->title; ?></h3>
-                            <span class="text-gray-500 mt-2  ">$<?php echo $item->prix; ?></span><br>
-                            <span class="text-gray-500 mt-2  ">$<?php echo $item->created_at; ?></span>
+                            <h3 class="text-black uppercase text-2xl font-bold float-left p-2 "><?php echo $item->title; ?>kjbgjzerkjg kbg</h3><br>
+                            <span class=" mt-2 text-blue-500 font-bold p-2  "><?php echo $item->prix; ?> DH</span><br>
+                            <span class="float-right p-2 text-gray-400 "><?php echo $date; ?></span>
                         </div>
 
                     </a>
 
-                <?php endforeach; ?>
+                <?php }}; ?>
 
 
             </div>
         </div>
+        <?php endforeach; ?>
     </div>
     <style>
         .hide-scroll-bar {
@@ -149,17 +163,18 @@ echo $_SESSION['name'];
         var slider = document.getElementById("slider");
         if (Math.abs(defaultTransform) >= slider.scrollWidth / 1.2)
             defaultTransform = 0;
-            slider.style.transition = "transform 1.5s";
+        slider.style.transition = "transform 1.5s";
         slider.style.transform = "translateX(" + defaultTransform + "px) ";
-       
-    
+
+
     }
 
     function goPrev() {
         var slider = document.getElementById("slider");
         if (Math.abs(defaultTransform) === 0) defaultTransform = 0;
         else defaultTransform = defaultTransform + 1530;
-        slider.style.transform = "translateX(" + defaultTransform + "px)";$
+        slider.style.transform = "translateX(" + defaultTransform + "px)";
+        $
     }
 
     function startAutoScroll() {
@@ -179,7 +194,7 @@ echo $_SESSION['name'];
         document.getElementById("slider").addEventListener("mouseleave", startAutoScroll);
     });
 
-   
+
     next.addEventListener("click", goNext);
     prev.addEventListener("click", goPrev);
 </script>

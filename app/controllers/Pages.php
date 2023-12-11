@@ -3,19 +3,24 @@
     private $userModel;
     private $publicationModel;
     private $aboutModel;
+    private $category;
 
     public function __construct(){
 
       $this->userModel = $this->model('User');
       $this->aboutModel = $this->model('about');
       $this->publicationModel = $this->model('Publication');
+      $this->category = $this->model('Category');
+      
     }
 
     public function index(){
 
      $Publication = $this->publicationModel->homepub();
+     $categories = $this->category->CategoriesPRD();
      $data=[
       'pub' => $Publication,
+      'categories' => $categories,
      ];
       $this->view('pages/index', $data);
 
@@ -77,6 +82,9 @@
 
 
     public function add(){
+     if(!clientIsLoggedIn()){
+      redirect('Users/Login');
+     }
         $categories = $this->allCategories();
         $cities = $this->publicationModel->getCities();
         $data =[
@@ -84,6 +92,7 @@
             'cities' =>$cities,
         ];
       $this->view('users/addpost' , $data);
+
 
       }
 
