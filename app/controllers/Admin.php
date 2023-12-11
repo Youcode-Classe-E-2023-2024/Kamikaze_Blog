@@ -20,6 +20,16 @@ Class Admin extends Controller {
         return $this->view('admin/index' , $data);
     }
 
+    public function publications(){
+
+        return $this->view('admin/publications');
+    }
+
+    public function allPublications(){
+       $publications =  $this->publicationModel->getAllPublications();
+        echo json_encode($publications);
+    }
+
     public function users(){
 
         return $this->view('admin/users' );
@@ -39,6 +49,20 @@ Class Admin extends Controller {
             redirect('admin/users');
         }
 
+    }
+
+    public function deletePublication(){
+        $hasPermissionDelete = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'publication', 'canDelete');
+        if($hasPermissionDelete){
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $deletePub = $this->publicationModel->deletedPublication($_POST['pubId']);
+                if($deletePub){
+                    redirect('admin/publications');
+                }
+            }
+        }else{
+            redirect('admin/publications');
+        }
     }
 
     public function returnUser(){
