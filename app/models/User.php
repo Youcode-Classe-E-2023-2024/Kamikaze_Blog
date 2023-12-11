@@ -94,15 +94,21 @@
     }
   }
 
-  public function getManagerPermissions($userId){
-        $this->db->query('SELECT users.fullName , permissions.name , permissions.module 
-            from users, permissions_role , permissions , role where 
-            users.roleId = permissions_role.role_id and permissions_role.role_id = role.id
-            and permissions_role.permission_id = permissions.id and users.id = :userId');
-        $this->db->bind(':userId' , $userId);
+  public function getManagerPermissions(){
+        $this->db->query('SELECT distinct permissions.id , permissions.name , permissions.module from users, permissions_role , permissions , role where users.roleId = permissions_role.role_id and permissions_role.role_id = role.id and permissions_role.permission_id = permissions.id and role.id =2;');
+
         return $this->db->resultSet();
   }
 
+  public function deleteModPermission($permissionId){
+        $this->db->query('DELETE FROM permissions_role
+         WHERE permissions_role.role_id = :roleid
+         and permissions_role.permission_id = :permissionid');
+        $this->db->bind(':roleid' , 2);
+        $this->db->bind(':permissionid' , $permissionId);
+
+        return $this->db->execute() ;
+  }
   public function countUsers(){
     $this->db->query('SELECT id FROM users where roleId = 3 ');
     if($this->db->execute()){
@@ -160,6 +166,33 @@
           die("Error in getBusers");
       }
       return $users;
+  }
+  public  function getUserRole(){
+        $this->db->query('SELECT * FROM role');
+        return $this->db->resultSet();
+  }
+
+
+  public function getPermissions(){
+      $this->db->query('SELECT * FROM permissions');
+      return $this->db->resultSet();
+  }
+  public function addPermission($data){
+    $this->db->query('INSERT INTO `permissions_role` (`role_id`, `permission_id`)
+        VALUES (:userRole, :permissionId);');
+    $this->db->bind(':userRole' , $data['roleId'] );
+      $this->db->bind(':permissionId' ,$data['permissionId']);
+      return $this->db->execute();
+  }
+  public function getUserById($id){
+      $this->db->query('SELECT * FROM users WHERE id = :id;');
+      $this->db->bind(':id' , $id);
+      if($this->db->execute()){
+          $user = $this->db->single();
+      }else{
+          die("Error in getBusers");
+      }
+      return $user;
   }
 
   public function addModerator($data){
