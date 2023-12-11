@@ -118,15 +118,50 @@ Class Admin extends Controller {
         ];
         return $this->view('admin/manage_pemissions' , $data);  
     }
-    public function edit_permissions($userId){
+    public function edit_permissions(){
+        $hasPermission = $this->userModel->getRolePermissions($_SESSION['user_id'] ,'user');
+        if(!$hasPermission){
+            redirect('admin/manage_pemissions');
+        }
+        $managerPermissions = $this->userModel->getManagerPermissions();
+        $userRole = $this->userModel->getUserRole();
+        $permissions = $this->userModel->getPermissions();
 
-        $moderators = $this->userModel->getManagerPermissions($userId);
-        var_dump($moderators);
-        die();
+
         $data = [
-            'moderators'=>$moderators,
+            'managerPermissions'=>$managerPermissions,
+            'roles'=>$userRole,
+            'permissions'=>$permissions,
+
         ];
         $this->view('admin/edit_permissions' , $data);
+    }
+
+    public function addPermission(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $data = [
+              'roleId' => $_POST['role'],
+                'permissionId'=> $_POST['permission'],
+
+            ];
+            if($this->userModel->addPermission($data)){
+                redirect('admin/edit_permissions');
+            }
+
+        }
+    }
+    public function deleteModPer($permissionId){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $deleted = $this->userModel->deleteModPermission($permissionId);
+            if($deleted){
+                echo json_encode(['status' => 'deleted', 'message' => ' delete successfully!']);
+            }else{
+                echo json_encode(['status' => 'failed', 'message' => 'cant delete !']);
+            }
+        }else{
+            echo json_encode(['status' => 'error', 'message' => 'mod permission delete !']);
+        }
     }
 
     public function allManagers(){
