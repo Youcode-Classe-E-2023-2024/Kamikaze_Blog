@@ -1,5 +1,6 @@
 let publication;
-
+let endpoint = 'http://localhost/Kamikaze_Blog/Publications/filter/'
+console.log(endpoint + `all/all`)
 function displayData(data) {
   // Use map to create an array of table rows
   const rows = data.map((pub) => {
@@ -35,7 +36,7 @@ searchInput.addEventListener('keyup', function () {
     displayData(filteredPublications);
 });
 
-fetch('http://localhost/Kamikaze_Blog/Publications/filter/all/all')
+fetch(endpoint + `all/all`)
   .then(response => response.json())
   .then(data => {
     
@@ -56,7 +57,7 @@ save.addEventListener('click', function (event) {
   var selectedValue1 = myForm.elements['category'].value;
   var selectedValue2 = myForm.elements['city'].value;
 
-  fetch(`http://localhost/Kamikaze_Blog/Publications/filter/${selectedValue1}/${selectedValue2}`)
+  fetch(endpoint + `${selectedValue1}/${selectedValue2}`)
     .then(response => response.json())
     .then(data => {
       // Assign the data to the global variable
@@ -84,7 +85,7 @@ categoryCards.forEach(categoryCard => {
       var selectedValue1 = selectedCategory;
   
       // Effectuez la requête pour obtenir les publications filtrées par la catégorie sélectionnée
-      fetch(`http://localhost/Kamikaze_Blog/Publications/filter/${selectedValue1}/all`)
+      fetch(endpoint + `${selectedValue1}/all`)
         .then(response => response.json())
         .then(data => {
           // Assignez les données à la variable globale
