@@ -110,6 +110,18 @@ Class Publication {
         return $allPublications;
     }
 
+    public function getAllPublications(){
+        $this->db->query('SELECT publication.id, publication.title , publication.prix , users.fullName , users.city , category.name 
+                        FROM publication , users , category 
+                     WHERE publication.userId = users.id AND publication.category_Id = category.id;');
+        return $this->db->resultSet();
+    }
+
+    public function deletedPublication($pubId){
+        $this->db->query('DELETE FROM publication WHERE id = :pubId');
+        $this->db->bind(':pubId' , $pubId);
+        return $this->db->execute();
+    }
 
 
     public function filterCategory($category ) {
