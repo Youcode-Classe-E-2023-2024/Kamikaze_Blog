@@ -40,6 +40,17 @@ Class Admin extends Controller {
         }
     }
 
+    public function returnUser(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+            if($this->userModel->returnUser($_POST['userid'])){
+                redirect('admin/users');
+            }else{
+                redirect('admin/users');
+            }
+        }
+    }
+
     public function add_Moderator(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
