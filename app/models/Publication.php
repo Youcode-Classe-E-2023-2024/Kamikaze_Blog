@@ -112,7 +112,6 @@ Class Publication {
 
 
 
-
     public function filterCategory($category ) {
         // die($category);
         $this->db->query("SELECT * FROM publication WHERE category_Id = :category ");

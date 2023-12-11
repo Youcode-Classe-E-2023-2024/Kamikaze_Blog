@@ -1,11 +1,16 @@
 <?php  require APPROOT . '/views/inc/cltNavBar.php';?>
 
 
-    <div class=" w-full h-screen flex flex-col justify-start items-center pt-16 my-9">
+    <div class=" w-full h-full flex flex-col justify-start items-center pt-16  ">
         
         <div class=" bg-gray-300 w-3/5 h-48 flex justify-center rounded-t-lg">
+            <div class=" w-3/5 h-full ">
+            <img src="data:image/jpeg;base64,<?php echo base64_encode($data['publication']->imgUrl); ?>" alt="" class=" w-full h-full">
+
             <img src="<?= URLROOT . '/img/publications/' . $data['publication']->imgUrl; ?>" alt="" class=" w-96 h-48 rounded-xl">
+
             
+            </div>
         </div>
         <div class=" w-3/5 h-[45%]  rounded-b-lg">
 
@@ -33,7 +38,10 @@
 
                             <p class="text-sm font-medium text-gray-600">ily a 33 min</p>
 
-<!--                            <p class="text-sm font-medium text-gray-600">--><?//= chek_time($temps); ?><!--</p>-->
+
+
+                           <p class="text-sm font-medium text-gray-600">--><?//= chek_time($temps); ?><!--</p>-->
+
 
                         </div>
                     </div>
@@ -52,6 +60,36 @@
 
 <div class="flex flex-col bg-transparent m-auto py-12">
     <h3 class="text-gray-600 text-2xl ml-12 mb-4 font-medium">Related publications</h3>
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+    <div class="m-16">
+    <h3 class="text-gray-600 text-2xl font-medium">Autres annonces de cette boutique</h3>
+    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+        
+        <?php foreach($data["publication_category"] as $item):?>
+            
+           
+            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden">
+                <div class="flex items-end justify-end h-56 w-full bg-cover">
+                    <img src="data:image/jpeg;base64,<?php echo base64_encode($item->imgUrl); ?>" alt="" class=" w-full h-full">   
+                </div>
+                <div class="px-5 py-3">
+                    <h3 class="text-gray-700 uppercase"><?= $item->title; ?></h3>
+                    <span class="text-gray-500 mt-2"><?= $item->prix; ?></span>
+                </div>
+            </div>
+            
+        <?php   endforeach; ?>
 
     <div class="flex overflow-x-scroll  hide-scroll-bar  py-7">
         <?php
